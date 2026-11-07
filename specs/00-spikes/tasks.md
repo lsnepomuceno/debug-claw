@@ -42,11 +42,11 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## S5 PHP extension
 
-- [ ] T-24 Build the extension with one observer on `PDOStatement::execute`. Closes S5 criteria 1 and 7.
-- [ ] T-25 Build and run it on both PHP versions. Closes S5 criterion 2.
-- [ ] T-26 Measure the overhead on the 100-query endpoint, with the daemon up and down. Closes S5 criteria 3 and 5.
-- [ ] T-27 Run 10 000 requests on one worker and compare its memory with and without the extension, and verify that unobserved functions get no handler. Closes S5 criteria 4 and 6.
-- [ ] T-28 Write `reports/s5-extension.md` with the recommendation. Closes S5 criterion 8.
+- [x] T-24 Build the extension with one observer on `PDOStatement::execute`. Closes S5 criteria 1 and 7.
+- [x] T-25 Build and run it on both PHP versions. Closes S5 criterion 2.
+- [x] T-26 Measure the overhead on the 100-query endpoint, with the daemon up and down. Closes S5 criteria 3 and 5.
+- [x] T-27 Run 10 000 requests on one worker and compare its memory with and without the extension, and verify that unobserved functions get no handler. Closes S5 criteria 4 and 6.
+- [x] T-28 Write `reports/s5-extension.md` with the recommendation. Closes S5 criterion 8.
 
 ## S6 IDE coexistence
 
