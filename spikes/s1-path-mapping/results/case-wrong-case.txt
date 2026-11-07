@@ -1,0 +1,23 @@
+# listener: s1-path-mapping map --local /work/spikes/testbed/app --break src/graph.php:17
+# request: curl -s -b XDEBUG_TRIGGER=1 'http://127.0.0.1:8180/graph?depth=2&width=1'
+listening on 0.0.0.0:9003
+session from 172.31.0.2:52208
+  init fileuri=file:///var/www/html/public/index.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=7
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.7
+  init engine=3.5.3
+  walk: 10 entries visited in 125.907µs, 2 named index.php
+  suffix: unique, 2 trailing components match
+  source: entry script content matches
+  mapping: inferred /var/www/html -> /work/spikes/testbed/app
+  remote check file:///var/www/html/src/graph.php:17: MISSING (can not open file)
+  breakpoint_set file:///var/www/html/src/graph.php:17 -> id=70003 resolved=(absent)
+  time from init to first run: 9.315481ms
+  run -> stopping without a break (FAIL)
+  run -> connection closed by Xdebug
+  session 1: no pause
+# exit status 1
