@@ -45,7 +45,7 @@ Can an MCP tool block until something happens (a session pauses, a logpoint gets
 
 Exit criteria:
 
-- A tool served by the daemon over Streamable HTTP waits up to 60 seconds and returns in at least two MCP clients, one of them Claude Code.
+- A tool served by the daemon over Streamable HTTP waits up to 60 seconds and returns in at least two MCP clients: Claude Code and the MCP Inspector, the protocol's reference client, run in a container.
 - The report gives the tool call timeout of each client tested, how to change it, and whether progress notifications keep the call alive.
 - The same tool works through a stdio shim that forwards to the daemon.
 - The report says whether the daemon can notify a client that a session paused without the client asking, and whether the tested clients surface that to the agent.

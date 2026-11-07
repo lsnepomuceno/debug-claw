@@ -45,3 +45,5 @@ A `proposed` ADR records a direction that a spike or a milestone still has to co
 ## Spike code
 
 Spike code lives in [`/spikes`](../spikes/), one folder per spike. It is throwaway: production crates never depend on it, and it is not held to the production quality bar. What a spike learns goes into its report in `specs/00-spikes/reports/`, and from there into ADRs and OPEN.md.
+
+Each spike is developed on its own branch, named `spike/sN-name` after its folder (`spike/s1-path-mapping`), and the shared test bed on `spike/testbed`. A spike branch is merged into `main` through a pull request once its report is written, so `main` only receives finished spikes. Documentation and spec changes outside a spike go straight to `main`.
