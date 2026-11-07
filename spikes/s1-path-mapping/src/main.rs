@@ -133,6 +133,17 @@ fn infer_for(
         Inference::NoMatch => Ok(Err(format!("no local file named {name} under {}", root.native()))),
         Inference::Unique { mapping, matched } => {
             println!("  suffix: unique, {matched} trailing components match");
+            // One round trip confirms the match, and catches an image
+            // that holds an older copy of the code.
+            let local = mapping.to_local(remote).and_then(|p| read_local(&p));
+            match remote_source(conn, &remote.uri(), None)? {
+                Ok(bytes) if Some(&bytes) == local.as_ref() => println!("  source: entry script content matches"),
+                Ok(_) => println!(
+                    "  source: entry script content DIFFERS from {}. WARN: the container runs other code than the local tree (stale image or another project?)",
+                    mapping.to_local(remote).map(|p| p.native()).unwrap_or_default()
+                ),
+                Err(e) => println!("  source: failed ({e})"),
+            }
             Ok(Ok(mapping))
         }
         Inference::Ambiguous { candidates, matched } => {
@@ -286,14 +297,23 @@ fn cmd_map(args: &Args) -> io::Result<bool> {
                 a.get("id").map(String::as_str).unwrap_or("?"),
                 a.get("resolved").map(String::as_str).unwrap_or("(absent)")
             );
-            expected.push((bp_uri, line.to_string()));
+            expected.push((bp_uri, line.to_string(), local.native()));
         }
         println!("  time from init to first run: {:?}", started.elapsed());
         let (status, loc, _) = run(&mut conn)?;
         let ok = match (&status[..], &loc) {
             ("break", Some((f, l))) => {
-                let hit = expected.iter().any(|(eu, el)| eu == f && el == l);
-                println!("  run -> break at {f}:{l} {}", if hit { "(PASS: the breakpoint set by local path)" } else { "(unexpected location)" });
+                let exact = expected.iter().any(|(eu, el, _)| eu == f && el == l);
+                // Xdebug stores a breakpoint under its realpath and frames
+                // report realpaths, so a breakpoint set through a symlink
+                // pauses at another path. Compare the local files too.
+                let reported = parse_file_uri(f).ok().and_then(|r| mapping.to_local(&r)).and_then(|p| fs::canonicalize(p.native()).ok());
+                let via_link = !exact && expected.iter().any(|(_, el, lp)| el == l && fs::canonicalize(lp).ok() == reported && reported.is_some());
+                let hit = exact || via_link;
+                println!(
+                    "  run -> break at {f}:{l} {}",
+                    if exact { "(PASS: the breakpoint set by local path)" } else if via_link { "(PASS: set through a symlink, reported at the resolved path)" } else { "(unexpected location)" }
+                );
                 if let Some(local) = parse_file_uri(f).ok().and_then(|r| mapping.to_local(&r)) {
                     println!("  shown to the user as {}:{l}", local.native());
                 }
@@ -339,7 +359,8 @@ fn cmd_vendor(args: &Args) -> io::Result<bool> {
 
     let (alocal, aline) = parse_break(&app_break, &root)?;
     let auri = app.to_remote(&alocal).unwrap().uri();
-    conn.cmd("breakpoint_set", &format!("-t line -f {auri} -n {aline}"), None)?;
+    let xml = conn.cmd("breakpoint_set", &format!("-t line -f {auri} -n {aline}"), None)?;
+    let app_id = attrs(&xml, "response").and_then(|a| a.get("id").cloned()).unwrap_or_default();
     let (status, loc, _) = run(&mut conn)?;
     println!("  run -> {status} at {loc:?}");
     let xml = conn.cmd("step_into", "", None)?;
@@ -355,6 +376,8 @@ fn cmd_vendor(args: &Args) -> io::Result<bool> {
             Ok(vendor) => {
                 println!("  mapping: inferred {} -> {}", vendor.remote.native(), vendor.local.native());
                 let vuri = vendor.to_remote(&vlocal).unwrap().uri();
+                // The loop would hit the app line again first.
+                conn.cmd("breakpoint_remove", &format!("-d {app_id}"), None)?;
                 conn.cmd("breakpoint_set", &format!("-t line -f {vuri} -n {vline}"), None)?;
                 println!("  breakpoint_set {vuri}:{vline}");
                 let (status, loc, _) = run(&mut conn)?;

@@ -1,0 +1,28 @@
+# listener: s1-path-mapping map --local /work/spikes/s1-path-mapping/fixtures/symlink --break current/lib.php:5 --break current/other.php:5
+# request: dc exec -T -e XDEBUG_TRIGGER=1 php85 php /srv/sym/current/index.php
+listening on 0.0.0.0:9003
+session from 172.31.0.2:52176
+  init fileuri=file:///srv/sym/real/index.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=91
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.91
+  init engine=3.5.3
+  walk: 5 entries visited in 68.26µs, 1 named index.php
+  walk: symlink current -> real (not followed)
+  suffix: unique, 2 trailing components match
+  source: entry script content matches
+  mapping: inferred /srv/sym -> /work/spikes/s1-path-mapping/fixtures/symlink
+  remote check file:///srv/sym/current/lib.php:5: exists, line is "$greeting = \"hello $name\";"
+  breakpoint_set file:///srv/sym/current/lib.php:5 -> id=910001 resolved=(absent)
+  remote check file:///srv/sym/current/other.php:5: exists, line is "$value = 'other';"
+  breakpoint_set file:///srv/sym/current/other.php:5 -> id=910002 resolved=(absent)
+  time from init to first run: 6.971368ms
+  run -> break at file:///srv/sym/real/lib.php:5 (PASS: set through a symlink, reported at the resolved path)
+  shown to the user as /work/spikes/s1-path-mapping/fixtures/symlink/real/lib.php:5
+  run -> break again at file:///srv/sym/real/other.php:5
+  run -> stopping
+  session 1: PASS
+# exit status 0
