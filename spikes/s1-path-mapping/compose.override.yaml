@@ -1,0 +1,29 @@
+# Extra mounts for S1, layered on the shared test bed without changing it:
+#
+#   docker compose -f ../testbed/compose.yaml -f compose.override.yaml ...
+#
+# Relative paths resolve against the first file's folder (spikes/testbed).
+# The fixtures run with the PHP CLI, so they need no nginx routes.
+services:
+  php85:
+    volumes:
+      # Same relative path in two places: only admin/ is in the container.
+      - ../s1-path-mapping/fixtures/dup/admin:/var/www/admin:ro
+      # Two identical copies locally: only b/ is in the container.
+      - ../s1-path-mapping/fixtures/dup-identical/b:/var/www/same:ro
+      # Vendor mounted elsewhere: the app at /srv/vend with its vendor/
+      # hidden, and the vendor folder at /opt/vendor.
+      - ../s1-path-mapping/fixtures/vendored:/srv/vend:ro
+      - type: tmpfs
+        target: /srv/vend/vendor
+      - ../s1-path-mapping/fixtures/vendored/vendor:/opt/vendor:ro
+      # A folder with a symlink (current -> real).
+      - ../s1-path-mapping/fixtures/symlink:/srv/sym:ro
+      # Probe scripts for the DBGp features.
+      - ../s1-path-mapping/fixtures/probe:/probe:ro
+      # The spike binary, to reach the control socket from inside.
+      - target:/target:ro
+  php83:
+    volumes:
+      - ../s1-path-mapping/fixtures/probe:/probe:ro
+      - target:/target:ro
