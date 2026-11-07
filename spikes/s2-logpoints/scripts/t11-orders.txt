@@ -1,0 +1,15 @@
+# T-11 at src/OrderService.php:44 inside charge(Order $order), customer 3.
+feature_set -n max_depth -v 2
+property_get -n $order
+property_get -n $order->total
+property_get -n $order->customerId
+property_get -n $order->items
+property_get -n $order->items[0]['sku']
+property_get -n $order->items[1]["price"]
+property_get -n $this
+property_get -n $this->discount(3)
+property_get -n "$order->total <= 0"
+property_get -n "{$order->total}"
+eval $order->total <= 0
+eval "Cannot charge an order with total {$order->total}"
+eval $this->discount($order->customerId)

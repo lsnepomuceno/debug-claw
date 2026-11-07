@@ -1,0 +1,221 @@
+trigger url:/loop?n=5 break /var/www/html/public/index.php:44 script t11-loop.txt args --hit 3
+listening on 0.0.0.0:9003
+init php=8.5.12
+paused at /var/www/html/public/index.php:44
+cmd feature_set -n max_depth -v 2
+  bytes=217 us_median=23 us_min=23 us_max=23 reps=1
+  props=0 success=1
+cmd property_get -n $i
+  bytes=255 us_median=40 us_min=40 us_max=40 reps=1
+  props=1
+  $i type=int [] = 2
+cmd property_get -n $sum
+  bytes=259 us_median=23 us_min=23 us_max=23 reps=1
+  props=1
+  $sum type=int [] = 1
+cmd property_get -n $n
+  bytes=255 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  $n type=int [] = 5
+cmd property_get -n $item
+  bytes=492 us_median=37 us_min=37 us_max=37 reps=1
+  props=3
+  $item type=array [numchildren=2 page=0 pagesize=32]
+    $item["index"] type=int [] = 2
+    $item["square"] type=int [] = 4
+cmd property_get -n $item['square']
+  bytes=297 us_median=23 us_min=23 us_max=23 reps=1
+  props=1
+  $item[&#39;square&#39;] type=int [] = 4
+cmd property_get -n $item["index"]
+  bytes=299 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  $item["index"] type=int [] = 2
+cmd property_get -n $item[square]
+  bytes=525 us_median=25 us_min=25 us_max=25 reps=1
+  props=3
+  $item[square] type=array [numchildren=2 page=0 pagesize=32]
+    $item[square]["index"] type=int [] = 2
+    $item[square]["square"] type=int [] = 4
+cmd property_get -n $nothing
+  bytes=291 us_median=22 us_min=22 us_max=22 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $item['missing']
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $_GET['n']
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $_SERVER['REQUEST_URI']
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $_SERVER["REQUEST_METHOD"]
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 1 -n $_GET['n']
+  bytes=321 us_median=23 us_min=23 us_max=23 reps=1
+  props=1
+  $_GET[&#39;n&#39;] type=string [size=1] = "5"
+cmd property_get -n $GLOBALS['path']
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $GLOBALS
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 1 -n $GLOBALS['path']
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 1 -n $_SERVER['REQUEST_URI']
+  bytes=355 us_median=21 us_min=21 us_max=21 reps=1
+  props=1
+  $_SERVER[&#39;REQUEST_URI&#39;] type=string [size=9] = "/loop?n=5"
+cmd property_get -c 1 -n $_SERVER
+  bytes=5877 us_median=123 us_min=123 us_max=123 reps=1
+  props=33
+  $_SERVER type=array [numchildren=43 page=0 pagesize=32]
+    $_SERVER["HOSTNAME"] type=string [size=12] = "a964dd93b505"
+    $_SERVER["PHP_INI_DIR"] type=string [size=18] = "/usr/local/etc/php"
+    $_SERVER["HOME"] type=string [size=8] = "/var/www"
+    $_SERVER["PHP_LDFLAGS"] type=string [size=12] = "-Wl,-O1 -pie"
+    $_SERVER["PHP_CFLAGS"] type=string [size=83] = "-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+    $_SERVER["PHP_VERSION"] type=string [size=6] = "8.5.12"
+    $_SERVER["GPG_KEYS"] type=string [size=122] = "1198C0117593497A5EC5C199286AF1F9897469DC 49D9AF6BC72A80D6691719C8AA23F5BE9C7097D4 D95C03BC702BE9515344AE3374E44BC9067701A5"
+    $_SERVER["PHP_CPPFLAGS"] type=string [size=83] = "-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+    $_SERVER["PHP_ASC_URL"] type=string [size=55] = "https://www.php.net/distributions/php-8.5.12.tar.xz.asc"
+    $_SERVER["PHP_URL"] type=string [size=51] = "https://www.php.net/distributions/php-8.5.12.tar.xz"
+    $_SERVER["PATH"] type=string [size=60] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    $_SERVER["PHPIZE_DEPS"] type=string [size=76] = "autoconf \t\tdpkg-dev \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkg-config \t\tre2c"
+    $_SERVER["PWD"] type=string [size=13] = "/var/www/html"
+    $_SERVER["PHP_SHA256"] type=string [size=64] = "08bc2eba2a588654ade1357174aa646b761556c862dda0678345ee29ed481209"
+    $_SERVER["FPM_SOCKETS"] type=string [size=9] = ":::9000=9"
+    $_SERVER["USER"] type=string [size=8] = "www-data"
+    $_SERVER["HTTP_COOKIE"] type=string [size=16] = "XDEBUG_TRIGGER=1"
+    $_SERVER["HTTP_ACCEPT"] type=string [size=3] = "*/*"
+    $_SERVER["HTTP_USER_AGENT"] type=string [size=10] = "curl/8.5.0"
+    $_SERVER["HTTP_HOST"] type=string [size=14] = "127.0.0.1:8280"
+    $_SERVER["SCRIPT_FILENAME"] type=string [size=30] = "/var/www/html/public/index.php"
+    $_SERVER["REDIRECT_STATUS"] type=string [size=3] = "200"
+    $_SERVER["SERVER_NAME"] type=string [size=0] = ""
+    $_SERVER["SERVER_PORT"] type=string [size=2] = "80"
+    $_SERVER["SERVER_ADDR"] type=string [size=11] = "192.168.0.5"
+    $_SERVER["REMOTE_PORT"] type=string [size=5] = "45640"
+    $_SERVER["REMOTE_ADDR"] type=string [size=11] = "192.168.0.1"
+    $_SERVER["SERVER_SOFTWARE"] type=string [size=12] = "nginx/1.30.6"
+    $_SERVER["GATEWAY_INTERFACE"] type=string [size=7] = "CGI/1.1"
+    $_SERVER["REQUEST_SCHEME"] type=string [size=4] = "http"
+    $_SERVER["SERVER_PROTOCOL"] type=string [size=8] = "HTTP/1.1"
+    $_SERVER["DOCUMENT_ROOT"] type=string [size=20] = "/var/www/html/public"
+cmd property_get -n PHP_INT_MAX
+  bytes=291 us_median=30 us_min=30 us_max=30 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n PHP_VERSION
+  bytes=291 us_median=22 us_min=22 us_max=22 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 2 -n PHP_VERSION
+  bytes=328 us_median=27 us_min=27 us_max=27 reps=1
+  props=1
+  PHP_VERSION type=string [facet=constant size=6] = "8.5.12"
+cmd property_get -n M_PI
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 2 -n PHP_INT_MAX
+  bytes=309 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  PHP_INT_MAX type=int [facet=constant] = 9223372036854775807
+cmd property_get -c 2 -n M_PI
+  bytes=295 us_median=34 us_min=34 us_max=34 reps=1
+  props=1
+  M_PI type=float [facet=constant] = 3.141592653589793
+cmd property_get -c 2 -n E_ALL
+  bytes=283 us_median=21 us_min=21 us_max=21 reps=1
+  props=1
+  E_ALL type=int [facet=constant] = 30719
+cmd property_get -n "$i + 1"
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $i+1
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n "$item['square'] * 2"
+  bytes=306 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  $item[&#39;square&#39;] * 2 type=int [] = 4
+cmd property_get -n "$item['square'] + 100"
+  bytes=310 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  $item[&#39;square&#39;] + 100 type=int [] = 4
+cmd property_get -n $item['square']garbage
+  bytes=312 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  $item[&#39;square&#39;]garbage type=int [] = 4
+cmd property_get -n "$item['square'] . 'x'"
+  bytes=326 us_median=19 us_min=19 us_max=19 reps=1
+  props=1
+  $item[&#39;square&#39;] . &#39;x&#39; type=int [] = 4
+cmd property_get -n "$item['index'] ?? 0"
+  bytes=306 us_median=19 us_min=19 us_max=19 reps=1
+  props=1
+  $item[&#39;index&#39;] ?? 0 type=int [] = 2
+cmd property_get -n "\"i=$i\""
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n count($item)
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n strlen('abc')
+  bytes=291 us_median=18 us_min=18 us_max=18 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n (int)$i
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $item['index']->foo
+  bytes=291 us_median=19 us_min=19 us_max=19 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n "$i ?? 0"
+  bytes=291 us_median=18 us_min=18 us_max=18 reps=1
+  props=0
+  error code=300 can not get property
+cmd eval $i + 1
+  bytes=224 us_median=51 us_min=51 us_max=51 reps=1
+  props=1
+  ? type=int [] = 3
+cmd eval $item['square'] * 2
+  bytes=224 us_median=29 us_min=29 us_max=29 reps=1
+  props=1
+  ? type=int [] = 8
+cmd eval "i=$i sum=$sum"
+  bytes=265 us_median=31 us_min=31 us_max=31 reps=1
+  props=1
+  ? type=string [size=9] = "i=2 sum=1"
+cmd eval count($item)
+  bytes=224 us_median=26 us_min=26 us_max=26 reps=1
+  props=1
+  ? type=int [] = 2
+cmd eval PHP_VERSION
+  bytes=261 us_median=23 us_min=23 us_max=23 reps=1
+  props=1
+  ? type=string [size=6] = "8.5.12"
+cmd eval $_GET['n']
+  bytes=257 us_median=24 us_min=24 us_max=24 reps=1
+  props=1
+  ? type=string [size=1] = "5"
+detached
+request: http=200 time_s=0.004803

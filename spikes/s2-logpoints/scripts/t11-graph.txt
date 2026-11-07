@@ -1,0 +1,23 @@
+# T-11 at src/Graph.php:40 inside Graph::summary(), $this is the built graph.
+feature_set -n max_depth -v 1
+feature_set -n max_children -v 4
+property_get -n $this
+property_get -n $this->nodes
+property_get -n $this->roots
+property_get -n $this->roots[0]
+property_get -n $this->roots[0]->name
+property_get -n $this->roots[0]->children[1]->name
+property_get -n $this->roots[0]->children[1]->parent->name
+property_get -n $this->roots[0]->meta['tags'][1]
+property_get -n $this->roots[0]->meta["enabled"]
+property_get -n $this->roots[2]->children[2]->children[2]->children[2]->children[2]->children[2]->name
+property_get -n $this->roots[0]->missing
+property_get -n $this->roots[9]
+# Method and function calls, class name
+property_get -n $this->summary()
+property_get -n count($this->roots)
+property_get -n $this::class
+property_get -n self::class
+eval $this->summary()
+eval count($this->roots)
+eval $this->roots[0]->children[1]->name . '!'
