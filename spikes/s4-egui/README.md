@@ -57,6 +57,10 @@ docker compose --profile host down                # keeps the volumes
 | `scripts/bench.sh` | frame times per scenario and backend, vsync off |
 | `scripts/select.sh` | text selection and Ctrl+C with xdotool, clipboard read with xclip |
 | `scripts/atspi.sh VIEW` | the AT-SPI tree a screen reader sees |
+| `scripts/goto.sh [LINE]` | Ctrl+G in the source view, then a screenshot |
+| `scripts/flame.sh` | Ctrl+wheel zoom and hover in the flame graph, then a screenshot |
+| `scripts/threads.sh BACKEND SECONDS ARGS` | context switches per thread of an idle window |
+| `scripts/noak.sh [SECONDS]` | the same, for a build without eframe's `accesskit` feature |
 | `scripts/versions.sh` | Rust, crates, Mesa, GL and Vulkan devices, fonts |
 | `scripts/host.sh` | versions, memory, benchmarks and idle on the host GPU |
 
