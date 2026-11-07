@@ -4,9 +4,11 @@
 //!
 //! Sends N requests one after another on a keep-alive connection, after
 //! WARMUP untimed ones, and times each from the first byte written to the
-//! last body byte read. Prints one summary line in microseconds and, with
-//! `--out`, writes every timing (one per line) to FILE. Any status other
-//! than 200 aborts the run.
+//! last body byte read. When the server ends the connection (nginx does
+//! after `keepalive_requests`, 1000 by default), the next request opens a
+//! new one before its timer starts. Prints one summary line in microseconds
+//! and, with `--out`, writes every timing (one per line) to FILE. Any status
+//! other than 200 aborts the run.
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::net::TcpStream;
@@ -22,10 +24,14 @@ fn main() {
     let label = flag("--label").unwrap_or_default();
     let host = addr.split(':').next().unwrap_or("localhost").to_string();
 
-    let stream = TcpStream::connect(&addr).expect("connect");
-    stream.set_nodelay(true).expect("nodelay");
-    let mut writer = stream.try_clone().expect("clone");
-    let mut reader = BufReader::with_capacity(64 * 1024, stream);
+    let connect = || {
+        let stream = TcpStream::connect(&addr).expect("connect");
+        stream.set_nodelay(true).expect("nodelay");
+        let writer = stream.try_clone().expect("clone");
+        (writer, BufReader::with_capacity(64 * 1024, stream))
+    };
+    let (mut writer, mut reader) = connect();
+    let mut reconnects = 0usize;
     let request = format!("GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: keep-alive\r\n\r\n");
 
     let mut times = Vec::with_capacity(n);
@@ -33,10 +39,14 @@ fn main() {
     for i in 0..warmup + n {
         let start = Instant::now();
         writer.write_all(request.as_bytes()).expect("write");
-        let status = read_response(&mut reader, &mut body);
+        let (status, close) = read_response(&mut reader, &mut body);
         let us = start.elapsed().as_secs_f64() * 1e6;
         if status != 200 {
             panic!("request {i}: status {status}: {}", String::from_utf8_lossy(&body));
+        }
+        if close {
+            (writer, reader) = connect();
+            reconnects += 1;
         }
         if i >= warmup {
             times.push(us);
@@ -52,7 +62,7 @@ fn main() {
     let pct = |p: f64| sorted[((sorted.len() as f64 - 1.0) * p).round() as usize];
     let mean = sorted.iter().sum::<f64>() / sorted.len() as f64;
     println!(
-        "{label} n={} median_us={:.1} p95_us={:.1} p99_us={:.1} mean_us={:.1} min_us={:.1} max_us={:.1}",
+        "{label} n={} median_us={:.1} p95_us={:.1} p99_us={:.1} mean_us={:.1} min_us={:.1} max_us={:.1} reconnects={reconnects}",
         sorted.len(),
         pct(0.5),
         pct(0.95),
@@ -63,15 +73,17 @@ fn main() {
     );
 }
 
-/// Reads one response (Content-Length or chunked) into `body` and returns
-/// the status code.
-fn read_response(reader: &mut BufReader<TcpStream>, body: &mut Vec<u8>) -> u16 {
+/// Reads one response (Content-Length, chunked, or delimited by the end of
+/// the connection) into `body`. Returns the status code and whether the
+/// server closes the connection after it.
+fn read_response(reader: &mut BufReader<TcpStream>, body: &mut Vec<u8>) -> (u16, bool) {
     body.clear();
     let mut line = String::new();
     reader.read_line(&mut line).expect("status line");
     let status = line.split_whitespace().nth(1).and_then(|s| s.parse().ok()).unwrap_or(0);
     let mut length = None;
     let mut chunked = false;
+    let mut close = false;
     loop {
         line.clear();
         reader.read_line(&mut line).expect("header");
@@ -84,6 +96,8 @@ fn read_response(reader: &mut BufReader<TcpStream>, body: &mut Vec<u8>) -> u16 {
             length = v.trim().parse::<usize>().ok();
         } else if lower.starts_with("transfer-encoding:") && lower.contains("chunked") {
             chunked = true;
+        } else if lower.starts_with("connection:") && lower.contains("close") {
+            close = true;
         }
     }
     if chunked {
@@ -103,8 +117,10 @@ fn read_response(reader: &mut BufReader<TcpStream>, body: &mut Vec<u8>) -> u16 {
     } else if let Some(len) = length {
         body.resize(len, 0);
         reader.read_exact(body).expect("body");
+    } else if close {
+        reader.read_to_end(body).expect("body until close");
     } else {
-        panic!("response without length; keep-alive needs one");
+        panic!("response without length on a keep-alive connection");
     }
-    status
+    (status, close)
 }
