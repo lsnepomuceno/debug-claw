@@ -1,0 +1,41 @@
+# S3 services, layered on the shared test bed without changing it:
+#
+#   docker compose -f ../testbed/compose.yaml -f compose.override.yaml ...
+#
+# Relative paths resolve against the first file's folder (spikes/testbed).
+# Build the binaries first in `toolchain` (cargo build --release); they
+# land in the shared `target` volume.
+services:
+  # The daemon under test, alone in its container so its PID and
+  # /proc counters are easy to read. Port 8390 is published on loopback
+  # only, for Claude Code on the host.
+  daemon:
+    build:
+      context: toolchain
+      args:
+        UID: "${HOST_UID:-1000}"
+        GID: "${HOST_GID:-1000}"
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    init: true
+    # S3_DAEMON_ARGS adds flags such as --json-response or
+    # --sse-keep-alive 0. `exec` leaves the daemon as the only process
+    # under the init.
+    environment:
+      S3_DAEMON_ARGS: "${S3_DAEMON_ARGS:-}"
+    command:
+      - sh
+      - -c
+      - exec /target/release/s3-daemon --listen 0.0.0.0:8390 --allow-host daemon $$S3_DAEMON_ARGS
+    ports:
+      - "127.0.0.1:8390:8390"
+    volumes:
+      - target:/target:ro
+
+  # The MCP Inspector CLI, pinned, run on demand:
+  #   docker compose ... run --rm inspector --cli http://daemon:8390/mcp ...
+  inspector:
+    profiles: ["clients"]
+    build:
+      context: ../s3-mcp-wait/inspector
+    depends_on:
+      - daemon
