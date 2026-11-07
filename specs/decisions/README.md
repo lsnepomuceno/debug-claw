@@ -13,5 +13,6 @@
 | [0009](0009-mit-license.md) | MIT license | accepted |
 | [0010](0010-workspace-layout.md) | Workspace layout and architecture patterns | proposed |
 | [0011](0011-docker-development.md) | Development and tests run in Docker | accepted |
+| [0012](0012-platforms.md) | Linux, Windows and macOS | accepted |
 
 The format is described in [CONVENTIONS.md](../CONVENTIONS.md#decisions).

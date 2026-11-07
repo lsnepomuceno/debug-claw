@@ -17,7 +17,7 @@ The assumption: the DBGp `init` packet carries the `fileuri` of the entry script
 Exit criteria:
 
 - A breakpoint set on a host path pauses the request inside the container, in at least two layouts: the project mounted at the container root of the web server, and a project whose entry script is in a subfolder (`public/`).
-- The report lists the cases where inference fails or is ambiguous (the same relative path in two places, vendor mounted elsewhere, symlinks), and what the daemon should ask the user in each.
+- The report lists the cases where inference fails or is ambiguous (the same relative path in two places, vendor mounted elsewhere, symlinks), and what the daemon should ask the user in each. It covers hosts on Windows and macOS ([ADR-0012](../decisions/0012-platforms.md)): drive letters, backslashes, case-insensitive file systems and `file:///C:/...` URIs, checked against recorded `init` packets, because the test bed runs on Linux.
 - The report says whether the mapping can be learned on the first session and reused, and what invalidates it.
 - The report lists which DBGp features the Xdebug versions in the test bed support, from `feature_get` and by trying each one: the contexts from `context_names` (locals, superglobals, constants), class constants and statics in property trees, the asynchronous `break` command, `stdout` redirection, `property_set`, exception breakpoints on PHP warnings and notices, `call` and `return` breakpoints, and the `watch` breakpoint type. Rows of [docs/features.md](../../docs/features.md) depend on these answers.
 
@@ -64,7 +64,7 @@ Exit criteria:
 - A list of 10 000 dump entries with mixed content (text, tables, collapsed trees) scrolls smoothly.
 - A flame graph with 50 000 frames renders, zooms and shows the frame under the cursor.
 - A source view with syntax highlighting renders a 5 000-line PHP file and jumps to a line.
-- The report covers text selection and copy, light and dark themes, and screen reader support through AccessKit.
+- The report covers text selection and copy, light and dark themes, screen reader support through AccessKit, and the known differences of eframe on Windows and macOS (rendering backends, fonts, high-DPI).
 - With the window open and no input or new data, the app uses 0% CPU, because it repaints only on events.
 - The report gives the RSS with each dataset loaded, for the `glow` and `wgpu` backends, against the desktop app budgets in [docs/performance.md](../../docs/performance.md#budgets), and recommends a backend.
 - The views hold only what is on screen plus a fixed margin: memory with 100 000 tree nodes is close to memory with 1 000.

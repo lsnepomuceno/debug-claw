@@ -9,13 +9,6 @@ Which PHP versions and which Xdebug versions are supported. This limits which DB
 - Decides: Lucas, informed by S5.
 - Blocks: milestone 1 design.
 
-## O-03 Platforms
-
-Linux first is assumed. Whether macOS and Windows are supported from the start affects the desktop app, packaging and the PHP extension builds.
-
-- Decides: Lucas.
-- Blocks: desktop app milestone and distribution.
-
 ## O-04 Storage
 
 How the daemon stores sessions, events and breakpoints, and whether anything survives a restart. Candidates include SQLite and an embedded key-value store.
@@ -57,3 +50,10 @@ The console with no paused request and running a CLI script under the debugger b
 
 - Decides: Lucas.
 - Blocks: nothing yet. The console inside a paused request does not depend on it.
+
+## O-10 Packaging and code signing
+
+How the daemon and the desktop app are distributed on each system ([ADR-0012](decisions/0012-platforms.md)): archives, installers, package managers, and whether binaries are signed. Signing on macOS and Windows needs paid certificates, and unsigned binaries trigger warnings on both.
+
+- Decides: Lucas.
+- Blocks: the first public release.
