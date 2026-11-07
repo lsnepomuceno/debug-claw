@@ -34,6 +34,7 @@ const HELP: &str = "s4-egui [options]
   --vsync on|off      default: off with --bench, on otherwise
   --screenshot PATH   save a PNG after the first second, then quit
   --hover ACTION      with --screenshot: put the pointer on that action's button
+  --screenshot-delay S  with --screenshot: wait S seconds instead of 1
   --size WxH          window size (default 1280x800)
   --quit-after N      print heap and RSS after N frames, then quit
   --a11y-dump         run headless with AccessKit and print the tree summary
@@ -58,6 +59,7 @@ fn main() {
         bench: None,
         screenshot: None,
         hover: None,
+        screenshot_delay: None,
         quit_after: None,
         load_all: false,
         live_countdown: false,
@@ -108,6 +110,7 @@ fn main() {
                 size = [w.parse().unwrap(), h.parse().unwrap()];
             }
             "--quit-after" => opts.quit_after = Some(num(it.next())),
+            "--screenshot-delay" => opts.screenshot_delay = Some(num(it.next()) as f32),
             "--a11y-dump" => a11y = true,
             "--live-countdown" => opts.live_countdown = true,
             other => panic!("unknown option {other}\n{HELP}"),
