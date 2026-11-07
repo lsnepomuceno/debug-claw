@@ -1,0 +1,19 @@
+scenario mode=bridge reps=1 n=100000 args=--exprs 5 --buffer-cap 1000 --mem-every 10000 --quiet
+request http=200 time_s=7.153587 body_sum_ok=yes
+median_s=7.153587
+listening on 0.0.0.0:9003 for 1 session(s)
+process at=start t_ms=0.1 rss_kb=2128 hwm_kb=2128 cpu_user_ms=10 cpu_sys_ms=0
+mem session=1 pause=10000 rss_kb=2560 buffer_len=1000 cpu_ms=400
+mem session=1 pause=20000 rss_kb=2560 buffer_len=1000 cpu_ms=810
+mem session=1 pause=30000 rss_kb=2568 buffer_len=1000 cpu_ms=1250
+mem session=1 pause=40000 rss_kb=2572 buffer_len=1000 cpu_ms=1670
+mem session=1 pause=50000 rss_kb=2576 buffer_len=1000 cpu_ms=2070
+mem session=1 pause=60000 rss_kb=2580 buffer_len=1000 cpu_ms=2440
+mem session=1 pause=70000 rss_kb=2584 buffer_len=1000 cpu_ms=2850
+mem session=1 pause=80000 rss_kb=2588 buffer_len=1000 cpu_ms=3230
+mem session=1 pause=90000 rss_kb=2588 buffer_len=1000 cpu_ms=3620
+mem session=1 pause=100000 rss_kb=2588 buffer_len=1000 cpu_ms=4010
+session id=1 peer=192.168.0.4:50894 appid=176 start_ms=58.9 end_ms=7210.3 pauses=100000 mismatches=0 buffer_len=1000 evicted=99000 setup_ms=0.84 total_ms=7151.3 hold_avg_us=63.0 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=1677 gap_avg_us=8.5 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=286 bp_hit_count=-
+session id=1 oldest_capture=#99001[{index=99000,square=9801000000} | 99000 | 323428099516500 | 100000 | 9801000000]
+session id=1 newest_capture=#100000[{index=99999,square=9999800001} | 99999 | 333318333549999 | 100000 | 9999800001]
+process at=end t_ms=7210.7 rss_kb=2408 hwm_kb=2472 cpu_user_ms=1510 cpu_sys_ms=2500

@@ -1,0 +1,40 @@
+scenario mode=bridge reps=3 n=100 args=--exprs 5
+request http=200 time_s=0.017708 body_sum_ok=yes
+request http=200 time_s=0.017601 body_sum_ok=yes
+request http=200 time_s=0.013295 body_sum_ok=yes
+median_s=0.017601
+process at=start t_ms=0.1 rss_kb=2184 hwm_kb=2184 cpu_user_ms=20 cpu_sys_ms=0
+listening on 0.0.0.0:9003 for 3 session(s)
+session 1: init fileuri=file:///var/www/html/public/index.php appid=198
+session id=1 peer=192.168.0.4:38166 appid=198 start_ms=54.0 end_ms=69.1 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=1.16 total_ms=15.0 hold_avg_us=118.6 hold_p50_us<=120 hold_p99_us<=240 hold_max_us=411 gap_avg_us=18.0 gap_p50_us<=20 gap_p99_us<=50 gap_max_us=237 bp_hit_count=-
+session id=1 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=1 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+session 2: init fileuri=file:///var/www/html/public/index.php appid=197
+session id=2 peer=192.168.0.4:38180 appid=197 start_ms=88.0 end_ms=103.5 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=0.64 total_ms=15.5 hold_avg_us=128.9 hold_p50_us<=130 hold_p99_us<=250 hold_max_us=264 gap_avg_us=18.0 gap_p50_us<=20 gap_p99_us<=40 gap_max_us=115 bp_hit_count=-
+session id=2 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=2 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+session 3: init fileuri=file:///var/www/html/public/index.php appid=198
+session id=3 peer=192.168.0.4:38184 appid=198 start_ms=122.9 end_ms=134.6 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=0.34 total_ms=11.7 hold_avg_us=98.9 hold_p50_us<=110 hold_p99_us<=130 hold_max_us=136 gap_avg_us=13.9 gap_p50_us<=20 gap_p99_us<=30 gap_max_us=59 bp_hit_count=-
+session id=3 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=3 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+process at=end t_ms=134.7 rss_kb=2468 hwm_kb=2468 cpu_user_ms=30 cpu_sys_ms=10
+scenario mode=local reps=3 n=100 args=--exprs 5
+request http=200 time_s=0.008928 body_sum_ok=yes
+request http=200 time_s=0.016711 body_sum_ok=yes
+request http=200 time_s=0.020225 body_sum_ok=yes
+median_s=0.016711
+listening on 127.0.0.1:9003 for 3 session(s)
+process at=start t_ms=0.1 rss_kb=2168 hwm_kb=2168 cpu_user_ms=10 cpu_sys_ms=0
+session 1: init fileuri=file:///var/www/html/public/index.php appid=219
+session id=1 peer=127.0.0.1:50324 appid=219 start_ms=14.9 end_ms=22.8 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=0.23 total_ms=7.8 hold_avg_us=63.9 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=184 gap_avg_us=10.0 gap_p50_us<=10 gap_p99_us<=70 gap_max_us=78 bp_hit_count=-
+session id=1 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=1 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+session 2: init fileuri=file:///var/www/html/public/index.php appid=218
+session id=2 peer=127.0.0.1:50332 appid=218 start_ms=33.8 end_ms=49.4 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=0.31 total_ms=15.5 hold_avg_us=128.6 hold_p50_us<=130 hold_p99_us<=180 hold_max_us=185 gap_avg_us=19.0 gap_p50_us<=20 gap_p99_us<=30 gap_max_us=74 bp_hit_count=-
+session id=2 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=2 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+session 3: init fileuri=file:///var/www/html/public/index.php appid=219
+session id=3 peer=127.0.0.1:50336 appid=219 start_ms=64.3 end_ms=83.2 pauses=100 mismatches=0 buffer_len=100 evicted=0 setup_ms=0.34 total_ms=18.9 hold_avg_us=158.9 hold_p50_us<=160 hold_p99_us<=460 hold_max_us=497 gap_avg_us=23.5 gap_p50_us<=30 gap_p99_us<=90 gap_max_us=84 bp_hit_count=-
+session id=3 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 100 | 0]
+session id=3 newest_capture=#100[{index=99,square=9801} | 99 | 318549 | 100 | 9801]
+process at=end t_ms=83.3 rss_kb=2372 hwm_kb=2372 cpu_user_ms=20 cpu_sys_ms=20

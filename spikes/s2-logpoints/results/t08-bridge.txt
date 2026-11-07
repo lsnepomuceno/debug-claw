@@ -1,0 +1,265 @@
+client_host=toolchain log=
+scenario mode=untrig reps=5 n=1000 args=
+request http=200 time_s=0.001719 body_sum_ok=yes
+request http=200 time_s=0.001462 body_sum_ok=yes
+request http=200 time_s=0.001698 body_sum_ok=yes
+request http=200 time_s=0.002220 body_sum_ok=yes
+request http=200 time_s=0.002082 body_sum_ok=yes
+median_s=0.001719
+scenario mode=bridge reps=5 n=1000 args=--no-break --quiet
+request http=200 time_s=0.004504 body_sum_ok=yes
+request http=200 time_s=0.002776 body_sum_ok=yes
+request http=200 time_s=0.003578 body_sum_ok=yes
+request http=200 time_s=0.003317 body_sum_ok=yes
+request http=200 time_s=0.003296 body_sum_ok=yes
+median_s=0.003317
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2212 hwm_kb=2212 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:45320 appid=133 start_ms=52.6 end_ms=54.2 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.49 total_ms=1.5 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=1 oldest_capture=
+session id=1 newest_capture=
+session id=2 peer=192.168.0.4:45326 appid=134 start_ms=75.3 end_ms=76.3 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.18 total_ms=1.0 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=2 oldest_capture=
+session id=2 newest_capture=
+session id=3 peer=192.168.0.4:45334 appid=133 start_ms=99.5 end_ms=100.7 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.26 total_ms=1.1 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=3 oldest_capture=
+session id=3 newest_capture=
+session id=4 peer=192.168.0.4:45350 appid=134 start_ms=121.7 end_ms=123.3 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.58 total_ms=1.5 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=4 oldest_capture=
+session id=4 newest_capture=
+session id=5 peer=192.168.0.4:45354 appid=133 start_ms=144.5 end_ms=145.6 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.27 total_ms=1.0 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=5 oldest_capture=
+session id=5 newest_capture=
+process at=end t_ms=145.8 rss_kb=2512 hwm_kb=2512 cpu_user_ms=20 cpu_sys_ms=0
+scenario mode=bridge reps=5 n=1000 args=--exprs 0 --quiet
+request http=200 time_s=0.030919 body_sum_ok=yes
+request http=200 time_s=0.018797 body_sum_ok=yes
+request http=200 time_s=0.019947 body_sum_ok=yes
+request http=200 time_s=0.017054 body_sum_ok=yes
+request http=200 time_s=0.026035 body_sum_ok=yes
+median_s=0.019947
+process at=start t_ms=0.1 rss_kb=2292 hwm_kb=2292 cpu_user_ms=10 cpu_sys_ms=0
+listening on 0.0.0.0:9003 for 5 session(s)
+session id=1 peer=192.168.0.4:45360 appid=134 start_ms=51.6 end_ms=80.4 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.44 total_ms=28.7 hold_avg_us=7.7 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=54 gap_avg_us=20.3 gap_p50_us<=20 gap_p99_us<=60 gap_max_us=189 bp_hit_count=-
+session id=1 oldest_capture=#1[]
+session id=1 newest_capture=#1000[]
+session id=2 peer=192.168.0.4:45376 appid=133 start_ms=97.1 end_ms=114.2 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.30 total_ms=17.1 hold_avg_us=4.8 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=22 gap_avg_us=11.9 gap_p50_us<=20 gap_p99_us<=20 gap_max_us=166 bp_hit_count=-
+session id=2 oldest_capture=#1[]
+session id=2 newest_capture=#1000[]
+session id=3 peer=192.168.0.4:45380 appid=134 start_ms=131.3 end_ms=149.7 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.56 total_ms=18.3 hold_avg_us=4.9 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=32 gap_avg_us=12.8 gap_p50_us<=10 gap_p99_us<=40 gap_max_us=91 bp_hit_count=-
+session id=3 oldest_capture=#1[]
+session id=3 newest_capture=#1000[]
+session id=4 peer=192.168.0.4:45388 appid=133 start_ms=162.6 end_ms=178.1 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.24 total_ms=15.5 hold_avg_us=4.2 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=20 gap_avg_us=10.9 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=86 bp_hit_count=-
+session id=4 oldest_capture=#1[]
+session id=4 newest_capture=#1000[]
+session id=5 peer=192.168.0.4:45396 appid=134 start_ms=191.9 end_ms=216.4 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.26 total_ms=24.5 hold_avg_us=6.7 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=102 gap_avg_us=17.4 gap_p50_us<=20 gap_p99_us<=70 gap_max_us=93 bp_hit_count=-
+session id=5 oldest_capture=#1[]
+session id=5 newest_capture=#1000[]
+process at=end t_ms=216.5 rss_kb=2492 hwm_kb=2492 cpu_user_ms=30 cpu_sys_ms=40
+scenario mode=bridge reps=5 n=1000 args=--exprs 1 --quiet
+request http=200 time_s=0.037963 body_sum_ok=yes
+request http=200 time_s=0.042630 body_sum_ok=yes
+request http=200 time_s=0.031624 body_sum_ok=yes
+request http=200 time_s=0.033927 body_sum_ok=yes
+request http=200 time_s=0.041183 body_sum_ok=yes
+median_s=0.037963
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2180 hwm_kb=2180 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:45410 appid=133 start_ms=67.1 end_ms=102.7 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.41 total_ms=35.5 hold_avg_us=23.5 hold_p50_us<=20 hold_p99_us<=70 hold_max_us=169 gap_avg_us=11.5 gap_p50_us<=10 gap_p99_us<=40 gap_max_us=171 bp_hit_count=-
+session id=1 oldest_capture=#1[{index=0,square=0}]
+session id=1 newest_capture=#1000[{index=999,square=998001}]
+session id=2 peer=192.168.0.4:45418 appid=134 start_ms=119.2 end_ms=159.9 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.31 total_ms=40.7 hold_avg_us=26.8 hold_p50_us<=30 hold_p99_us<=80 hold_max_us=172 gap_avg_us=13.3 gap_p50_us<=20 gap_p99_us<=40 gap_max_us=186 bp_hit_count=-
+session id=2 oldest_capture=#1[{index=0,square=0}]
+session id=2 newest_capture=#1000[{index=999,square=998001}]
+session id=3 peer=192.168.0.4:45426 appid=133 start_ms=175.1 end_ms=204.9 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.29 total_ms=29.8 hold_avg_us=19.8 hold_p50_us<=20 hold_p99_us<=60 hold_max_us=119 gap_avg_us=9.6 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=74 bp_hit_count=-
+session id=3 oldest_capture=#1[{index=0,square=0}]
+session id=3 newest_capture=#1000[{index=999,square=998001}]
+session id=4 peer=192.168.0.4:45432 appid=134 start_ms=216.8 end_ms=249.5 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.32 total_ms=32.6 hold_avg_us=21.3 hold_p50_us<=20 hold_p99_us<=50 hold_max_us=134 gap_avg_us=10.8 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=150 bp_hit_count=-
+session id=4 oldest_capture=#1[{index=0,square=0}]
+session id=4 newest_capture=#1000[{index=999,square=998001}]
+session id=5 peer=192.168.0.4:45442 appid=133 start_ms=265.2 end_ms=304.4 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.68 total_ms=39.1 hold_avg_us=25.7 hold_p50_us<=20 hold_p99_us<=90 hold_max_us=207 gap_avg_us=12.6 gap_p50_us<=10 gap_p99_us<=50 gap_max_us=170 bp_hit_count=-
+session id=5 oldest_capture=#1[{index=0,square=0}]
+session id=5 newest_capture=#1000[{index=999,square=998001}]
+process at=end t_ms=304.6 rss_kb=2452 hwm_kb=2452 cpu_user_ms=40 cpu_sys_ms=70
+scenario mode=bridge reps=5 n=1000 args=--exprs 5 --quiet
+request http=200 time_s=0.092007 body_sum_ok=yes
+request http=200 time_s=0.091332 body_sum_ok=yes
+request http=200 time_s=0.079061 body_sum_ok=yes
+request http=200 time_s=0.080254 body_sum_ok=yes
+request http=200 time_s=0.079437 body_sum_ok=yes
+median_s=0.080254
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2280 hwm_kb=2280 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:45454 appid=134 start_ms=71.0 end_ms=160.6 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.51 total_ms=89.6 hold_avg_us=78.0 hold_p50_us<=60 hold_p99_us<=260 hold_max_us=628 gap_avg_us=10.7 gap_p50_us<=10 gap_p99_us<=40 gap_max_us=118 bp_hit_count=-
+session id=1 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=1 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=2 peer=192.168.0.4:45458 appid=133 start_ms=174.1 end_ms=263.8 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.21 total_ms=89.7 hold_avg_us=78.6 hold_p50_us<=70 hold_p99_us<=170 hold_max_us=727 gap_avg_us=10.8 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=119 bp_hit_count=-
+session id=2 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=2 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=3 peer=192.168.0.4:45472 appid=134 start_ms=279.4 end_ms=356.8 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.16 total_ms=77.3 hold_avg_us=67.7 hold_p50_us<=60 hold_p99_us<=230 hold_max_us=487 gap_avg_us=9.2 gap_p50_us<=10 gap_p99_us<=40 gap_max_us=84 bp_hit_count=-
+session id=3 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=3 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=4 peer=192.168.0.4:45480 appid=133 start_ms=371.2 end_ms=450.0 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.16 total_ms=78.7 hold_avg_us=68.8 hold_p50_us<=60 hold_p99_us<=160 hold_max_us=580 gap_avg_us=9.4 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=165 bp_hit_count=-
+session id=4 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=4 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=5 peer=192.168.0.4:45486 appid=134 start_ms=461.9 end_ms=540.0 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.39 total_ms=78.0 hold_avg_us=67.7 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=472 gap_avg_us=9.5 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=139 bp_hit_count=-
+session id=5 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=5 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+process at=end t_ms=540.3 rss_kb=2480 hwm_kb=2480 cpu_user_ms=80 cpu_sys_ms=150
+scenario mode=bridge reps=5 n=1000 args=--exprs 5 --pipeline --quiet
+request http=200 time_s=0.058636 body_sum_ok=yes
+request http=200 time_s=0.048490 body_sum_ok=yes
+request http=200 time_s=0.043015 body_sum_ok=yes
+request http=200 time_s=0.041755 body_sum_ok=yes
+request http=200 time_s=0.050189 body_sum_ok=yes
+median_s=0.048490
+process at=start t_ms=0.1 rss_kb=2172 hwm_kb=2172 cpu_user_ms=10 cpu_sys_ms=0
+listening on 0.0.0.0:9003 for 5 session(s)
+session id=1 peer=192.168.0.4:45490 appid=133 start_ms=58.3 end_ms=114.5 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.78 total_ms=56.1 hold_avg_us=5.3 hold_p50_us<=10 hold_p99_us<=30 hold_max_us=46 gap_avg_us=49.7 gap_p50_us<=40 gap_p99_us<=150 gap_max_us=297 bp_hit_count=-
+session id=1 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=1 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=2 peer=192.168.0.4:45502 appid=134 start_ms=129.6 end_ms=176.5 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.38 total_ms=46.9 hold_avg_us=4.4 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=21 gap_avg_us=42.0 gap_p50_us<=40 gap_p99_us<=120 gap_max_us=207 bp_hit_count=-
+session id=2 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=2 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=3 peer=192.168.0.4:45510 appid=133 start_ms=190.7 end_ms=232.2 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.41 total_ms=41.4 hold_avg_us=3.9 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=27 gap_avg_us=36.9 gap_p50_us<=40 gap_p99_us<=70 gap_max_us=129 bp_hit_count=-
+session id=3 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=3 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=4 peer=192.168.0.4:45522 appid=134 start_ms=247.7 end_ms=287.9 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.45 total_ms=40.2 hold_avg_us=3.8 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=11 gap_avg_us=35.9 gap_p50_us<=40 gap_p99_us<=50 gap_max_us=199 bp_hit_count=-
+session id=4 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=4 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+session id=5 peer=192.168.0.4:45524 appid=133 start_ms=301.5 end_ms=350.5 pauses=1000 mismatches=0 buffer_len=1000 evicted=0 setup_ms=0.52 total_ms=48.9 hold_avg_us=4.6 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=18 gap_avg_us=43.4 gap_p50_us<=40 gap_p99_us<=140 gap_max_us=179 bp_hit_count=-
+session id=5 oldest_capture=#1[{index=0,square=0} | 0 | 0 | 1000 | 0]
+session id=5 newest_capture=#1000[{index=999,square=998001} | 999 | 331835499 | 1000 | 998001]
+process at=end t_ms=350.8 rss_kb=2508 hwm_kb=2508 cpu_user_ms=90 cpu_sys_ms=50
+scenario mode=untrig reps=5 n=10000 args=
+request http=200 time_s=0.004654 body_sum_ok=yes
+request http=200 time_s=0.003743 body_sum_ok=yes
+request http=200 time_s=0.001847 body_sum_ok=yes
+request http=200 time_s=0.002942 body_sum_ok=yes
+request http=200 time_s=0.002193 body_sum_ok=yes
+median_s=0.002942
+scenario mode=bridge reps=5 n=10000 args=--no-break --quiet
+request http=200 time_s=0.007735 body_sum_ok=yes
+request http=200 time_s=0.004478 body_sum_ok=yes
+request http=200 time_s=0.003586 body_sum_ok=yes
+request http=200 time_s=0.004786 body_sum_ok=yes
+request http=200 time_s=0.005077 body_sum_ok=yes
+median_s=0.004786
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2184 hwm_kb=2184 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:45528 appid=133 start_ms=58.2 end_ms=64.6 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.58 total_ms=6.4 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=1 oldest_capture=
+session id=1 newest_capture=
+session id=2 peer=192.168.0.4:45532 appid=134 start_ms=83.1 end_ms=86.3 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.15 total_ms=3.2 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=2 oldest_capture=
+session id=2 newest_capture=
+session id=3 peer=192.168.0.4:45546 appid=133 start_ms=101.0 end_ms=103.4 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.15 total_ms=2.3 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=3 oldest_capture=
+session id=3 newest_capture=
+session id=4 peer=192.168.0.4:45554 appid=134 start_ms=118.0 end_ms=121.2 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.20 total_ms=3.2 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=4 oldest_capture=
+session id=4 newest_capture=
+session id=5 peer=192.168.0.4:45570 appid=133 start_ms=136.6 end_ms=140.0 pauses=0 mismatches=0 buffer_len=0 evicted=0 setup_ms=0.17 total_ms=3.4 hold_avg_us=0.0 hold_p50_us<=0 hold_p99_us<=0 hold_max_us=0 gap_avg_us=0.0 gap_p50_us<=0 gap_p99_us<=0 gap_max_us=0 bp_hit_count=-
+session id=5 oldest_capture=
+session id=5 newest_capture=
+process at=end t_ms=140.1 rss_kb=2420 hwm_kb=2420 cpu_user_ms=10 cpu_sys_ms=0
+scenario mode=bridge reps=5 n=10000 args=--exprs 0 --quiet
+request http=200 time_s=0.153891 body_sum_ok=yes
+request http=200 time_s=0.106665 body_sum_ok=yes
+request http=200 time_s=0.119607 body_sum_ok=yes
+request http=200 time_s=0.114033 body_sum_ok=yes
+request http=200 time_s=0.123902 body_sum_ok=yes
+median_s=0.119607
+process at=start t_ms=0.1 rss_kb=2168 hwm_kb=2168 cpu_user_ms=10 cpu_sys_ms=0
+listening on 0.0.0.0:9003 for 5 session(s)
+session id=1 peer=192.168.0.4:45584 appid=134 start_ms=44.8 end_ms=197.1 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.26 total_ms=152.2 hold_avg_us=4.2 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=87 gap_avg_us=11.0 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=170 bp_hit_count=-
+session id=1 oldest_capture=#9001[]
+session id=1 newest_capture=#10000[]
+session id=2 peer=192.168.0.4:45594 appid=133 start_ms=210.0 end_ms=315.0 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.18 total_ms=105.0 hold_avg_us=3.0 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=42 gap_avg_us=7.5 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=95 bp_hit_count=-
+session id=2 oldest_capture=#9001[]
+session id=2 newest_capture=#10000[]
+session id=3 peer=192.168.0.4:45598 appid=134 start_ms=328.6 end_ms=446.5 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.29 total_ms=117.8 hold_avg_us=3.3 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=60 gap_avg_us=8.4 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=156 bp_hit_count=-
+session id=3 oldest_capture=#9001[]
+session id=3 newest_capture=#10000[]
+session id=4 peer=192.168.0.4:45606 appid=133 start_ms=458.2 end_ms=571.1 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.27 total_ms=112.8 hold_avg_us=3.2 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=19 gap_avg_us=8.1 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=427 bp_hit_count=-
+session id=4 oldest_capture=#9001[]
+session id=4 newest_capture=#10000[]
+session id=5 peer=192.168.0.4:45622 appid=134 start_ms=583.8 end_ms=706.0 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.15 total_ms=122.1 hold_avg_us=3.4 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=123 gap_avg_us=8.8 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=152 bp_hit_count=-
+session id=5 oldest_capture=#9001[]
+session id=5 newest_capture=#10000[]
+process at=end t_ms=706.1 rss_kb=2496 hwm_kb=2496 cpu_user_ms=120 cpu_sys_ms=210
+scenario mode=bridge reps=5 n=10000 args=--exprs 1 --quiet
+request http=200 time_s=0.282823 body_sum_ok=yes
+request http=200 time_s=0.299305 body_sum_ok=yes
+request http=200 time_s=0.277609 body_sum_ok=yes
+request http=200 time_s=0.253320 body_sum_ok=yes
+request http=200 time_s=0.260361 body_sum_ok=yes
+median_s=0.277609
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2132 hwm_kb=2132 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:45630 appid=133 start_ms=64.7 end_ms=344.6 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.50 total_ms=279.8 hold_avg_us=18.7 hold_p50_us<=20 hold_p99_us<=50 hold_max_us=327 gap_avg_us=9.2 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=249 bp_hit_count=-
+session id=1 oldest_capture=#9001[{index=9000,square=81000000}]
+session id=1 newest_capture=#10000[{index=9999,square=99980001}]
+session id=2 peer=192.168.0.4:45642 appid=134 start_ms=358.2 end_ms=656.0 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.23 total_ms=297.8 hold_avg_us=19.8 hold_p50_us<=20 hold_p99_us<=50 hold_max_us=191 gap_avg_us=9.9 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=268 bp_hit_count=-
+session id=2 oldest_capture=#9001[{index=9000,square=81000000}]
+session id=2 newest_capture=#10000[{index=9999,square=99980001}]
+session id=3 peer=192.168.0.4:45648 appid=133 start_ms=669.2 end_ms=945.3 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.21 total_ms=276.1 hold_avg_us=18.5 hold_p50_us<=20 hold_p99_us<=50 hold_max_us=248 gap_avg_us=9.0 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=238 bp_hit_count=-
+session id=3 oldest_capture=#9001[{index=9000,square=81000000}]
+session id=3 newest_capture=#10000[{index=9999,square=99980001}]
+session id=4 peer=192.168.0.4:45654 appid=134 start_ms=956.7 end_ms=1208.4 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.39 total_ms=251.7 hold_avg_us=16.9 hold_p50_us<=20 hold_p99_us<=40 hold_max_us=101 gap_avg_us=8.3 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=146 bp_hit_count=-
+session id=4 oldest_capture=#9001[{index=9000,square=81000000}]
+session id=4 newest_capture=#10000[{index=9999,square=99980001}]
+session id=5 peer=192.168.0.4:45668 appid=133 start_ms=1221.4 end_ms=1480.5 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.21 total_ms=259.1 hold_avg_us=17.4 hold_p50_us<=20 hold_p99_us<=40 hold_max_us=119 gap_avg_us=8.5 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=550 bp_hit_count=-
+session id=5 oldest_capture=#9001[{index=9000,square=81000000}]
+session id=5 newest_capture=#10000[{index=9999,square=99980001}]
+process at=end t_ms=1480.8 rss_kb=2460 hwm_kb=2460 cpu_user_ms=330 cpu_sys_ms=430
+scenario mode=bridge reps=5 n=10000 args=--exprs 5 --quiet
+request http=200 time_s=0.722760 body_sum_ok=yes
+request http=200 time_s=0.723204 body_sum_ok=yes
+request http=200 time_s=0.712376 body_sum_ok=yes
+request http=200 time_s=0.724767 body_sum_ok=yes
+request http=200 time_s=0.720500 body_sum_ok=yes
+median_s=0.722760
+process at=start t_ms=0.1 rss_kb=2156 hwm_kb=2156 cpu_user_ms=10 cpu_sys_ms=0
+listening on 0.0.0.0:9003 for 5 session(s)
+session id=1 peer=192.168.0.4:45682 appid=134 start_ms=60.5 end_ms=780.8 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.88 total_ms=720.2 hold_avg_us=63.3 hold_p50_us<=60 hold_p99_us<=150 hold_max_us=535 gap_avg_us=8.6 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=215 bp_hit_count=-
+session id=1 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=1 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=2 peer=192.168.0.4:45692 appid=133 start_ms=793.5 end_ms=1515.4 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.22 total_ms=721.8 hold_avg_us=63.5 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=756 gap_avg_us=8.7 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=180 bp_hit_count=-
+session id=2 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=2 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=3 peer=192.168.0.4:51074 appid=134 start_ms=1528.3 end_ms=2239.3 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.20 total_ms=710.9 hold_avg_us=62.5 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=675 gap_avg_us=8.5 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=165 bp_hit_count=-
+session id=3 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=3 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=4 peer=192.168.0.4:51080 appid=133 start_ms=2251.4 end_ms=2974.8 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.22 total_ms=723.4 hold_avg_us=63.7 hold_p50_us<=70 hold_p99_us<=130 hold_max_us=581 gap_avg_us=8.6 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=125 bp_hit_count=-
+session id=4 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=4 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=5 peer=192.168.0.4:51094 appid=134 start_ms=2989.3 end_ms=3708.3 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.19 total_ms=718.9 hold_avg_us=63.3 hold_p50_us<=60 hold_p99_us<=140 hold_max_us=703 gap_avg_us=8.6 gap_p50_us<=10 gap_p99_us<=20 gap_max_us=151 bp_hit_count=-
+session id=5 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=5 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+process at=end t_ms=3708.5 rss_kb=2484 hwm_kb=2644 cpu_user_ms=740 cpu_sys_ms=1290
+scenario mode=bridge reps=5 n=10000 args=--exprs 5 --pipeline --quiet
+request http=200 time_s=0.440578 body_sum_ok=yes
+request http=200 time_s=0.407953 body_sum_ok=yes
+request http=200 time_s=0.468162 body_sum_ok=yes
+request http=200 time_s=0.446359 body_sum_ok=yes
+request http=200 time_s=0.464394 body_sum_ok=yes
+median_s=0.446359
+listening on 0.0.0.0:9003 for 5 session(s)
+process at=start t_ms=0.1 rss_kb=2156 hwm_kb=2156 cpu_user_ms=10 cpu_sys_ms=0
+session id=1 peer=192.168.0.4:51106 appid=133 start_ms=65.3 end_ms=503.1 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.80 total_ms=437.8 hold_avg_us=4.1 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=133 gap_avg_us=39.5 gap_p50_us<=40 gap_p99_us<=120 gap_max_us=345 bp_hit_count=-
+session id=1 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=1 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=2 peer=192.168.0.4:51118 appid=134 start_ms=520.2 end_ms=926.7 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.19 total_ms=406.4 hold_avg_us=3.9 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=32 gap_avg_us=36.7 gap_p50_us<=40 gap_p99_us<=80 gap_max_us=248 bp_hit_count=-
+session id=2 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=2 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=3 peer=192.168.0.4:51130 appid=133 start_ms=940.6 end_ms=1407.4 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.38 total_ms=466.7 hold_avg_us=4.4 hold_p50_us<=10 hold_p99_us<=20 hold_max_us=71 gap_avg_us=42.2 gap_p50_us<=40 gap_p99_us<=110 gap_max_us=412 bp_hit_count=-
+session id=3 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=3 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=4 peer=192.168.0.4:51142 appid=134 start_ms=1421.7 end_ms=1866.8 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.21 total_ms=445.0 hold_avg_us=4.2 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=22 gap_avg_us=40.2 gap_p50_us<=40 gap_p99_us<=80 gap_max_us=289 bp_hit_count=-
+session id=4 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=4 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+session id=5 peer=192.168.0.4:51146 appid=133 start_ms=1880.2 end_ms=2343.2 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.32 total_ms=463.0 hold_avg_us=4.4 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=25 gap_avg_us=41.9 gap_p50_us<=50 gap_p99_us<=90 gap_max_us=350 bp_hit_count=-
+session id=5 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=5 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+process at=end t_ms=2343.5 rss_kb=2492 hwm_kb=2492 cpu_user_ms=720 cpu_sys_ms=540
