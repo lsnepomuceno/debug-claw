@@ -1,0 +1,20 @@
+# case notify-modern, config claude/http.json, exit 0, wall 23.5 s
+2026-11-07T21:52:58.033Z [DEBUG] MCP server "s3": Initializing HTTP transport to http://127.0.0.1:8390/mcp
+2026-11-07T21:52:58.033Z [DEBUG] MCP server "s3": Node version: v26.12.1, Platform: linux
+2026-11-07T21:52:58.033Z [DEBUG] MCP server "s3": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": HTTP transport options: {"url":"http://127.0.0.1:8390/mcp","headers":{"User-Agent":"claude-code/2.1.319 (sdk-cli)","Accept-Encoding":"identity"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": HTTP transport created successfully
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": Starting connection with timeout of 30000ms
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": Testing basic HTTP connectivity to http://127.0.0.1:8390/mcp
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": Parsed URL: host=127.0.0.1, port=8390, protocol=http:
+2026-11-07T21:52:58.034Z [DEBUG] MCP server "s3": Using loopback address: 127.0.0.1
+2026-11-07T21:52:58.057Z [DEBUG] MCP server "s3": Successfully connected (transport: http) in 25ms
+2026-11-07T21:52:58.057Z [DEBUG] MCP server "s3": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":true,"serverVersion":{"name":"rmcp","version":"3.9.0"},"protocolEra":"modern","negotiatedProtocolVersion":"2026-07-28"}
+2026-11-07T21:52:58.057Z [DEBUG] [MCP] Server "s3" connected with subscribe=true
+2026-11-07T21:53:02.425Z [DEBUG] MCP server "s3": Calling MCP tool: fire
+2026-11-07T21:53:02.428Z [DEBUG] MCP server "s3": Tool 'fire' completed successfully in 3ms
+2026-11-07T21:53:04.065Z [DEBUG] MCP server "s3": Calling MCP tool: sleep
+2026-11-07T21:53:07.431Z [DEBUG] MCP server "s3": Received tools/list_changed notification, refreshing tools
+2026-11-07T21:53:19.069Z [DEBUG] MCP server "s3": Tool 'sleep' completed successfully in 15s
+2026-11-07T21:53:20.745Z [DEBUG] MCP server "s3": HTTP connection closed after 22s (cleanly)
+2026-11-07T21:53:20.745Z [DEBUG] MCP server "s3": Cleared connection cache for reconnection

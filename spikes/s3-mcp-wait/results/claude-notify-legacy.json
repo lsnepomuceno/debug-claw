@@ -1,0 +1,7 @@
+{
+  "is_error": false,
+  "result": "Yes, I called `fire` with `delay_s=5` and it returned \"event scheduled in 5 s\". I then called `sleep` with `seconds=15` and it returned \"slept 15 s\". Apart from those two results, I saw no notification, log message, or other content from the s3 server. I did not check whether the scheduled event actually fired, since `sleep` does not watch for events and I did not call `wait`.",
+  "duration_ms": 22340,
+  "num_turns": 4,
+  "total_cost_usd": 0.0042927
+}

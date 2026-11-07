@@ -1,0 +1,7 @@
+{
+  "is_error": false,
+  "result": "timeout: no event after 120.0 s",
+  "duration_ms": 123112,
+  "num_turns": 3,
+  "total_cost_usd": 0.00105701
+}

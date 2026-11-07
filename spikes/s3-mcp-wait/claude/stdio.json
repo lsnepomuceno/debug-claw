@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "s3": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["exec", "-i", "testbed-s3-daemon-1", "/target/release/s3-shim", "http://127.0.0.1:8390/mcp"]
+    }
+  }
+}

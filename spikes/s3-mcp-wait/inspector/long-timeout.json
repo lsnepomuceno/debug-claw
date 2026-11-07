@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "s3": { "type": "http", "url": "http://daemon:8390/mcp", "requestTimeout": 120000 }
+  }
+}

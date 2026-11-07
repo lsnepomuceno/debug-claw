@@ -1,0 +1,11 @@
+# mode blocked, window 45 s, host pid 243605, CLK_TCK 100, 2026-11-07T22:05:50Z
+## start
+thread 243605 s3-daemon utime=0 stime=0 vol=11 nonvol=0
+VmHWM: 5796 VmRSS: 5796 Threads: 1 
+## end
+thread 243605 s3-daemon utime=0 stime=0 vol=26 nonvol=1
+VmHWM: 5796 VmRSS: 5796 Threads: 1 
+## delta over 45 s (all threads)
+cpu ticks: utime 0 stime 0 (0 ms)
+context switches: voluntary 15 nonvoluntary 1
+wakeups per second: .3555
