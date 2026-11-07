@@ -1,0 +1,32 @@
+# 2026-11-07T21:55:47Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
+# EMU_ARGS=--bench 2000 AGENT_ARGS=--pauses 1 --flood PROXY_LOG=
+## emu
+listening on 0.0.0.0:9010
+session 1 from 192.168.0.5:36326
+init file:///var/www/html/public/index.php (local /work/spikes/testbed/app/public/index.php)
+breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70037" resolved="unresolved"
+pause 1 at /work/spikes/testbed/app/public/index.php:44 i=Some(0) sum=Some(0) square=Some(0) check=ok
+bench stack_get: n=2000 us median=35.3 p99=150.0 min=22.5 max=476.6
+bench context_get -d 0 -c 0: n=2000 us median=36.8 p99=167.2 min=25.7 max=349.0
+bench property_get -d 0 -c 0 -n $item: n=2000 us median=35.7 p99=160.3 min=23.0 max=347.1
+bench all: n=6000 us median=36.0 p99=163.1 min=22.5 max=476.6
+pause 2 at /work/spikes/testbed/app/public/index.php:42
+pause 3 at /work/spikes/testbed/app/public/index.php:44 i=Some(1) sum=Some(0) square=Some(1) check=ok
+pause 4 at /work/spikes/testbed/app/public/index.php:44 i=Some(2) sum=Some(1) square=Some(4) check=ok
+stopping, stop -> stopped
+session 1: 4 pauses, value checks ok=3 bad=0, tid mismatches=0, stream packets=7, notify packets=0, result=None
+## proxy
+listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at ide:9010
+s1: relaying to ide:9010
+s1: ide->xd commands: n=6036 proxy_us median=6.7 p99=20.7 max=134.4
+s1: xd->ide packets: n=6044 proxy_us median=7.4 p99=23.8 max=161.6
+s1: closed
+## agent
+agent connected to 127.0.0.1:9100
+pause 1 at file:///var/www/html/public/index.php:44: i=Some(0) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=ok
+  flood: 5525 reads of $i while paused
+agent: checks ok=1 bad=0, tid mismatches=0, unsafe refused=0 not refused=0, flood reads=5525
+agent injected reads: n=5530 us median=38.0 p99=165.2 min=21.1 max=697.9
+## requests
+request 1: 200 0.275649s {"iterations":3,"sum":5}
+## exit status 0

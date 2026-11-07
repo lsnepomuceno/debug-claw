@@ -1,0 +1,26 @@
+# 2026-11-07T21:55:42Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
+# EMU_ARGS=--bench 2000 AGENT_ARGS= PROXY_LOG=
+## emu
+listening on 0.0.0.0:9010
+session 1 from 192.168.0.5:36300
+init file:///var/www/html/public/index.php (local /work/spikes/testbed/app/public/index.php)
+breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70028" resolved="unresolved"
+pause 1 at /work/spikes/testbed/app/public/index.php:44 i=Some(0) sum=Some(0) square=Some(0) check=ok
+bench stack_get: n=2000 us median=45.1 p99=143.7 min=18.5 max=571.3
+bench context_get -d 0 -c 0: n=2000 us median=51.2 p99=151.6 min=21.0 max=608.0
+bench property_get -d 0 -c 0 -n $item: n=2000 us median=47.0 p99=167.9 min=18.9 max=605.5
+bench all: n=6000 us median=46.7 p99=154.8 min=18.5 max=608.0
+pause 2 at /work/spikes/testbed/app/public/index.php:42
+pause 3 at /work/spikes/testbed/app/public/index.php:44 i=Some(1) sum=Some(0) square=Some(1) check=ok
+pause 4 at /work/spikes/testbed/app/public/index.php:44 i=Some(2) sum=Some(1) square=Some(4) check=ok
+stopping, stop -> stopped
+session 1: 4 pauses, value checks ok=3 bad=0, tid mismatches=0, stream packets=7, notify packets=0, result=None
+## proxy
+listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at ide:9010
+s1: relaying to ide:9010
+s1: ide->xd commands: n=6036 proxy_us median=6.5 p99=17.4 max=127.4
+s1: xd->ide packets: n=6044 proxy_us median=7.1 p99=18.5 max=159.3
+s1: closed
+## requests
+request 1: 200 0.309345s {"iterations":3,"sum":5}
+## exit status 0
