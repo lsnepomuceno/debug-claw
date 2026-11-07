@@ -12,7 +12,7 @@ PHP developers work on all three desktop systems, often with the application in 
 The daemon, the stdio shim and the desktop app run on Linux, Windows and macOS. macOS is supported where it is feasible; when a feature cannot work there, the documentation says so.
 
 - Core crates use no API that exists on only one system. Anything system-specific sits behind the boundary traits of [ADR-0010](0010-workspace-layout.md) and is chosen in the binaries.
-- Path mapping treats host paths as either Windows or POSIX paths: drive letters, backslashes and case-insensitive file systems (Windows, and macOS by default) are handled, as are `file:///C:/...` URIs from PHP running natively on Windows.
+- Path mapping treats host paths as either Windows or POSIX paths: drive letters, backslashes and case-insensitive file systems (Windows, and macOS by default) are handled, as are `file:///C:/...` URIs from PHP running natively on Windows. The rules are in [ADR-0013](0013-path-mapping.md).
 - Setup snippets differ per system: Docker Desktop on Windows and macOS resolves `host.docker.internal` on its own, and Linux needs `extra_hosts: host.docker.internal:host-gateway`.
 - The PHP extension ([ADR-0005](0005-layered-php-integration.md)) has its own build matrix, which S5 reports. It may reach the three systems at different times.
 

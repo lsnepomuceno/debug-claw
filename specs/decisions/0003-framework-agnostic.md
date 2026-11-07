@@ -11,7 +11,7 @@ LaraDumps gets most of its value from Laravel observers, which do not exist in o
 
 The core speaks Xdebug's DBGp protocol and plain HTTP, and knows nothing about any framework. With only Xdebug installed and pointed at the daemon, a user gets breakpoints, stack frames, variables, stepping and logpoints, with no code changes in the application.
 
-Configuration is inferred where possible: the daemon listens on the Xdebug default port (9003), learns path mappings from the paths Xdebug reports, and asks the user only when inference fails. Spike S1 tests the path mapping inference.
+Configuration is inferred where possible: the daemon listens on the Xdebug default port (9003), learns path mappings from the paths Xdebug reports, and asks the user only when inference fails. The mapping rules are in [ADR-0013](0013-path-mapping.md).
 
 ## Alternatives rejected
 
@@ -22,3 +22,4 @@ Configuration is inferred where possible: the daemon listens on the Xdebug defau
 
 - Features that need data Xdebug does not provide (SQL queries, outgoing HTTP calls) come from the optional layers in [ADR-0005](0005-layered-php-integration.md), never from framework hooks in the core.
 - Xdebug's limits become the tool's limits at the baseline: one debugging client per request, and a paused request holds a PHP worker.
+- Xdebug 3.5.3 does not implement the DBGp `break` command while a request runs ([S1](../00-spikes/reports/s1-path-mapping.md)). The only way to pause a running request is Xdebug's control socket, which a daemon outside the PHP container cannot reach: an abstract Unix socket on Linux, a named pipe on Windows, nothing on macOS. A pause button needs a helper inside the container or is left out ([O-11](../OPEN.md#o-11-pausing-a-running-request)).

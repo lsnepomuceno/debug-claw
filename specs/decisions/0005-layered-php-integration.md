@@ -1,8 +1,8 @@
 # ADR-0005: Layered PHP integration
 
-- Status: proposed
+- Status: accepted
 - Date: 2026-11-07
-- Confirmed by: spike S5 (layer 3 only)
+- Evidence: [S5 report](../00-spikes/reports/s5-extension.md) (layer 3)
 
 ## Context
 
@@ -24,4 +24,7 @@ PHP integration comes in three layers. Each one is optional on top of the one be
 ## Consequences
 
 - Layer 2 is PHP code by necessity. It stays small and has no dependencies.
-- Layer 3 has the highest cost in the project (FFI with the Zend engine, a build matrix, distribution). S5 decides whether it is feasible, and its milestone comes last among the candidates.
+- Layer 3 has the highest cost in the project (FFI with the Zend engine, a build matrix, distribution), and its milestone comes last among the candidates. S5 found it feasible with `ext-php-rs` 0.16.4: one source built for PHP 8.3 and 8.5 with no version-specific code.
+- Layer 3 ships one binary per PHP minor version, thread-safety mode and platform. Windows builds need nightly Rust.
+- A loaded observer slows every function call, even when it reports nothing: 7 to 9% on PHP 8.5 and 15% on PHP 8.3 on the fixture's call-heavy endpoint. The extension registers its observer only when an INI switch turns it on.
+- The extension sends its events in one write per request, never one per call.
