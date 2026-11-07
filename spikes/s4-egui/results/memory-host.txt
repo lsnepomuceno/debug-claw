@@ -1,0 +1,40 @@
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=48
+heap view=Feed backend=glow live_mb=5.4 peak_mb=7.7 rss_mb=98.4 | load feed dumps=40 ms=0.1
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=49
+heap view=Feed backend=glow live_mb=14.8 peak_mb=17.2 rss_mb=114.2 | load feed dumps=10000 ms=11.4
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=50
+heap view=Debugger backend=glow live_mb=5.5 peak_mb=7.6 rss_mb=101.1 | load debugger ms=25.9
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=48
+heap view=Tree backend=glow live_mb=5.0 peak_mb=7.1 rss_mb=96.3 | load tree virtual_nodes=951 fetched=1 rows=1 ms=0.0
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=58
+heap view=Tree backend=glow live_mb=5.0 peak_mb=7.1 rss_mb=99.9 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=54
+heap view=Tree backend=glow live_mb=5.3 peak_mb=7.4 rss_mb=100.5 | load tree virtual_nodes=951 fetched=951 rows=951 expand_all_ms=0.2 ms=0.2
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=60
+heap view=Tree backend=glow live_mb=17.7 peak_mb=19.8 rss_mb=116.4 | load tree virtual_nodes=99951 fetched=99951 rows=99951 expand_all_ms=19.3 ms=19.3
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=47
+heap view=Flame backend=glow live_mb=7.6 peak_mb=10.4 rss_mb=99.9 | load flame frames=50000 max_depth=31 names=721 ms=2.2
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=43
+heap view=Source backend=glow live_mb=6.3 peak_mb=8.4 rss_mb=109.7 | load source lines=4987 highlight_ms=83.8 ms=83.9
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=50
+heap view=Feed backend=glow live_mb=17.9 peak_mb=20.4 rss_mb=124.9 | load feed dumps=10000 ms=14.0 | load debugger ms=32.1 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0 | load flame frames=50000 max_depth=31 names=721 ms=3.3 | load source lines=4987 highlight_ms=91.2 ms=91.5
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=119
+heap view=Feed backend=wgpu live_mb=4.8 peak_mb=6.1 rss_mb=111.2 | load feed dumps=40 ms=0.1
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=66
+heap view=Feed backend=wgpu live_mb=14.1 peak_mb=15.5 rss_mb=120.2 | load feed dumps=10000 ms=12.8
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=65
+heap view=Debugger backend=wgpu live_mb=4.8 peak_mb=5.9 rss_mb=108.9 | load debugger ms=33.3
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=60
+heap view=Tree backend=wgpu live_mb=4.4 peak_mb=5.4 rss_mb=108.2 | load tree virtual_nodes=951 fetched=1 rows=1 ms=0.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=64
+heap view=Tree backend=wgpu live_mb=4.4 peak_mb=5.4 rss_mb=101.8 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=65
+heap view=Tree backend=wgpu live_mb=4.7 peak_mb=5.8 rss_mb=103.8 | load tree virtual_nodes=951 fetched=951 rows=951 expand_all_ms=0.3 ms=0.3
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=70
+heap view=Tree backend=wgpu live_mb=17.0 peak_mb=18.1 rss_mb=119.5 | load tree virtual_nodes=99951 fetched=99951 rows=99951 expand_all_ms=22.3 ms=22.3
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=113
+heap view=Flame backend=wgpu live_mb=6.9 peak_mb=8.7 rss_mb=107.8 | load flame frames=50000 max_depth=31 names=721 ms=3.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=60
+heap view=Source backend=wgpu live_mb=5.6 peak_mb=6.7 rss_mb=109.6 | load source lines=4987 highlight_ms=87.6 ms=88.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=61
+heap view=Feed backend=wgpu live_mb=17.3 peak_mb=18.7 rss_mb=127.2 | load feed dumps=10000 ms=17.2 | load debugger ms=32.8 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0 | load flame frames=50000 max_depth=31 names=721 ms=2.7 | load source lines=4987 highlight_ms=89.3 ms=89.5

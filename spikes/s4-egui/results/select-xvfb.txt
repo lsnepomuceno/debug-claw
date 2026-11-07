@@ -1,0 +1,9 @@
+debugger, one source line: [ $total = $order->total]
+debugger, source lines 40 to 42: [ $order = $this->orders->find($id);
+        $total = $order->total;]
+debugger, a variable tree row (rows are painted click targets, so the clipboard keeps the previous text): [ $order = $this->orders->find($id);
+        $total = $order->total;]
+debugger, tree context menu, first item: ["pending"]
+feed, query text: [SELECT * FROM ord]
+feed, table rows: [SKU-1042 2 19.90 39.80
+SKU-2210 1 149.00 149.00]

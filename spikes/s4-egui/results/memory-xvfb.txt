@@ -1,0 +1,40 @@
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=35
+heap view=Feed backend=glow live_mb=5.4 peak_mb=7.7 rss_mb=128.3 | load feed dumps=40 ms=0.1
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=54
+heap view=Feed backend=glow live_mb=14.7 peak_mb=17.2 rss_mb=139.7 | load feed dumps=10000 ms=15.9
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=47
+heap view=Debugger backend=glow live_mb=5.4 peak_mb=7.6 rss_mb=128.5 | load debugger ms=38.4
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=48
+heap view=Tree backend=glow live_mb=5.0 peak_mb=7.0 rss_mb=125.5 | load tree virtual_nodes=951 fetched=1 rows=1 ms=0.0
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=48
+heap view=Tree backend=glow live_mb=5.0 peak_mb=7.0 rss_mb=126.0 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=55
+heap view=Tree backend=glow live_mb=5.3 peak_mb=7.4 rss_mb=125.9 | load tree virtual_nodes=951 fetched=951 rows=951 expand_all_ms=0.2 ms=0.2
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=47
+heap view=Tree backend=glow live_mb=17.7 peak_mb=19.8 rss_mb=143.9 | load tree virtual_nodes=99951 fetched=99951 rows=99951 expand_all_ms=20.0 ms=20.0
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=49
+heap view=Flame backend=glow live_mb=7.5 peak_mb=10.4 rss_mb=130.5 | load flame frames=50000 max_depth=31 names=721 ms=2.7
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=62
+heap view=Source backend=glow live_mb=6.2 peak_mb=8.4 rss_mb=129.8 | load source lines=4987 highlight_ms=98.2 ms=98.5
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=48
+heap view=Feed backend=glow live_mb=17.9 peak_mb=20.3 rss_mb=147.0 | load feed dumps=10000 ms=14.3 | load debugger ms=40.2 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0 | load flame frames=50000 max_depth=31 names=721 ms=3.2 | load source lines=4987 highlight_ms=101.7 ms=101.9
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=70
+heap view=Feed backend=wgpu live_mb=4.7 peak_mb=6.0 rss_mb=148.2 | load feed dumps=40 ms=0.1
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=64
+heap view=Feed backend=wgpu live_mb=14.0 peak_mb=15.4 rss_mb=159.5 | load feed dumps=10000 ms=15.5
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=72
+heap view=Debugger backend=wgpu live_mb=4.7 peak_mb=5.8 rss_mb=148.8 | load debugger ms=43.4
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=60
+heap view=Tree backend=wgpu live_mb=4.3 peak_mb=5.3 rss_mb=145.6 | load tree virtual_nodes=951 fetched=1 rows=1 ms=0.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=70
+heap view=Tree backend=wgpu live_mb=4.3 peak_mb=5.3 rss_mb=145.6 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=68
+heap view=Tree backend=wgpu live_mb=4.6 peak_mb=5.7 rss_mb=146.4 | load tree virtual_nodes=951 fetched=951 rows=951 expand_all_ms=0.2 ms=0.2
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=58
+heap view=Tree backend=wgpu live_mb=17.0 peak_mb=18.0 rss_mb=163.8 | load tree virtual_nodes=99951 fetched=99951 rows=99951 expand_all_ms=20.5 ms=20.5
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=59
+heap view=Flame backend=wgpu live_mb=6.8 peak_mb=8.6 rss_mb=152.5 | load flame frames=50000 max_depth=31 names=721 ms=2.8
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=58
+heap view=Source backend=wgpu live_mb=5.5 peak_mb=6.6 rss_mb=153.9 | load source lines=4987 highlight_ms=84.6 ms=84.8
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=61
+heap view=Feed backend=wgpu live_mb=17.2 peak_mb=18.6 rss_mb=174.0 | load feed dumps=10000 ms=12.3 | load debugger ms=32.2 | load tree virtual_nodes=99951 fetched=1 rows=1 ms=0.0 | load flame frames=50000 max_depth=31 names=721 ms=2.4 | load source lines=4987 highlight_ms=81.6 ms=81.8

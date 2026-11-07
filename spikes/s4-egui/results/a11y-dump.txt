@@ -1,0 +1,8 @@
+a11y view=Debugger fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf nodes=192 labelled=131 focus=#13826925289788388
+a11y roles {"Button": 17, "GenericContainer": 45, "Label": 41, "ListItem": 10, "Pane": 8, "ScrollBar": 3, "TextInput": 1, "TextRun": 41, "TreeItem": 10, "Unknown": 15, "Window": 1}
+a11y buttons Run to cursor (disabled), Resume, Evaluate, Always on top, Watches, vendor, 14 frames, Constants, Evaluate, Take over (disabled), Stop, Superglobals, Search, Theme, Locals, Step into, Step out, Step over
+a11y sample Label:| ; Label:        return $this->gateway->lastReference(); ; Label:    } ; TreeItem:status = string "pending" ; Label:            $this->logger->warning('Total below minimum', ['total' => $total]); ; Label: ; TreeItem:total = float 0.0 ; Label:| ; Label:runs in the paused frame ; Label:paused at ; Label:Listening on 9003 ; ListItem:Breakpoints
+a11y view=Feed fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf nodes=181 labelled=125 focus=#13826925289788388
+a11y roles {"Button": 6, "GenericContainer": 46, "Label": 36, "Link": 8, "ListItem": 29, "Pane": 5, "ScrollBar": 2, "TextInput": 1, "TextRun": 45, "Unknown": 2, "Window": 1}
+a11y buttons Always on top, Pause feed, Search, Clear, Theme, Clear on new request
+a11y sample Label:| ; Label:COLORS ; Label:1 ; Label:SKU-1042 ; Label:2 ; ListItem:GET /orders/42 10 ; Label:SELECT * FROM orders WHERE id = ? ; Label:[42]    1.2 ms ; Label:| ; Label:SKU-2210 ; ListItem:GET /cart 4 ; Label:Listening on 9003
