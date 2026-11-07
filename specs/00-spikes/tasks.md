@@ -34,11 +34,11 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## S4 Native UI
 
-- [ ] T-19 Build the variable tree and the dump list with generated data. Closes S4 criteria 1 and 2.
-- [ ] T-20 Build the flame graph and the source view. Closes S4 criteria 3 and 4.
-- [ ] T-21 Build the styled mockups of the feed and the debugger, and check selection, themes, tooltips and AccessKit. Closes S4 criteria 5 and 9.
-- [ ] T-22 Measure idle CPU and RSS per dataset on `glow` and `wgpu`, and compare tree memory at 1 000 and 100 000 nodes. Closes S4 criteria 6, 7 and 8.
-- [ ] T-23 Write `reports/s4-egui.md`, including the alternative toolkit criterion if any view failed.
+- [x] T-19 Build the variable tree and the dump list with generated data. Closes S4 criteria 1 and 2.
+- [x] T-20 Build the flame graph and the source view. Closes S4 criteria 3 and 4.
+- [x] T-21 Build the styled mockups of the feed and the debugger, and check selection, themes, tooltips and AccessKit. Closes S4 criteria 5 and 9.
+- [x] T-22 Measure idle CPU and RSS per dataset on `glow` and `wgpu`, and compare tree memory at 1 000 and 100 000 nodes. Closes S4 criteria 6, 7 and 8.
+- [x] T-23 Write `reports/s4-egui.md`, including the alternative toolkit criterion if any view failed.
 
 ## S5 PHP extension
 
