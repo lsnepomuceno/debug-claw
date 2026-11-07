@@ -4,8 +4,8 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## Test bed
 
-- [ ] T-01 Build `spikes/testbed/` with the `toolchain` service, nginx, PHP-FPM with Xdebug, and the plain PHP fixture application. Done when a `curl` with `XDEBUG_TRIGGER` opens a DBGp connection to a listener in the `toolchain` container on port 9003, and nothing was installed on the host.
-- [ ] T-02 Add the second PHP version service and the second mount path. Done when both answer requests.
+- [x] T-01 Build `spikes/testbed/` with the `toolchain` service, nginx, PHP-FPM with Xdebug, and the plain PHP fixture application. Done when a `curl` with `XDEBUG_TRIGGER` opens a DBGp connection to a listener in the `toolchain` container on port 9003, and nothing was installed on the host.
+- [x] T-02 Add the second PHP version service and the second mount path. Done when both answer requests.
 
 ## S1 Path mapping
 

@@ -5,7 +5,7 @@
 All spikes that need PHP share one fixture in `spikes/testbed/`:
 
 - A Docker Compose setup with nginx and PHP-FPM, with Xdebug installed, `xdebug.mode=debug`, `xdebug.start_with_request=trigger` and `xdebug.client_host` pointing at the host.
-- A second PHP service with a different PHP version, for S5. The versions follow [O-02](../OPEN.md#o-02-minimum-php-and-xdebug-versions); until it is answered, use the oldest and newest PHP versions in active support.
+- A second PHP service with a different PHP version, for S5. The versions follow [O-02](../OPEN.md#o-02-minimum-php-and-xdebug-versions); until it is answered, the test bed uses PHP 8.5, the newest branch, and PHP 8.3, the oldest branch with security support past 2026 (checked on php.net on 2026-11-07).
 - A small plain PHP application with no framework: a front controller in `public/index.php`, a loop, an object graph deep enough to test variable trees, and an endpoint that runs about 100 PDO queries against SQLite.
 - A copy of the same application mounted at a different container path, for the S1 layouts.
 
