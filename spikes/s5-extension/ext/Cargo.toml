@@ -1,0 +1,16 @@
+[package]
+name = "debug_claw_s5"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "Spike S5: an ext-php-rs extension that observes PDOStatement::execute"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# MIT OR Apache-2.0. The observer feature wraps zend_observer_fcall_register.
+ext-php-rs = { version = "=0.16.4", features = ["observer"] }
+
+[profile.release]
+debug = false

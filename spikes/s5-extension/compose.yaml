@@ -1,0 +1,89 @@
+# Spike S5 test bed: the shared fixture app and nginx config from
+# ../testbed (mounted read-only, unchanged), with PHP images that build the
+# extension and have no Xdebug. See README.md.
+#
+# S5_PROFILE_85 and S5_PROFILE_83 pick a folder under ini/ (off, on,
+# on-call, closed); recreate the PHP service to switch.
+name: ${COMPOSE_PROJECT_NAME:-testbed-s5}
+
+networks:
+  s5:
+    ipam:
+      config:
+        - subnet: 10.250.85.0/24
+
+# Each process of the request path gets its own P-core thread (cpus 0-7
+# are P-cores on the test machine, 8-15 E-cores), so a run does not move
+# between core types. S5_CPU_* change or widen the sets.
+x-php: &php
+  networks: [s5]
+
+services:
+  php85:
+    <<: *php
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
+      args:
+        PHP_VERSION: "8.5"
+    cpuset: "${S5_CPU_PHP:-2}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/conf.d:/s5/ini/${S5_PROFILE_85:-off}"
+    volumes:
+      - ./ini:/s5/ini:ro
+      - ./app:/s5/app:ro
+      - ../testbed/app:/var/www/html:ro
+
+  php83:
+    <<: *php
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
+      args:
+        PHP_VERSION: "8.3"
+    cpuset: "${S5_CPU_PHP:-2}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/conf.d:/s5/ini/${S5_PROFILE_83:-off}"
+    volumes:
+      - ./ini:/s5/ini:ro
+      - ./app:/s5/app:ro
+      - ../testbed/app:/srv/app:ro
+
+  nginx:
+    image: nginx:1.30-alpine
+    networks: [s5]
+    cpuset: "${S5_CPU_NGINX:-4}"
+    depends_on: [php85, php83]
+    ports:
+      - "127.0.0.1:${HTTP_PORT_85:-8580}:80"
+      - "127.0.0.1:${HTTP_PORT_83:-8581}:81"
+    volumes:
+      - ../testbed/app:/var/www/html:ro
+      - ../testbed/app:/srv/app:ro
+      - ../testbed/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  # The daemon stand-in. A fixed address, so the extension needs no DNS
+  # lookup and a stopped listener means an unreachable address.
+  listener:
+    build:
+      context: .
+      dockerfile: docker/tools.Dockerfile
+    init: true
+    command: ["listener", "0.0.0.0:7781", "--every", "${S5_LISTENER_EVERY:-1}"]
+    cpuset: "${S5_CPU_LISTENER:-0}"
+    networks:
+      s5:
+        ipv4_address: 10.250.85.10
+
+  # Runs the load generator on the Compose network.
+  bench:
+    build:
+      context: .
+      dockerfile: docker/tools.Dockerfile
+    init: true
+    command: ["sleep", "infinity"]
+    cpuset: "${S5_CPU_BENCH:-6}"
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    networks: [s5]
+    volumes:
+      - ./results:/results

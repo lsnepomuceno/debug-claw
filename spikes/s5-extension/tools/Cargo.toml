@@ -1,0 +1,8 @@
+[package]
+name = "s5-tools"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "Spike S5: the socket listener and the HTTP load generator"
+
+[dependencies]
