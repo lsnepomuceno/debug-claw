@@ -1,0 +1,10 @@
+# 2026-11-07T23:16:23Z mode=proxy ide=host.docker.internal:9003 url=http://127.0.0.1:8680/loop?n=3
+## proxy
+listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at host.docker.internal:9003
+s1: relaying to host.docker.internal:9003
+s1: ide->xd commands: n=42 proxy_us median=29.6 p99=86.5 max=86.5
+s1: xd->ide packets: n=50 proxy_us median=35.3 p99=176.7 max=176.7
+s1: closed
+## request
+200 41.697246s {"iterations":3,"sum":5}
+## exit status 0

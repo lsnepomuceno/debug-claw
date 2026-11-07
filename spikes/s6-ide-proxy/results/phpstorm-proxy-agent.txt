@@ -1,0 +1,23 @@
+# 2026-11-07T23:20:52Z mode=proxy-agent ide=host.docker.internal:9003 url=http://127.0.0.1:8680/loop?n=3
+## proxy
+listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at host.docker.internal:9003
+s1: relaying to host.docker.internal:9003
+s1: ide->xd commands: n=42 proxy_us median=30.5 p99=99.5 max=99.5
+s1: xd->ide packets: n=50 proxy_us median=25.4 p99=120.8 max=120.8
+s1: closed
+## agent
+agent connected to 127.0.0.1:9100
+  property_get -n $i: error Some(300)
+  property_get -n $sum: error Some(300)
+  property_get -n $item: error Some(300)
+pause 1 at file:///var/www/html/public/index.php:5: i=None sum=None square=None REQUEST_URI(-m 5)=Some("/loop") check=n/a (not the breakpoint line)
+  unsafe commands refused: 18, not refused: 0
+pause 2 at file:///var/www/html/public/index.php:44: i=Some(0) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=ok
+pause 3 at file:///var/www/html/public/index.php:42: i=Some(1) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=n/a (not the breakpoint line)
+pause 4 at file:///var/www/html/public/index.php:44: i=Some(1) sum=Some(0) square=Some(1) REQUEST_URI(-m 5)=Some("/loop") check=ok
+pause 5 at file:///var/www/html/public/index.php:44: i=Some(2) sum=Some(1) square=Some(4) REQUEST_URI(-m 5)=Some("/loop") check=ok
+agent: checks ok=3 bad=0, tid mismatches=0, unsafe refused=18 not refused=0, flood reads=0
+agent injected reads: n=22 us median=172.6 p99=378.1 min=87.6 max=378.1
+## request
+200 12.073478s {"iterations":3,"sum":5}
+## exit status 0
