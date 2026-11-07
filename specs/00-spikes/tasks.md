@@ -56,4 +56,4 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## Closing the milestone
 
-- [ ] T-32 Apply what the reports say to the ADRs and OPEN.md, then write the folder and requirements for milestone 1.
+- [x] T-32 Apply what the reports say to the ADRs and OPEN.md, then write the folder and requirements for milestone 1.

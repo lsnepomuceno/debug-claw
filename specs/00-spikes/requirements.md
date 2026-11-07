@@ -1,6 +1,6 @@
 # 00: Spikes
 
-State: active.
+State: done, except T-29 and T-30, which wait for a run with PhpStorm.
 
 This milestone answers the questions that would change the design if the answer came out wrong. Each spike is a question with exit criteria. A spike ends when its exit criteria are met or when it shows the assumption does not hold. Both outcomes are results.
 
