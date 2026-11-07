@@ -1,0 +1,11 @@
+[package]
+name = "s1-path-mapping"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Spike S1: infer the DBGp path mapping from the init packet"
+
+# No dependencies on purpose: the spike needs a socket, a few XML
+# attributes and base64, and std covers all of it.
+[dependencies]
