@@ -1,0 +1,14 @@
+[package]
+name = "s2-logpoints"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Spike S2: logpoints over DBGp (throwaway code, never imported)"
+
+# No dependencies: the DBGp framing and the small XML subset Xdebug sends
+# are parsed by hand in src/xml.rs.
+[dependencies]
+
+[profile.release]
+debug = false
