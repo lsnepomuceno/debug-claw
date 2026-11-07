@@ -152,7 +152,7 @@ These exist because the agent is a first-class user ([ADR-0002](../specs/decisio
 | Feature | App | Milestone |
 |---|---|---|
 | Open a file and line in the editor, from a configurable URL or command template (PhpStorm, VS Code) | Every file link | 3 |
-| Proxy mode: PhpStorm keeps driving the session while debug-claw reads it, read only and during PhpStorm's pauses ([ADR-0016](../specs/decisions/0016-ide-proxy-mode.md)) | Session header shows "Attached to IDE" | 7 |
+| Proxy mode: PhpStorm keeps driving the session while debug-claw reads it, read only and during PhpStorm's pauses, verified with PhpStorm 2026.3 ([ADR-0016](../specs/decisions/0016-ide-proxy-mode.md)) | Session header shows "Attached to IDE" | 7 |
 | OS notification when a breakpoint hits and the window is not focused | | 3 |
 | Always on top and a compact window mode, for working beside the editor | Top bar | 3 |
 

@@ -33,6 +33,7 @@ What the spikes found:
 - S1: `property_set` evaluates its value as PHP, so the "set variables" scope gives the same power as "eval".
 - S1: class constants are shown only through eval, so with eval off they are not visible.
 - Skipping errors silenced with `@` ([O-12](#o-12-silenced-php-errors)) would cost one `eval` of `error_reporting()` per error pause.
+- S6: in proxy mode PhpStorm sends three `eval` calls per session of its own (Xdebug settings and `PHP_IDE_CONFIG`). They pass through unchanged, so the policy applies to the daemon and the agent, not to the IDE.
 
 - Decides: Lucas.
 - Blocks: milestone 1 design.
@@ -132,12 +133,13 @@ egui's `system_font_fallback`, on by default, loads system fonts for glyphs that
 
 ## O-18 Proxy mode details
 
-[ADR-0016](decisions/0016-ide-proxy-mode.md) leaves four questions from S6:
+[ADR-0016](decisions/0016-ide-proxy-mode.md) leaves five questions from S6:
 
 1. How the daemon finds the IDE (a configured host and port, and which default), and what it does when the IDE is not listening. The spike drops the session. Prior art's `auto` mode has the daemon drive the session itself instead.
 2. Whether an agent may set its own breakpoints or logpoints while the IDE drives. The spike refuses them, because the IDE would get pauses for breakpoints it does not know. Allowing them means the daemon hides those pauses and notifications from the IDE.
 3. Whether the agent sees the `stream` packets (stdout) of an IDE-driven session, which the daemon could copy.
 4. Which session the agent reads when several requests are debugged through the IDE at once.
+5. Whether the agent's wait skips the pauses an IDE makes for itself. PhpStorm sends `step_into` right after `init`, so the script stops on its first line while PhpStorm sets up; the user never sees that pause, but the agent does.
 
 - Decides: Lucas.
 - Blocks: the IDE coexistence milestone design.
@@ -159,6 +161,8 @@ Path mapping walks the local project tree ([ADR-0013](decisions/0013-path-mappin
 ## O-21 How long a paused request may wait
 
 A paused request holds a PHP worker ([ADR-0003](decisions/0003-framework-agnostic.md)). When no client drives the session (the agent stopped calling, or gave up without cancelling, as S3 saw the Inspector CLI do), the worker stays held. The question is whether the daemon releases it after some time without commands, by `detach` or `stop`, and which actions count as driving the session.
+
+S6 found a related limit outside the daemon: behind nginx, a request paused for longer than `fastcgi_read_timeout` (60 s by default) gets HTTP 504 while PHP stays paused. Whatever the answer, the setup help should say how to raise that timeout.
 
 - Decides: Lucas.
 - Blocks: milestone 1 design.
