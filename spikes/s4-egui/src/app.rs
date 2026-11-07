@@ -59,6 +59,8 @@ pub struct Opts {
     pub bench: Option<(Scenario, usize)>,
     pub screenshot: Option<PathBuf>,
     pub hover: Option<ActionId>,
+    /// Seconds before the screenshot, so a script can send input first.
+    pub screenshot_delay: Option<f32>,
     pub quit_after: Option<usize>,
     pub load_all: bool,
     pub live_countdown: bool,
@@ -90,6 +92,10 @@ pub struct App {
     last_cpu: Option<f32>,
     content: Rect,
     frame_no: usize,
+    reported: bool,
+    /// S4_LOG_FRAMES set: print one line per frame to stderr, so the idle
+    /// scripts can count repaints.
+    log_frames: bool,
     started: Instant,
     shot_requested: bool,
     shot_done: Arc<AtomicBool>,
@@ -112,6 +118,8 @@ impl App {
             last_cpu: None,
             content: Rect::from_min_size(egui::pos2(400.0, 300.0), vec2(800.0, 500.0)),
             frame_no: 0,
+            reported: false,
+            log_frames: std::env::var_os("S4_LOG_FRAMES").is_some(),
             started: Instant::now(),
             shot_requested: false,
             shot_done: Arc::new(AtomicBool::new(false)),
@@ -340,11 +348,17 @@ impl App {
 
     fn automation(&mut self, ctx: &egui::Context) {
         self.frame_no += 1;
+        if self.log_frames {
+            eprintln!("frame {} t={:.3}", self.frame_no, self.started.elapsed().as_secs_f64());
+        }
         if let Some(b) = &self.bench {
             if b.done() {
-                let extra = format!("view={:?} rss_mb={:.1}", self.view, alloc::mb(alloc::rss()));
-                println!("{}", b.report(self.opts.backend, &extra));
-                println!("{}", self.report());
+                if !self.reported {
+                    self.reported = true;
+                    let extra = format!("view={:?} rss_mb={:.1}", self.view, alloc::mb(alloc::rss()));
+                    println!("{}", b.report(self.opts.backend, &extra));
+                    println!("{}", self.report());
+                }
                 ctx.send_viewport_cmd(egui::ViewportCommand::Close);
             } else {
                 ctx.request_repaint();
@@ -352,7 +366,10 @@ impl App {
         }
         if let Some(n) = self.opts.quit_after {
             if self.frame_no >= n {
-                println!("{}", self.report());
+                // Close takes a frame or two to land; print once.
+                if self.frame_no == n {
+                    println!("{}", self.report());
+                }
                 ctx.send_viewport_cmd(egui::ViewportCommand::Close);
             } else {
                 ctx.request_repaint();
@@ -364,7 +381,7 @@ impl App {
                 return;
             }
             ctx.request_repaint();
-            let wait = if self.opts.hover.is_some() { 2.0 } else { 1.0 };
+            let wait = self.opts.screenshot_delay.unwrap_or(if self.opts.hover.is_some() { 2.0 } else { 1.0 });
             if !self.shot_requested && self.frame_no > 10 && self.started.elapsed().as_secs_f32() > wait {
                 self.shot_requested = true;
                 let done = self.shot_done.clone();
