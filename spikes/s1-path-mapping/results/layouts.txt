@@ -4,7 +4,7 @@
 # request: curl -s -b XDEBUG_TRIGGER=1 'http://127.0.0.1:8180/graph?depth=2&width=1'
 # request: curl -s -b XDEBUG_TRIGGER=1 'http://127.0.0.1:8180/loop?n=2'
 listening on 0.0.0.0:9003
-session from 172.31.0.4:56818
+session from 172.31.0.4:38476
   init fileuri=file:///srv/app/index.php
   init language=PHP
   init xdebug:language_version=8.3.36
@@ -13,23 +13,27 @@ session from 172.31.0.4:56818
   init idekey=1
   init xdebug:ctrl_socket=xdebug-ctrl.8
   init engine=3.5.3
-  walk: 10 entries visited in 79.942µs, 2 named index.php
+  walk: 10 entries visited in 93.93µs, 2 named index.php
   suffix: tie between 2 candidates, 1 trailing components each
-  source: entry script read through DBGp in 4.370488ms (183 bytes)
+  source: entry script read through DBGp in 5.028583ms (183 bytes)
     candidate /srv/app -> /work/spikes/testbed/app: content matches
     candidate /srv/app -> /work/spikes/testbed/app/public: content differs
   tie broken by content
   mapping: inferred /srv/app -> /work/spikes/testbed/app
   remote check file:///srv/app/src/Graph.php:17: exists, line is "$graph = new self();"
-  breakpoint_set file:///srv/app/src/Graph.php:17 -> id=80003 resolved=(absent)
+  breakpoint_set file:///srv/app/src/Graph.php:17 -> id=80005 resolved=(absent)
   remote check file:///srv/app/public/index.php:43: exists, line is "$item = ['index' => $i, 'square' => $i * $i];"
-  breakpoint_set file:///srv/app/public/index.php:43 -> id=80004 resolved=(absent)
-  time from init to first run: 5.14734ms
+  breakpoint_set file:///srv/app/public/index.php:43 -> id=80006 resolved=(absent)
+  time from init to first run: 6.272419ms
   run -> break at file:///srv/app/src/Graph.php:17 (PASS: the breakpoint set by local path)
   shown to the user as /work/spikes/testbed/app/src/Graph.php:17
   run -> stopping
   session 1: PASS
-session from 172.31.0.4:56820
+  [request] {
+  [request]     "roots": 1,
+  [request]     "nodes": 2
+  [request] }
+session from 172.31.0.4:38492
   init fileuri=file:///srv/app/index.php
   init language=PHP
   init xdebug:language_version=8.3.36
@@ -40,16 +44,20 @@ session from 172.31.0.4:56820
   init engine=3.5.3
   mapping: reused /srv/app -> /work/spikes/testbed/app (entry script checked by content, no walk)
   remote check file:///srv/app/src/Graph.php:17: exists, line is "$graph = new self();"
-  breakpoint_set file:///srv/app/src/Graph.php:17 -> id=70001 resolved=(absent)
+  breakpoint_set file:///srv/app/src/Graph.php:17 -> id=70003 resolved=(absent)
   remote check file:///srv/app/public/index.php:43: exists, line is "$item = ['index' => $i, 'square' => $i * $i];"
-  breakpoint_set file:///srv/app/public/index.php:43 -> id=70002 resolved=(absent)
-  time from init to first run: 4.374314ms
+  breakpoint_set file:///srv/app/public/index.php:43 -> id=70004 resolved=(absent)
+  time from init to first run: 8.130999ms
   run -> break at file:///srv/app/public/index.php:43 (PASS: the breakpoint set by local path)
   shown to the user as /work/spikes/testbed/app/public/index.php:43
   run -> break again at file:///srv/app/public/index.php:43
   run -> stopping
   session 2: PASS
-session from 172.31.0.2:47578
+  [request] {
+  [request]     "iterations": 2,
+  [request]     "sum": 1
+  [request] }
+session from 172.31.0.2:39598
   init fileuri=file:///var/www/html/public/index.php
   init language=PHP
   init xdebug:language_version=8.5.12
@@ -58,19 +66,24 @@ session from 172.31.0.2:47578
   init idekey=1
   init xdebug:ctrl_socket=xdebug-ctrl.8
   init engine=3.5.3
-  walk: 10 entries visited in 83.611µs, 2 named index.php
+  walk: 10 entries visited in 103.974µs, 2 named index.php
   suffix: unique, 2 trailing components match
+  source: entry script content matches
   mapping: inferred /var/www/html -> /work/spikes/testbed/app
   remote check file:///var/www/html/src/Graph.php:17: exists, line is "$graph = new self();"
-  breakpoint_set file:///var/www/html/src/Graph.php:17 -> id=80001 resolved=(absent)
+  breakpoint_set file:///var/www/html/src/Graph.php:17 -> id=80005 resolved=(absent)
   remote check file:///var/www/html/public/index.php:43: exists, line is "$item = ['index' => $i, 'square' => $i * $i];"
-  breakpoint_set file:///var/www/html/public/index.php:43 -> id=80002 resolved=(absent)
-  time from init to first run: 695.363µs
+  breakpoint_set file:///var/www/html/public/index.php:43 -> id=80006 resolved=(absent)
+  time from init to first run: 10.000384ms
   run -> break at file:///var/www/html/src/Graph.php:17 (PASS: the breakpoint set by local path)
   shown to the user as /work/spikes/testbed/app/src/Graph.php:17
   run -> stopping
   session 3: PASS
-session from 172.31.0.2:47588
+  [request] {
+  [request]     "roots": 1,
+  [request]     "nodes": 2
+  [request] }
+session from 172.31.0.2:39606
   init fileuri=file:///var/www/html/public/index.php
   init language=PHP
   init xdebug:language_version=8.5.12
@@ -81,13 +94,17 @@ session from 172.31.0.2:47588
   init engine=3.5.3
   mapping: reused /var/www/html -> /work/spikes/testbed/app (entry script checked by content, no walk)
   remote check file:///var/www/html/src/Graph.php:17: exists, line is "$graph = new self();"
-  breakpoint_set file:///var/www/html/src/Graph.php:17 -> id=70001 resolved=(absent)
+  breakpoint_set file:///var/www/html/src/Graph.php:17 -> id=70005 resolved=(absent)
   remote check file:///var/www/html/public/index.php:43: exists, line is "$item = ['index' => $i, 'square' => $i * $i];"
-  breakpoint_set file:///var/www/html/public/index.php:43 -> id=70002 resolved=(absent)
-  time from init to first run: 3.657211ms
+  breakpoint_set file:///var/www/html/public/index.php:43 -> id=70006 resolved=(absent)
+  time from init to first run: 7.585982ms
   run -> break at file:///var/www/html/public/index.php:43 (PASS: the breakpoint set by local path)
   shown to the user as /work/spikes/testbed/app/public/index.php:43
   run -> break again at file:///var/www/html/public/index.php:43
   run -> stopping
   session 4: PASS
+  [request] {
+  [request]     "iterations": 2,
+  [request]     "sum": 1
+  [request] }
 # exit status 0

@@ -1,0 +1,26 @@
+# listener: s1-path-mapping script --max 4000 --cmd-file /work/spikes/s1-path-mapping/probes/ctrl-attach.txt
+# request: dc exec -T php85 php /probe/long.php >/dev/null 2>&1 & sleep 1.5;
+     dc exec -T php85 sh /probe/ctrl.sh list; dc exec -T php85 sh /probe/ctrl.sh pause; wait
+listening on 0.0.0.0:9003
+session from 172.31.0.2:36170
+  init fileuri=file:///probe/long.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=347
+  init idekey=(absent)
+  init xdebug:ctrl_socket=xdebug-ctrl.347
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///probe/long.php" language="PHP" xdebug:language_version="8.5.12" protocol_version="1.0" appid="347" xdebug:ctrl_socket="xdebug-ctrl.347"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> status
+  (131.641µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="status" transaction_id="1" status="starting" reason="ok"></response>
+> stack_get -d 0
+  (149.199µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="2"><stack where="{main}" level="0" type="file" filename="file:///probe/long.php" lineno="7"></stack></response>
+> property_get -n $spins
+  (100.935µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="3"><property name="$spins" fullname="$spins" type="int"><![CDATA[17687596]]></property></response>
+> finish
+  run -> stopping
+  [request] control sockets: xdebug-ctrl.347
+  [request] ctrl xdebug-ctrl.347 "pause" -> (3.054287ms) <?xml version="1.0" encoding="UTF-8"?>
+  [request] <ctrl-response xmlns:xdebug-ctrl="https://xdebug.org/ctrl/xdebug"><pause success="1"><pid><![CDATA[347]]></pid><action><![CDATA[IDE Connection Signalled]]></action></pause></ctrl-response>
+# exit status 0

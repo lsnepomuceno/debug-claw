@@ -6,7 +6,10 @@
 #
 # OUT is a file under results/. A REQUEST is a shell command run on the
 # host; `dc` is docker compose for this test bed copy plus the override,
-# so `dc exec -T php85 php ...` runs PHP in the container.
+# so `dc exec -T php85 php ...` runs PHP in the container. Request output
+# is appended to OUT with a "[request]" prefix. A request that must keep
+# running while the next one starts redirects its own output and ends
+# with "&".
 set -eu
 
 here=$(cd "$(dirname "$0")" && pwd)
@@ -34,7 +37,7 @@ until grep -q '^listening' "$out" 2>/dev/null; do
     sleep 0.1
 done
 for request in "$@"; do
-    eval "$request" >/dev/null 2>&1 || true
+    { eval "$request" 2>&1 || true; } | sed 's/^/  [request] /' >>"$out"
 done
 status=0
 wait "$pid" || status=$?

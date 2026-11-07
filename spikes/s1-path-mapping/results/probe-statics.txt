@@ -1,0 +1,84 @@
+# listener: s1-path-mapping script --max 12000 --cmd-file /work/spikes/s1-path-mapping/probes/statics.txt
+# request: dc exec -T -e XDEBUG_TRIGGER=1 php85 php /probe/statics.php
+listening on 0.0.0.0:9003
+session from 172.31.0.2:34440
+  init fileuri=file:///probe/statics.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=375
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.375
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///probe/statics.php" language="PHP" xdebug:language_version="8.5.12" protocol_version="1.0" appid="375" idekey="1" xdebug:ctrl_socket="xdebug-ctrl.375"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> breakpoint_set -t line -f file:///probe/statics.php -n 36
+  (127.597µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="1" id="3750001"></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "36")) (181.113µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="2" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="36"></xdebug:message></response>
+> context_names
+  (126.55µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="3"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+> context_get -c 0
+  (181.024µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="4" context="0"><property name="$copy" fullname="$copy" type="uninitialized"></property><property name="$this" fullname="$this" type="object" classname="Account" children="1" numchildren="6" page="0" pagesize="32"><property name="currency" fullname="$this::currency" facet="static public" type="string" size="3" encoding="base64"><![CDATA[RVVS]]>{="EUR"}</property><property name="registry" fullname="$this::registry" facet="static private" type="array" children="1" numchildren="2"></property><property name="instances" fullname="$this::instances" facet="static protected" type="int"><![CDATA[1]]></property><property name="id" fullname="$this-&gt;id" facet="public readonly" type="int"><![CDATA[7]]></property><property name="status" fullname="$this-&gt;status" facet="public enum" type="object" classname="Status" children="1" numchildren="2"></property><property name="balance" fullname="$this-&gt;balance" facet="private" type="float"><![CDATA[10.5]]></property></property></response>
+> property_get -n $this
+  (96.905µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="5"><property name="$this" fullname="$this" type="object" classname="Account" children="1" numchildren="6" page="0" pagesize="32"><property name="currency" fullname="$this::currency" facet="static public" type="string" size="3" encoding="base64"><![CDATA[RVVS]]>{="EUR"}</property><property name="registry" fullname="$this::registry" facet="static private" type="array" children="1" numchildren="2"></property><property name="instances" fullname="$this::instances" facet="static protected" type="int"><![CDATA[1]]></property><property name="id" fullname="$this-&gt;id" facet="public readonly" type="int"><![CDATA[7]]></property><property name="status" fullname="$this-&gt;status" facet="public enum" type="object" classname="Status" children="1" numchildren="2"></property><property name="balance" fullname="$this-&gt;balance" facet="private" type="float"><![CDATA[10.5]]></property></property></response>
+> property_get -n $this->status
+  (83.134µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="6"><property name="$this-&gt;status" fullname="$this-&gt;status" type="object" facet="enum" classname="Status" children="1" numchildren="2" page="0" pagesize="32"><property name="name" fullname="$this-&gt;status-&gt;name" facet="public readonly" type="string" size="6" encoding="base64"><![CDATA[QWN0aXZl]]>{="Active"}</property><property name="value" fullname="$this-&gt;status-&gt;value" facet="public readonly" type="string" size="6" encoding="base64"><![CDATA[YWN0aXZl]]>{="active"}</property></property></response>
+> property_get -n $this::currency
+  (73.915µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="7"><property name="$this::currency" fullname="$this::currency" type="string" size="3" encoding="base64"><![CDATA[RVVS]]>{="EUR"}</property></response>
+> property_get -n Account::$currency
+  (64.479µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="8" status="break" reason="ok"><error code="300"><message><![CDATA[can not get property]]></message></error></response>
+> property_get -n \Account::$currency
+  (79.526µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="9" status="break" reason="ok"><error code="300"><message><![CDATA[can not get property]]></message></error></response>
+> property_get -n Account::LIMIT
+  (94.792µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="10" status="break" reason="ok"><error code="300"><message><![CDATA[can not get property]]></message></error></response>
+> property_get -n self::LIMIT
+  (78.955µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="11" status="break" reason="ok"><error code="300"><message><![CDATA[can not get property]]></message></error></response>
+> eval -- self::LIMIT
+  (264.512µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="12"><property type="int"><![CDATA[100]]></property></response>
+> eval -- self::SECRET
+  (86.086µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="13"><property type="string" size="6" encoding="base64"><![CDATA[aGlkZGVu]]>{="hidden"}</property></response>
+> eval -- (new ReflectionClass($this))->getConstants()
+  (94.753µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="14"><property type="array" children="1" numchildren="3" page="0" pagesize="32"><property name="LIMIT" type="int"><![CDATA[100]]></property><property name="SECRET" type="string" size="6" encoding="base64"><![CDATA[aGlkZGVu]]>{="hidden"}</property><property name="VERSION" type="string" size="3" encoding="base64"><![CDATA[MS4w]]>{="1.0"}</property></property></response>
+> feature_set -n show_hidden -v 1
+  (64.423µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="15" feature="show_hidden" success="1"></response>
+> feature_set -n extended_properties -v 1
+  (64.295µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="16" feature="extended_properties" success="1"></response>
+> property_get -n $this
+  (99.077µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="17"><property name="$this" fullname="$this" type="object" classname="Account" children="1" numchildren="6" page="0" pagesize="32"><property name="currency" fullname="$this::currency" facet="static public" type="string" size="3" encoding="base64"><![CDATA[RVVS]]>{="EUR"}</property><property name="registry" fullname="$this::registry" facet="static private" type="array" children="1" numchildren="2"></property><property name="instances" fullname="$this::instances" facet="static protected" type="int"><![CDATA[1]]></property><property name="id" fullname="$this-&gt;id" facet="public readonly" type="int"><![CDATA[7]]></property><property name="status" fullname="$this-&gt;status" facet="public enum" type="object" classname="Status" children="1" numchildren="2"></property><property name="balance" fullname="$this-&gt;balance" facet="private" type="float"><![CDATA[10.5]]></property></property></response>
+> context_get -c 2
+  (70.011µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="context_get" transaction_id="18" context="2"><property name="APP_MODE" fullname="APP_MODE" type="string" size="5" facet="constant" encoding="base64"><![CDATA[cHJvYmU=]]>{="probe"}</property><property name="APP_DEBUG" fullname="APP_DEBUG" type="bool" facet="constant"><![CDATA[1]]></property></response>
+> breakpoint_set -t line -f file:///probe/statics.php -n 47
+  (70.467µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="19" id="3750002"></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "47")) (104.395µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="20" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="47"></xdebug:message></response>
+> property_get -n $balance
+  (71.995µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="21"><property name="$balance" fullname="$balance" type="float"><![CDATA[10.5]]></property></response>
+> property_set -n $balance -- strlen('abcdef')
+  (192.047µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_set" transaction_id="22" success="1"></response>
+> property_get -n $balance
+  (38.625µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="23"><property name="$balance" fullname="$balance" type="int"><![CDATA[6]]></property></response>
+> property_set -n $balance -t int -- 42
+  (29.184µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_set" transaction_id="24" success="1"></response>
+> property_get -n $balance
+  (26.558µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="25"><property name="$balance" fullname="$balance" type="int"><![CDATA[42]]></property></response>
+> property_set -n $balance -t string -- forty two
+  (38.337µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_set" transaction_id="26" success="0"></response>
+> property_get -n $balance
+  (21.026µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="27"><property name="$balance" fullname="$balance" type="int"><![CDATA[42]]></property></response>
+> property_set -n $balance -t string -- fortytwo
+  (41.989µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_set" transaction_id="28" success="0"></response>
+> property_get -n $balance
+  (21.071µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="29"><property name="$balance" fullname="$balance" type="int"><![CDATA[42]]></property></response>
+> property_set -n $account->id -- 9
+  (32.96µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_set" transaction_id="30" success="0"></response>
+> property_get -n $account->id
+  (22.827µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_get" transaction_id="31"><property name="$account-&gt;id" fullname="$account-&gt;id" type="int"><![CDATA[7]]></property></response>
+> property_value -n $balance
+  (24.262µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="property_value" transaction_id="32" type="int"><![CDATA[42]]></response>
+> finish
+  run -> break again at file:///probe/statics.php:47
+  run -> stopping
+  [request] 42
+# exit status 0

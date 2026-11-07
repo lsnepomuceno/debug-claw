@@ -1,0 +1,11 @@
+# Exception breakpoints on PHP errors and on an exception.
+breakpoint_set -t exception -x Deprecated
+breakpoint_set -t exception -x Warning
+breakpoint_set -t exception -x Notice
+breakpoint_set -t exception -x RuntimeException
+RUN
+RUN
+RUN
+RUN
+RUN
+FINISH

@@ -1,0 +1,5 @@
+# Xdebug connected because of a control socket pause, not a trigger.
+status
+stack_get -d 0
+property_get -n $spins
+FINISH

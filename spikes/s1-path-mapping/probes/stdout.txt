@@ -1,0 +1,9 @@
+# Copy output to the client (-c 1), then eval output, then stop copying.
+stdout -c 1
+stderr -c 1
+breakpoint_set -t line -f file:///probe/output.php -n 5
+RUN
+eval -- print "from eval\n";
+eval -- 1 + 2
+stdout -c 0
+FINISH
