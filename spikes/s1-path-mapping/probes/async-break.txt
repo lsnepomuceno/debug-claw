@@ -1,0 +1,8 @@
+# break while the script runs.
+ASYNC run
+SLEEP 1000
+ASYNC break
+WAIT 2000
+WAIT 8000
+WAIT 2000
+FINISH

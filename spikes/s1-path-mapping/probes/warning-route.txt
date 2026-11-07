@@ -1,0 +1,8 @@
+# GET /warning: line 54 is silenced with @, line 55 is not.
+breakpoint_set -t exception -x Warning
+RUN
+# Inside @, error_reporting() is reduced, so a client can tell.
+eval -- error_reporting()
+RUN
+eval -- error_reporting()
+FINISH

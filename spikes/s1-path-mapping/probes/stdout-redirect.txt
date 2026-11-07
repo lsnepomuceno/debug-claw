@@ -1,0 +1,5 @@
+# Redirect (-c 2): the client gets the output, the process does not.
+stdout -c 2
+breakpoint_set -t line -f file:///probe/output.php -n 7
+RUN
+FINISH

@@ -1,0 +1,90 @@
+# listener: s1-path-mapping script --max 4000 --cmd-file /work/spikes/s1-path-mapping/probes/features.txt
+# request: dc exec -T -e XDEBUG_TRIGGER=1 php83 php /probe/output.php
+listening on 0.0.0.0:9003
+session from 172.31.0.4:44076
+  init fileuri=file:///probe/output.php
+  init language=PHP
+  init xdebug:language_version=8.3.36
+  init protocol_version=1.0
+  init appid=9
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.9
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///probe/output.php" language="PHP" xdebug:language_version="8.3.36" protocol_version="1.0" appid="9" idekey="1" xdebug:ctrl_socket="xdebug-ctrl.9"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> feature_get -n language_supports_threads
+  (63.646µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="1" feature_name="language_supports_threads" supported="1"><![CDATA[0]]></response>
+> feature_get -n language_name
+  (26.418µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="2" feature_name="language_name" supported="1"><![CDATA[PHP]]></response>
+> feature_get -n language_version
+  (23.681µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="3" feature_name="language_version" supported="1"><![CDATA[8.3.36]]></response>
+> feature_get -n encoding
+  (24.917µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="4" feature_name="encoding" supported="1"><![CDATA[iso-8859-1]]></response>
+> feature_get -n protocol_version
+  (22.838µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="5" feature_name="protocol_version" supported="1"><![CDATA[1.0]]></response>
+> feature_get -n supports_async
+  (22.394µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="6" feature_name="supports_async" supported="1"><![CDATA[0]]></response>
+> feature_get -n data_encoding
+  (22.73µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="7" feature_name="data_encoding" supported="0"></response>
+> feature_get -n breakpoint_languages
+  (30.632µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="8" feature_name="breakpoint_languages" supported="0"></response>
+> feature_get -n breakpoint_types
+  (51.806µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="9" feature_name="breakpoint_types" supported="1"><![CDATA[line conditional call return exception]]></response>
+> feature_get -n resolved_breakpoints
+  (26.892µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="10" feature_name="resolved_breakpoints" supported="1"><![CDATA[0]]></response>
+> feature_get -n multiple_sessions
+  (44.221µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="11" feature_name="multiple_sessions" supported="0"><![CDATA[0]]></response>
+> feature_get -n max_children
+  (27.832µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="12" feature_name="max_children" supported="1"><![CDATA[32]]></response>
+> feature_get -n max_data
+  (24.504µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="13" feature_name="max_data" supported="1"><![CDATA[1024]]></response>
+> feature_get -n max_depth
+  (23.833µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="14" feature_name="max_depth" supported="1"><![CDATA[1]]></response>
+> feature_get -n extended_properties
+  (27.153µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="15" feature_name="extended_properties" supported="1"><![CDATA[0]]></response>
+> feature_get -n show_hidden
+  (24.777µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="16" feature_name="show_hidden" supported="1"><![CDATA[0]]></response>
+> feature_get -n notify_ok
+  (23.532µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="17" feature_name="notify_ok" supported="1"><![CDATA[0]]></response>
+> feature_get -n breakpoint_details
+  (23.798µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="18" feature_name="breakpoint_details" supported="1"><![CDATA[0]]></response>
+> feature_get -n breakpoint_include_return_value
+  (27.587µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="19" feature_name="breakpoint_include_return_value" supported="1"><![CDATA[0]]></response>
+> feature_get -n break
+  (25.595µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="20" feature_name="break" supported="0"><![CDATA[0]]></response>
+> feature_get -n stdout
+  (27.274µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="21" feature_name="stdout" supported="1"><![CDATA[1]]></response>
+> feature_get -n stderr
+  (24.364µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="22" feature_name="stderr" supported="1"><![CDATA[1]]></response>
+> feature_get -n stdin
+  (24.685µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="23" feature_name="stdin" supported="0"><![CDATA[0]]></response>
+> feature_get -n property_set
+  (23.443µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="24" feature_name="property_set" supported="1"><![CDATA[1]]></response>
+> feature_get -n property_value
+  (23.72µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="25" feature_name="property_value" supported="1"><![CDATA[1]]></response>
+> feature_get -n eval
+  (23.46µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="26" feature_name="eval" supported="1"><![CDATA[1]]></response>
+> feature_get -n interact
+  (23.323µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="27" feature_name="interact" supported="0"><![CDATA[0]]></response>
+> feature_get -n detach
+  (23.473µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="28" feature_name="detach" supported="1"><![CDATA[1]]></response>
+> feature_get -n source
+  (23.099µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="29" feature_name="source" supported="1"><![CDATA[1]]></response>
+> feature_get -n typemap_get
+  (25.229µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_get" transaction_id="30" feature_name="typemap_get" supported="1"><![CDATA[1]]></response>
+> typemap_get
+  (31.875µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="typemap_get" transaction_id="31" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><map name="bool" type="bool" xsi:type="xsd:boolean"></map><map name="int" type="int" xsi:type="xsd:decimal"></map><map name="float" type="float" xsi:type="xsd:double"></map><map name="string" type="string" xsi:type="xsd:string"></map><map name="null" type="null"></map><map name="array" type="hash"></map><map name="object" type="object"></map><map name="resource" type="resource"></map></response>
+> context_names
+  (26.987µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="context_names" transaction_id="32"><context name="Locals" id="0"></context><context name="Superglobals" id="1"></context><context name="User defined constants" id="2"></context></response>
+> breakpoint_set -t watch -- $x
+  (27.388µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="33" status="starting" reason="ok"><error code="201"><message><![CDATA[breakpoint type is not supported]]></message></error></response>
+> breakpoint_set -t conditional -f file:///probe/output.php -n 6 -- $x === 1
+  (33.632µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="34" id="90001"></response>
+> breakpoint_list
+  (34.695µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="35"><breakpoint type="conditional" filename="file:///probe/output.php" lineno="6" state="enabled" hit_count="0" hit_value="0" id="90001"><expression encoding="base64"><![CDATA[JHggPT09IDE=]]></expression></breakpoint></response>
+> finish
+  run -> break again at file:///probe/output.php:6
+  run -> stopping
+  [request] first line
+  [request] second line
+  [request] done
+# exit status 0

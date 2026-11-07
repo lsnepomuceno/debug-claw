@@ -1,0 +1,31 @@
+# listener: s1-path-mapping script --max 4000 --cmd-file /work/spikes/s1-path-mapping/probes/warning-route.txt
+# request: curl -s -b XDEBUG_TRIGGER=1 http://127.0.0.1:8180/warning
+listening on 0.0.0.0:9003
+session from 172.31.0.2:34454
+  init fileuri=file:///var/www/html/public/index.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=7
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.7
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/html/public/index.php" language="PHP" xdebug:language_version="8.5.12" protocol_version="1.0" appid="7" idekey="1" xdebug:ctrl_socket="xdebug-ctrl.7"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> breakpoint_set -t exception -x Warning
+  (233.627µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="1" id="70004"></response>
+> run
+  status=break at=Some(("file:///var/www/html/public/index.php", "54")) (415.984µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="2" status="break" reason="ok"><xdebug:message filename="file:///var/www/html/public/index.php" lineno="54" exception="Warning" code="2"><![CDATA[Undefined array key "missing"]]></xdebug:message></response>
+> eval -- error_reporting()
+  (354.375µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="3"><property type="int"><![CDATA[4437]]></property></response>
+> run
+  status=break at=Some(("file:///var/www/html/public/index.php", "55")) (392.169µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="4" status="break" reason="ok"><xdebug:message filename="file:///var/www/html/public/index.php" lineno="55" exception="Warning" code="2"><![CDATA[Undefined array key "missing"]]></xdebug:message></response>
+> eval -- error_reporting()
+  (309.395µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="5"><property type="int"><![CDATA[30719]]></property></response>
+> finish
+  run -> stopping
+  [request] {
+  [request]     "value": null
+  [request] }
+# exit status 0

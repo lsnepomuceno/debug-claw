@@ -1,0 +1,6 @@
+# The control socket pauses the script from outside the DBGp channel.
+ASYNC run
+WAIT 8000
+stack_get -d 0
+property_get -n $spins
+FINISH

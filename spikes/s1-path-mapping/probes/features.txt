@@ -1,0 +1,39 @@
+# Engine features, then commands, then types and contexts.
+feature_get -n language_supports_threads
+feature_get -n language_name
+feature_get -n language_version
+feature_get -n encoding
+feature_get -n protocol_version
+feature_get -n supports_async
+feature_get -n data_encoding
+feature_get -n breakpoint_languages
+feature_get -n breakpoint_types
+feature_get -n resolved_breakpoints
+feature_get -n multiple_sessions
+feature_get -n max_children
+feature_get -n max_data
+feature_get -n max_depth
+feature_get -n extended_properties
+feature_get -n show_hidden
+feature_get -n notify_ok
+feature_get -n breakpoint_details
+feature_get -n breakpoint_include_return_value
+# A command name answers whether the command exists.
+feature_get -n break
+feature_get -n stdout
+feature_get -n stderr
+feature_get -n stdin
+feature_get -n property_set
+feature_get -n property_value
+feature_get -n eval
+feature_get -n interact
+feature_get -n detach
+feature_get -n source
+feature_get -n typemap_get
+typemap_get
+context_names
+# Watch and conditional breakpoints.
+breakpoint_set -t watch -- $x
+breakpoint_set -t conditional -f file:///probe/output.php -n 6 -- $x === 1
+breakpoint_list
+FINISH

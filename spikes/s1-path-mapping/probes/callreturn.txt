@@ -1,0 +1,17 @@
+# Function call and return breakpoints, with the return value.
+feature_set -n breakpoint_include_return_value -v 1
+breakpoint_set -t call -m define
+breakpoint_set -t call -m Account::__construct
+breakpoint_set -t call -m Account::balance
+breakpoint_set -t return -m Account::balance
+breakpoint_list
+RUN
+stack_get -d 0
+RUN
+stack_get -d 0
+RUN
+stack_get -d 0
+RUN
+stack_get -d 0
+RUN
+FINISH

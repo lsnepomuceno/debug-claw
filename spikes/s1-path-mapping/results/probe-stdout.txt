@@ -1,0 +1,37 @@
+# listener: s1-path-mapping script --max 4000 --cmd-file /work/spikes/s1-path-mapping/probes/stdout.txt
+# request: dc exec -T -e XDEBUG_TRIGGER=1 php85 php /probe/output.php
+listening on 0.0.0.0:9003
+session from 172.31.0.2:45862
+  init fileuri=file:///probe/output.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=109
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.109
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///probe/output.php" language="PHP" xdebug:language_version="8.5.12" protocol_version="1.0" appid="109" idekey="1" xdebug:ctrl_socket="xdebug-ctrl.109"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> stdout -c 1
+  (46.3µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="1" success="1"></response>
+> stderr -c 1
+  (24.438µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stderr" transaction_id="2" success="0"></response>
+> breakpoint_set -t line -f file:///probe/output.php -n 5
+  (32.278µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="3" id="1090001"></response>
+> run
+  status=break at=Some(("file:///probe/output.php", "5")) (90.851µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="4" status="break" reason="ok"><xdebug:message filename="file:///probe/output.php" lineno="5"></xdebug:message></response>
+  stream type=stdout data="first line\n"
+> eval -- print "from eval\n";
+  (235.934µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="5"><property type="int"><![CDATA[1]]></property></response>
+  stream type=stdout data="from eval\n"
+> eval -- 1 + 2
+  (101.71µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="eval" transaction_id="6"><property type="int"><![CDATA[3]]></property></response>
+> stdout -c 0
+  (66.841µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="7" success="1"></response>
+> finish
+  run -> stopping
+  [request] first line
+  [request] from eval
+  [request] second line
+  [request] done
+# exit status 0

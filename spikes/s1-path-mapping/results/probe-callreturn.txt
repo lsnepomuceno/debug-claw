@@ -1,0 +1,52 @@
+# listener: s1-path-mapping script --max 4000 --cmd-file /work/spikes/s1-path-mapping/probes/callreturn.txt
+# request: dc exec -T -e XDEBUG_TRIGGER=1 php85 php /probe/statics.php
+listening on 0.0.0.0:9003
+session from 172.31.0.2:45900
+  init fileuri=file:///probe/statics.php
+  init language=PHP
+  init xdebug:language_version=8.5.12
+  init protocol_version=1.0
+  init appid=127
+  init idekey=1
+  init xdebug:ctrl_socket=xdebug-ctrl.127
+  init engine=3.5.3
+  init raw: <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///probe/statics.php" language="PHP" xdebug:language_version="8.5.12" protocol_version="1.0" appid="127" idekey="1" xdebug:ctrl_socket="xdebug-ctrl.127"><engine version="3.5.3"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2026 by Derick Rethans]]></copyright></init>
+> feature_set -n breakpoint_include_return_value -v 1
+  (123.778µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="1" feature="breakpoint_include_return_value" success="1"></response>
+> breakpoint_set -t call -m define
+  (178.646µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="2" id="1270001"></response>
+> breakpoint_set -t call -m Account::__construct
+  (108.291µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="3" id="1270002"></response>
+> breakpoint_set -t call -m Account::balance
+  (90.753µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="4" id="1270003"></response>
+> breakpoint_set -t return -m Account::balance
+  (77.959µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="5" id="1270004"></response>
+> breakpoint_list
+  (118.303µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_list" transaction_id="6"><breakpoint type="call" function="define" state="enabled" hit_count="0" hit_value="0" id="1270001"></breakpoint><breakpoint type="call" function="Account::__construct" state="enabled" hit_count="0" hit_value="0" id="1270002"></breakpoint><breakpoint type="call" function="Account::balance" state="enabled" hit_count="0" hit_value="0" id="1270003"></breakpoint><breakpoint type="return" function="Account::balance" state="enabled" hit_count="0" hit_value="0" id="1270004"></breakpoint></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "43")) (158.088µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="7" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="43"></xdebug:message></response>
+> stack_get -d 0
+  (91.874µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="8"><stack where="define" level="0" type="file" filename="file:///probe/statics.php" lineno="43"></stack></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "30")) (134.334µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="9" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="30"></xdebug:message></response>
+> stack_get -d 0
+  (62.497µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="10"><stack where="Account-&gt;__construct" level="0" type="file" filename="file:///probe/statics.php" lineno="30"></stack></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "36")) (107.287µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="11" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="36"></xdebug:message></response>
+> stack_get -d 0
+  (73.3µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="12"><stack where="Account-&gt;balance" level="0" type="file" filename="file:///probe/statics.php" lineno="36"></stack></response>
+> run
+  status=break at=Some(("file:///probe/statics.php", "46")) (108.347µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="13" status="break" reason="ok"><xdebug:message filename="file:///probe/statics.php" lineno="46"></xdebug:message><xdebug:return_value><property type="float"><![CDATA[10.5]]></property></xdebug:return_value></response>
+> stack_get -d 0
+  (63.914µs) <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="14"><stack where="Account-&gt;balance" level="0" type="file" filename="file:///probe/statics.php" lineno="38"></stack></response>
+> run
+  status=stopping at=None (141.252µs)
+  <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="15" status="stopping" reason="ok"></response>
+> finish
+  run -> connection closed by Xdebug
+  [request] 10.5
+# exit status 0

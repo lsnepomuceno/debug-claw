@@ -1,0 +1,8 @@
+# The wildcard exception breakpoint.
+breakpoint_set -t exception -x *
+RUN
+RUN
+RUN
+RUN
+RUN
+FINISH

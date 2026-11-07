@@ -1,0 +1,37 @@
+# Break inside a method, then look at $this, statics and constants.
+breakpoint_set -t line -f file:///probe/statics.php -n 36
+RUN
+context_names
+context_get -c 0
+property_get -n $this
+property_get -n $this->status
+property_get -n $this::currency
+property_get -n Account::$currency
+property_get -n \Account::$currency
+property_get -n Account::LIMIT
+property_get -n self::LIMIT
+# eval reaches constants, including private ones from inside the class.
+eval -- self::LIMIT
+eval -- self::SECRET
+eval -- (new ReflectionClass($this))->getConstants()
+# Hidden and extended properties.
+feature_set -n show_hidden -v 1
+feature_set -n extended_properties -v 1
+property_get -n $this
+context_get -c 2
+# property_set: an expression, a typed literal, a readonly property.
+breakpoint_set -t line -f file:///probe/statics.php -n 47
+RUN
+property_get -n $balance
+property_set -n $balance -- strlen('abcdef')
+property_get -n $balance
+property_set -n $balance -t int -- 42
+property_get -n $balance
+property_set -n $balance -t string -- forty two
+property_get -n $balance
+property_set -n $balance -t string -- fortytwo
+property_get -n $balance
+property_set -n $account->id -- 9
+property_get -n $account->id
+property_value -n $balance
+FINISH
