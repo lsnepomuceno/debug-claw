@@ -50,9 +50,9 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## S6 IDE coexistence
 
-- [ ] T-29 Relay a session to PhpStorm through the proxy. Closes S6 criterion 1.
-- [ ] T-30 Inject stack and variable reads while PhpStorm holds the pause, and measure the added latency per round trip. Closes S6 criteria 2, 3 and 4.
-- [ ] T-31 Write `reports/s6-ide-proxy.md`.
+- [x] T-29 Relay a session to PhpStorm through the proxy. Closes S6 criterion 1.
+- [x] T-30 Inject stack and variable reads while PhpStorm holds the pause, and measure the added latency per round trip. Closes S6 criteria 2, 3 and 4.
+- [x] T-31 Write `reports/s6-ide-proxy.md`.
 
 ## Closing the milestone
 
