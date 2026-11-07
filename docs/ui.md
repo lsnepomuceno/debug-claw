@@ -5,7 +5,7 @@ The desktop app should be pleasant enough that people keep it open next to the e
 - Ray and LaraDumps for the feed: dumps arrive as cards with a colored edge, a label and a link to the line that produced them, and a sidebar filters them.
 - The PhpStorm debugger for the debugging panes: frames, variables by context, watches, an evaluate field and stepping with the same keys.
 
-This file describes intent. The app milestone turns it into requirements, and [S4](../specs/00-spikes/requirements.md#s4-native-ui-for-large-debugging-data) checks first that the toolkit can reach it.
+This file describes intent. The app milestone turns it into requirements. [S4](../specs/00-spikes/reports/s4-egui.md) found that egui can reach it, and the toolkit and the view rules it relies on are in [ADR-0001](../specs/decisions/0001-rust-native-ui.md).
 
 ## Principles
 
@@ -13,7 +13,7 @@ This file describes intent. The app milestone turns it into requirements, and [S
 2. Main actions show an icon and a text label. Icon-only buttons are used only where space is tight, such as the stepping toolbar.
 3. Every button has a tooltip with the action's name, its shortcut, what happens when it is clicked, and the matching MCP tool (`MCP: step`), so a person learns what the agent can do by using the app. A disabled button keeps its tooltip and says why it is disabled ("Needs a paused session").
 4. With no session yet, the app shows the setup snippets with copy buttons and a check that turns green when the first session connects. Every empty view says what would fill it.
-5. The interface uses one accent color. Dump colors are the only other strong colors on screen. Motion only marks a change of state and then stops, because the app repaints only on events ([performance.md](performance.md)).
+5. The interface uses one accent color. Dump colors are the only other strong colors on screen. Motion only marks a change of state and then stops, because the app repaints only on events ([performance.md](performance.md)). Live elements (a countdown, elapsed time, a spinner) repaint at most once per second and only while they are visible, because each one costs a full window repaint (S4).
 6. A command palette reaches every action. Stepping uses the PhpStorm keymap by default, and every shortcut can be changed.
 7. Values use a monospace font and the interface a proportional one. Light and dark themes follow the system. Text scales with the system setting, and screen readers work through AccessKit.
 8. When an MCP client changes something (a breakpoint, a step, an evaluation), the app shows it in plain words and marks who did it.
@@ -103,6 +103,9 @@ A drawer that lists every state change an MCP client made, in plain words, with 
 Fixed in the app milestone. The starting candidates:
 
 - Fonts: Inter for the interface and JetBrains Mono for code and values, both under the SIL Open Font License, which allows bundling them with an MIT app.
-- Icons: Lucide (ISC) or Phosphor (MIT).
+- Icons: Phosphor (MIT), the set S4 used, embedded directly. The `egui-phosphor` 0.14 crate is not used, because it pulls in a second egui. Lucide (ISC) was not tried.
+- Every icon next to text sits in its own font section, because Inter's private use glyphs collide with Phosphor's codepoints (S4).
+- Glyphs outside the bundled fonts (CJK, emoji) depend on whether `system_font_fallback` stays on ([O-17](../specs/OPEN.md#o-17-system-font-fallback)).
+- Copying: tree rows copy through their context menu, and text in dumps, source and tables copies by selection (S4).
 - Dump colors: a named palette (red, orange, yellow, green, blue, purple, gray), checked for contrast in both themes.
 - Spacing, radius and type sizes as named tokens, defined once and used by every view.
