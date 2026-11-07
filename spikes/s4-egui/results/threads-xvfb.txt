@@ -1,0 +1,20 @@
+threads backend=wgpu args=[--view debugger] seconds=20 (tid name switches)
+  10837 blocking-1 41
+  threads total: 72
+dbus-daemon[11576]: [session uid=1000 pid=11576 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=11578 comm="/target/release/s4-egui --backend wgpu --view debu" label="docker-default (enforce)")
+dbus-daemon[11576]: [session uid=1000 pid=11576 pidfd=5] Successfully activated service 'org.a11y.Bus'
+threads backend=wgpu args=[--view debugger] seconds=20 (tid name switches)
+  11651 blocking-1 41
+  threads total: 74
+  12433 s4-egui 401
+  12507 WSI_swapchain_q 381
+  12468 s4-egui 196
+  12481 llvmpipe-12 154
+  12479 llvmpipe-10 151
+  12480 llvmpipe-11 148
+  12469 llvmpipe-0 147
+  12484 llvmpipe-15 145
+  12474 llvmpipe-5 145
+  12475 llvmpipe-6 144
+  12472 llvmpipe-3 143
+  12482 llvmpipe-13 141

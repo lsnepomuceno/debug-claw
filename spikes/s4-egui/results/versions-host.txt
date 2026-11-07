@@ -1,0 +1,26 @@
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+s4-egui v0.0.0 (/work/spikes/s4-egui)
+└── tree-sitter-php v0.25.1
+├── eframe v0.37.0
+├── egui-phosphor v0.14.0
+├── image v0.25.10
+├── tree-sitter-highlight v0.27.2
+DISPLAY=:0
+    Device: Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2) (0x46a6)
+OpenGL vendor string: Intel
+OpenGL renderer string: Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)
+OpenGL core profile version string: 4.6 (Core Profile) Mesa 25.0.7-2+deb13u1
+OpenGL version string: 4.6 (Compatibility Profile) Mesa 25.0.7-2+deb13u1
+	apiVersion         = 1.4.305
+	deviceType         = PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU
+	deviceName         = Intel(R) Iris(R) Xe Graphics (ADL GT2)
+	driverInfo         = Mesa 25.0.7-2+deb13u1
+	apiVersion         = 1.4.305
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 256 bits)
+	driverInfo         = Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)
+9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e  inter.zip
+6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf  jbmono.zip
+Inter 4.1 from github.com/rsms/inter releases
+JetBrains Mono 2.304 from github.com/JetBrains/JetBrainsMono releases

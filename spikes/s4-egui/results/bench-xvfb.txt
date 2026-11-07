@@ -1,0 +1,20 @@
+bench=tree-scroll backend=glow frames=599 cpu_ms[p50=1.03 p95=1.75 p99=1.98 max=2.41 mean=1.10] wall_ms[p50=4.56 p95=6.12 p99=6.83 max=7.30 mean=4.69] view=Tree rss_mb=126.9
+heap view=Tree backend=glow live_mb=5.6 peak_mb=7.5 rss_mb=126.9 | load tree virtual_nodes=99951 fetched=2000 rows=2000 ms=0.5
+bench=tree-expand backend=glow frames=599 cpu_ms[p50=0.99 p95=1.61 p99=1.80 max=2.12 mean=1.04] wall_ms[p50=4.37 p95=5.82 p99=6.60 max=7.48 mean=4.50] view=Tree rss_mb=126.1
+heap view=Tree backend=glow live_mb=5.6 peak_mb=7.5 rss_mb=126.1 | load tree virtual_nodes=99951 fetched=2000 rows=2000 ms=0.5
+bench=dumps-scroll backend=glow frames=599 cpu_ms[p50=2.48 p95=4.07 p99=4.67 max=5.41 mean=2.62] wall_ms[p50=7.27 p95=9.73 p99=10.28 max=10.83 mean=7.32] view=Feed rss_mb=141.5
+heap view=Feed backend=glow live_mb=14.9 peak_mb=17.2 rss_mb=141.5 | load feed dumps=10000 ms=14.5
+bench=flame-zoom backend=glow frames=599 cpu_ms[p50=2.79 p95=4.58 p99=6.01 max=6.95 mean=2.63] wall_ms[p50=6.82 p95=10.07 p99=11.46 max=13.87 mean=6.96] view=Flame rss_mb=132.4
+heap view=Flame backend=glow live_mb=7.5 peak_mb=10.4 rss_mb=132.4 | load flame frames=50000 max_depth=31 names=721 ms=3.1
+bench=source-scroll backend=glow frames=599 cpu_ms[p50=1.12 p95=1.85 p99=2.29 max=2.71 mean=1.20] wall_ms[p50=5.43 p95=7.01 p99=7.63 max=8.54 mean=5.44] view=Source rss_mb=131.6
+heap view=Source backend=glow live_mb=6.4 peak_mb=8.4 rss_mb=131.6 | load source lines=4987 highlight_ms=107.6 ms=107.8
+bench=tree-scroll backend=wgpu frames=599 cpu_ms[p50=3.15 p95=4.28 p99=4.67 max=6.51 mean=3.22] wall_ms[p50=7.01 p95=9.15 p99=10.17 max=11.07 mean=7.27] view=Tree rss_mb=146.2
+heap view=Tree backend=wgpu live_mb=4.8 peak_mb=5.8 rss_mb=146.2 | load tree virtual_nodes=99951 fetched=2000 rows=2000 ms=0.6
+bench=tree-expand backend=wgpu frames=599 cpu_ms[p50=3.13 p95=4.45 p99=5.10 max=7.91 mean=3.24] wall_ms[p50=6.97 p95=9.54 p99=10.31 max=13.22 mean=7.28] view=Tree rss_mb=147.0
+heap view=Tree backend=wgpu live_mb=4.9 peak_mb=5.8 rss_mb=147.0 | load tree virtual_nodes=99951 fetched=2000 rows=2000 ms=0.8
+bench=dumps-scroll backend=wgpu frames=599 cpu_ms[p50=4.34 p95=5.93 p99=6.74 max=7.79 mean=4.28] wall_ms[p50=10.53 p95=13.21 p99=14.12 max=15.97 mean=10.60] view=Feed rss_mb=162.9
+heap view=Feed backend=wgpu live_mb=14.2 peak_mb=15.5 rss_mb=162.9 | load feed dumps=10000 ms=17.7
+bench=flame-zoom backend=wgpu frames=599 cpu_ms[p50=3.41 p95=4.52 p99=5.37 max=6.38 mean=3.31] wall_ms[p50=9.79 p95=13.33 p99=14.87 max=15.77 mean=9.82] view=Flame rss_mb=153.1
+heap view=Flame backend=wgpu live_mb=6.8 peak_mb=8.6 rss_mb=153.1 | load flame frames=50000 max_depth=31 names=721 ms=3.1
+bench=source-scroll backend=wgpu frames=599 cpu_ms[p50=3.39 p95=4.47 p99=5.20 max=8.27 mean=3.37] wall_ms[p50=7.63 p95=10.09 p99=11.12 max=12.32 mean=7.91] view=Source rss_mb=157.2
+heap view=Source backend=wgpu live_mb=5.7 peak_mb=6.7 rss_mb=157.2 | load source lines=4987 highlight_ms=116.6 ms=116.8

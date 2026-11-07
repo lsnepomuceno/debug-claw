@@ -1,0 +1,7 @@
+idle backend=glow args=[--view debugger] seconds=60 cpu_ticks=0 cpu_pct=0.000 frames=0 ctx_switches=120 rss_mb=102.2
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)" gl_version="4.6 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=51
+idle backend=wgpu args=[--view debugger] seconds=60 cpu_ticks=1 cpu_pct=0.017 frames=0 ctx_switches=120 rss_mb=109.6
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=103
+idle backend=wgpu args=[--view feed --dumps 10000] seconds=60 cpu_ticks=2 cpu_pct=0.033 frames=0 ctx_switches=120 rss_mb=119.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="Intel(R) Iris(R) Xe Graphics (ADL GT2)" driver="Intel open-source Mesa driver" driver_info="Mesa 25.0.7-2+deb13u1" api=Vulkan type=IntegratedGpu startup_ms=73
+idle backend=wgpu args=[--view debugger --live-countdown] seconds=30 cpu_ticks=10 cpu_pct=0.333 frames=30 ctx_switches=679 rss_mb=110.4

@@ -1,0 +1,18 @@
+idle backend=glow args=[--view feed --dumps 10000] seconds=60 cpu_ticks=0 cpu_pct=0.000 frames=0 ctx_switches=120 rss_mb=140.8
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=38
+idle backend=glow args=[--view debugger] seconds=60 cpu_ticks=0 cpu_pct=0.000 frames=0 ctx_switches=120 rss_mb=129.2
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=42
+idle backend=glow args=[--view tree --tree-nodes 100000 --expand-sample 3] seconds=60 cpu_ticks=1 cpu_pct=0.017 frames=0 ctx_switches=120 rss_mb=127.5
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=45
+idle backend=glow args=[--view flame] seconds=60 cpu_ticks=1 cpu_pct=0.017 frames=0 ctx_switches=120 rss_mb=132.8
+start backend=glow vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf gl_renderer="llvmpipe (LLVM 19.1.7, 256 bits)" gl_version="4.5 (Core Profile) Mesa 25.0.7-2+deb13u1" startup_ms=57
+idle backend=wgpu args=[--view feed --dumps 10000] seconds=60 cpu_ticks=1 cpu_pct=0.017 frames=0 ctx_switches=121 rss_mb=163.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=64
+idle backend=wgpu args=[--view debugger] seconds=60 cpu_ticks=2 cpu_pct=0.033 frames=0 ctx_switches=120 rss_mb=146.8
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=67
+idle backend=wgpu args=[--view tree --tree-nodes 100000 --expand-sample 3] seconds=60 cpu_ticks=1 cpu_pct=0.017 frames=0 ctx_switches=121 rss_mb=146.9
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=60
+idle backend=wgpu args=[--view flame] seconds=60 cpu_ticks=2 cpu_pct=0.033 frames=0 ctx_switches=120 rss_mb=155.4
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=60
+idle backend=wgpu args=[--view debugger --live-countdown] seconds=60 cpu_ticks=560 cpu_pct=9.333 frames=60 ctx_switches=10142 rss_mb=149.0
+start backend=wgpu vsync=true fonts=Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf, JetBrainsMono-Regular.ttf adapter="llvmpipe (LLVM 19.1.7, 256 bits)" driver="llvmpipe" driver_info="Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)" api=Vulkan type=Cpu startup_ms=60
