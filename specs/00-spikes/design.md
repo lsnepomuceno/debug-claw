@@ -11,6 +11,15 @@ All spikes that need PHP share one fixture in `spikes/testbed/`:
 
 Requests are fired with `curl` and the `XDEBUG_TRIGGER` cookie, so that each spike controls exactly which requests start a session.
 
+Nothing runs on the host except Docker, PhpStorm and the MCP clients ([ADR-0011](../decisions/0011-docker-development.md)). That shapes the test bed:
+
+- A `toolchain` service builds and runs every spike, with cargo caches and `target/` in named volumes, as the host user.
+- Spike listeners (S1, S2, S6) run in a container on the Compose network, and Xdebug's `client_host` points at that container's service name instead of the host.
+- S3 publishes the MCP port on `127.0.0.1` so Claude Code on the host can connect.
+- S4 runs the egui app in a container with the X11 socket and `/dev/dri` mounted.
+- S5 builds the extension inside each PHP service image, which already has the PHP headers.
+- S6 relays to PhpStorm on the host through `host.docker.internal`.
+
 ## Spike code
 
 Each spike has its own Cargo project in `spikes/sN-name/`. The spikes do not share a workspace or code, so each can be deleted on its own. A spike that needs a DBGp client writes the minimum it needs (S1, S2 and S6 will each have a small one, and that duplication is accepted).
