@@ -1,0 +1,43 @@
+# Shared test bed for the milestone 00 spikes. See README.md.
+name: debug-claw-testbed
+
+services:
+  # Builds and runs every spike. Spike listeners run here, so Xdebug's
+  # client_host points at this service name.
+  toolchain:
+    build:
+      context: toolchain
+      args:
+        UID: "${HOST_UID:-1000}"
+        GID: "${HOST_GID:-1000}"
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    init: true
+    working_dir: /work
+    command: ["sleep", "infinity"]
+    volumes:
+      - ../..:/work
+      - cargo:/cargo
+      - target:/target
+
+  php85:
+    build:
+      context: php
+      args:
+        PHP_VERSION: "8.5"
+        XDEBUG_VERSION: "3.5.3"
+    volumes:
+      - ./app:/var/www/html:ro
+
+  nginx:
+    image: nginx:1.30-alpine
+    depends_on:
+      - php85
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./app:/var/www/html:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  cargo:
+  target:
