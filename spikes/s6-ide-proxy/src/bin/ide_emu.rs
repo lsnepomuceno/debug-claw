@@ -5,7 +5,7 @@
 //!
 //!   ide_emu [--listen ADDR] [--sessions N] [--map LOCAL=REMOTE]
 //!           [--break LOCAL_FILE:LINE] [--transcript FILE] [--hold-ms N]
-//!           [--bench K]
+//!           [--bench K] [--drop-at N]
 //!
 //! The breakpoint is given as a local path and mapped to the remote one
 //! with the emulator's own mapping, as an IDE does. At every pause on the
@@ -13,7 +13,8 @@
 //! computes. `--hold-ms N` keeps each pause N ms, then reads `$sum` and
 //! the stack again and checks they did not change. `--bench K` sends K
 //! rounds of three reads at the first pause and prints the round trip
-//! times. The transcript has every command and every packet, with the
+//! times. `--drop-at N` closes the connection at pause N without `stop`
+//! or `detach`, as an IDE that crashes or quits would. The transcript has every command and every packet, with the
 //! values that change from run to run blanked, so two runs can be diffed.
 
 #[path = "../client.rs"]
@@ -40,6 +41,7 @@ struct Args {
     transcript: Option<String>,
     hold_ms: u64,
     bench: usize,
+    drop_at: u32,
 }
 
 fn die(msg: &str) -> ! {
@@ -58,6 +60,7 @@ fn parse_args() -> Args {
         transcript: None,
         hold_ms: 0,
         bench: 0,
+        drop_at: 0,
     };
     let mut it = std::env::args().skip(1);
     while let Some(k) = it.next() {
@@ -80,6 +83,7 @@ fn parse_args() -> Args {
             "--transcript" => a.transcript = Some(v()),
             "--hold-ms" => a.hold_ms = v().parse().unwrap_or_else(|_| die("bad --hold-ms")),
             "--bench" => a.bench = v().parse().unwrap_or_else(|_| die("bad --bench")),
+            "--drop-at" => a.drop_at = v().parse().unwrap_or_else(|_| die("bad --drop-at")),
             _ => die(&format!("unknown argument {k}")),
         }
     }
@@ -277,6 +281,10 @@ impl Emu<'_> {
             match status.as_str() {
                 "break" => {
                     self.on_pause()?;
+                    if self.pauses == self.a.drop_at {
+                        println!("dropping the connection at pause {}", self.pauses);
+                        break;
+                    }
                     r = if !stepped {
                         stepped = true;
                         self.send("step_over")?
