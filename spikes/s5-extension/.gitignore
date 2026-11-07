@@ -1,0 +1,2 @@
+# Per-request timings. The summaries in results/*.txt are kept.
+/results/raw/
