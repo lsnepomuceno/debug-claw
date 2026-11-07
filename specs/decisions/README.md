@@ -11,5 +11,6 @@
 | [0007](0007-spec-process.md) | Spec process and fresh-context reviews | accepted |
 | [0008](0008-resource-budgets.md) | Resource use is a requirement, with budgets | accepted |
 | [0009](0009-mit-license.md) | MIT license | accepted |
+| [0010](0010-workspace-layout.md) | Workspace layout and architecture patterns | proposed |
 
 The format is described in [CONVENTIONS.md](../CONVENTIONS.md#decisions).
