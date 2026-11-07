@@ -1,0 +1,14 @@
+[package]
+name = "s6-ide-proxy"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Spike S6: a DBGp proxy between Xdebug and an IDE (throwaway code, never imported)"
+
+# No dependencies: std threads and blocking sockets, and the DBGp framing
+# and XML subset parsed by hand (src/dbgp.rs, src/xml.rs from S2).
+[dependencies]
+
+[profile.release]
+debug = false

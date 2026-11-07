@@ -1,0 +1,32 @@
+# Extra services for S6, layered on the shared test bed without changing
+# it:
+#
+#   cd spikes/testbed
+#   COMPOSE_PROJECT_NAME=testbed-s6 HTTP_PORT_85=8680 HTTP_PORT_83=8681 \
+#     docker compose -f compose.yaml -f ../s6-ide-proxy/compose.override.yaml up -d --build
+#
+# Relative paths resolve against the first file's folder (spikes/testbed).
+services:
+  # The proxy runs here, on toolchain:9003, where Xdebug connects. The
+  # host gateway entry lets it relay to PhpStorm on the host.
+  toolchain:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # A second container with the same image, for the IDE emulator. The
+  # proxy relays to ide:9010 across the Compose bridge, one network hop
+  # like the hop to PhpStorm on the host.
+  ide:
+    build:
+      context: toolchain
+      args:
+        UID: "${HOST_UID:-1000}"
+        GID: "${HOST_GID:-1000}"
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    init: true
+    working_dir: /work
+    command: ["sleep", "infinity"]
+    volumes:
+      - ../..:/work
+      - cargo:/cargo
+      - target:/target
