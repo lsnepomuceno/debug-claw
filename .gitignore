@@ -1,0 +1,15 @@
+/target/
+**/target/
+*.rs.bk
+
+.idea/
+.vscode/
+.DS_Store
+
+# Local data written by the daemon during development
+/data/
+*.sqlite
+*.sqlite-journal
+
+# Xdebug output collected by spikes
+/spikes/**/xdebug-output/
