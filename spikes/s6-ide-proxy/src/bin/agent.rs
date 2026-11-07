@@ -65,7 +65,11 @@ fn main() {
             println!("pause {p}: no pause ({})", w.xml.lines().last().unwrap_or(""));
             break;
         }
-        let mut read = |c: &mut Conn, cmd: &str| -> Option<String> {
+        // `tolerate_missing`: error 300 (no such property) is the right
+        // answer when reading the loop's variables at a pause outside
+        // loop(), such as the first-line pause PhpStorm makes with
+        // step_into before it sets its breakpoints.
+        let mut read = |c: &mut Conn, cmd: &str, tolerate_missing: bool| -> Option<String> {
             match c.send(cmd) {
                 Ok((_, r)) if error_code(&r.xml).is_none() => {
                     times.push(r.us);
@@ -75,7 +79,7 @@ fn main() {
                     let code = error_code(&r.xml);
                     // 901 to 903: the IDE moved on before this read, which
                     // is the proxy doing its job. Anything else is a failure.
-                    if !matches!(code, Some(901..=903)) {
+                    if !matches!(code, Some(901..=903)) && !(tolerate_missing && code == Some(300)) {
                         bad += 1;
                     }
                     println!("  {cmd}: error {code:?}");
@@ -84,14 +88,15 @@ fn main() {
                 Err(e) => die(&format!("{cmd}: {e}")),
             }
         };
-        let st = read(&mut c, "stack_get");
+        let st = read(&mut c, "stack_get", false);
         let (uri, line) = st.as_deref().and_then(client::top_frame).unwrap_or_default();
         let int = |x: Option<String>, name: &str| x.and_then(|x| xml::parse(&x).ok()).and_then(|n| client::int_of(&n, name));
-        let i = int(read(&mut c, "property_get -n $i"), "$i");
-        let sum = int(read(&mut c, "property_get -n $sum"), "$sum");
-        let sq = int(read(&mut c, "property_get -n $item"), "square");
+        let outside = line != 44;
+        let i = int(read(&mut c, "property_get -n $i", outside), "$i");
+        let sum = int(read(&mut c, "property_get -n $sum", outside), "$sum");
+        let sq = int(read(&mut c, "property_get -n $item", outside), "square");
         // `-m 5` must apply to this read only, not to the IDE's later reads.
-        let uri_req = read(&mut c, "property_get -c 1 -n $_SERVER['REQUEST_URI'] -m 5")
+        let uri_req = read(&mut c, "property_get -c 1 -n $_SERVER['REQUEST_URI'] -m 5", false)
             .and_then(|x| xml::parse(&x).ok())
             .and_then(|n| n.child("property").map(client::value));
         // The request is /loop?n=3, so the first 5 bytes are "/loop".
@@ -147,7 +152,9 @@ fn main() {
             println!("  unsafe commands refused: {refused_ok}, not refused: {refused_bad}");
         }
 
-        if flood {
+        // Flood only at the breakpoint line: the first pause PhpStorm makes
+        // (step_into on the first line) ends at once and has no $i.
+        if flood && line == 44 {
             let mut n = 0;
             loop {
                 let (_, r) = c.send("property_get -n $i").unwrap_or_else(|e| die(&format!("flood: {e}")));

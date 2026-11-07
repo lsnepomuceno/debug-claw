@@ -1,34 +1,34 @@
 # rounds=2000 reps=3, round trip in microseconds as the emulator sees it
-direct 1: bench all: n=6000 us median=13.8 p99=72.4 min=10.2 max=285.0
-direct 2: bench all: n=6000 us median=15.8 p99=58.3 min=11.8 max=248.8
-direct 3: bench all: n=6000 us median=13.6 p99=59.3 min=10.0 max=370.0
-loop 1: bench all: n=6000 us median=38.3 p99=182.4 min=21.8 max=610.1
-    s1: ide->xd commands: n=6036 proxy_us median=6.0 p99=16.9 max=139.3
-    s1: xd->ide packets: n=6044 proxy_us median=6.0 p99=15.2 max=35.9
-loop 2: bench all: n=6000 us median=44.3 p99=195.9 min=21.2 max=592.6
-    s1: ide->xd commands: n=6036 proxy_us median=6.6 p99=17.6 max=139.6
-    s1: xd->ide packets: n=6044 proxy_us median=6.1 p99=17.3 max=143.3
-loop 3: bench all: n=6000 us median=47.7 p99=135.4 min=21.5 max=558.2
-    s1: ide->xd commands: n=6036 proxy_us median=7.1 p99=16.9 max=58.3
-    s1: xd->ide packets: n=6044 proxy_us median=6.6 p99=14.9 max=185.7
-bridge 1: bench all: n=6000 us median=46.7 p99=154.8 min=18.5 max=608.0
-    s1: ide->xd commands: n=6036 proxy_us median=6.5 p99=17.4 max=127.4
-    s1: xd->ide packets: n=6044 proxy_us median=7.1 p99=18.5 max=159.3
-bridge 2: bench all: n=6000 us median=25.6 p99=169.7 min=22.0 max=487.5
-    s1: ide->xd commands: n=6036 proxy_us median=3.7 p99=19.8 max=165.7
-    s1: xd->ide packets: n=6044 proxy_us median=4.1 p99=20.4 max=78.7
-bridge 3: bench all: n=6000 us median=34.6 p99=226.4 min=22.5 max=605.9
-    s1: ide->xd commands: n=6036 proxy_us median=5.2 p99=17.9 max=114.8
-    s1: xd->ide packets: n=6044 proxy_us median=5.6 p99=18.5 max=117.7
-bridge-flood 1: bench all: n=6000 us median=31.9 p99=74.5 min=22.4 max=290.8
-    s1: ide->xd commands: n=6036 proxy_us median=6.8 p99=12.0 max=122.2
-    s1: xd->ide packets: n=6044 proxy_us median=4.2 p99=11.2 max=27.3
-      flood: 5541 reads of $i while paused
-bridge-flood 2: bench all: n=6000 us median=34.7 p99=112.7 min=22.9 max=322.6
-    s1: ide->xd commands: n=6036 proxy_us median=7.0 p99=16.0 max=63.0
-    s1: xd->ide packets: n=6044 proxy_us median=4.2 p99=17.9 max=92.0
-      flood: 5785 reads of $i while paused
-bridge-flood 3: bench all: n=6000 us median=36.0 p99=163.1 min=22.5 max=476.6
-    s1: ide->xd commands: n=6036 proxy_us median=6.7 p99=20.7 max=134.4
-    s1: xd->ide packets: n=6044 proxy_us median=7.4 p99=23.8 max=161.6
-      flood: 5525 reads of $i while paused
+direct 1: bench all: n=6000 us median=13.1 p99=76.4 min=10.0 max=460.8
+direct 2: bench all: n=6000 us median=11.7 p99=26.5 min=10.1 max=197.8
+direct 3: bench all: n=6000 us median=16.1 p99=86.5 min=8.7 max=242.1
+loop 1: bench all: n=6000 us median=25.1 p99=177.5 min=17.7 max=536.2
+    s1: ide->xd commands: n=6042 proxy_us median=4.0 p99=22.9 max=154.3
+    s1: xd->ide packets: n=6050 proxy_us median=4.0 p99=20.8 max=159.7
+loop 2: bench all: n=6000 us median=26.2 p99=144.6 min=16.4 max=585.3
+    s1: ide->xd commands: n=6042 proxy_us median=4.2 p99=21.0 max=198.8
+    s1: xd->ide packets: n=6050 proxy_us median=4.1 p99=19.2 max=141.2
+loop 3: bench all: n=6000 us median=43.3 p99=188.8 min=19.9 max=703.7
+    s1: ide->xd commands: n=6042 proxy_us median=6.7 p99=18.1 max=141.8
+    s1: xd->ide packets: n=6050 proxy_us median=6.4 p99=17.0 max=147.2
+bridge 1: bench all: n=6000 us median=39.6 p99=123.4 min=17.8 max=637.1
+    s1: ide->xd commands: n=6042 proxy_us median=6.4 p99=18.0 max=68.8
+    s1: xd->ide packets: n=6050 proxy_us median=6.9 p99=19.1 max=116.8
+bridge 2: bench all: n=6000 us median=51.3 p99=236.3 min=20.4 max=465.4
+    s1: ide->xd commands: n=6042 proxy_us median=8.0 p99=27.1 max=163.1
+    s1: xd->ide packets: n=6050 proxy_us median=8.4 p99=26.5 max=131.5
+bridge 3: bench all: n=6000 us median=43.6 p99=150.9 min=20.3 max=702.0
+    s1: ide->xd commands: n=6042 proxy_us median=6.8 p99=15.9 max=148.1
+    s1: xd->ide packets: n=6050 proxy_us median=7.1 p99=16.6 max=178.4
+bridge-flood 1: bench all: n=6000 us median=34.8 p99=163.4 min=20.8 max=346.3
+    s1: ide->xd commands: n=6042 proxy_us median=5.9 p99=24.7 max=96.3
+    s1: xd->ide packets: n=6050 proxy_us median=7.4 p99=23.3 max=78.3
+      flood: 5447 reads of $i while paused
+bridge-flood 2: bench all: n=6000 us median=41.3 p99=189.5 min=22.0 max=725.5
+    s1: ide->xd commands: n=6042 proxy_us median=7.2 p99=27.0 max=134.9
+    s1: xd->ide packets: n=6050 proxy_us median=7.2 p99=26.4 max=66.0
+      flood: 5890 reads of $i while paused
+bridge-flood 3: bench all: n=6000 us median=31.9 p99=86.3 min=21.1 max=350.2
+    s1: ide->xd commands: n=6042 proxy_us median=4.8 p99=14.3 max=80.7
+    s1: xd->ide packets: n=6050 proxy_us median=4.9 p99=15.9 max=50.6
+      flood: 5571 reads of $i while paused

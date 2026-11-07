@@ -1,26 +1,26 @@
-# 2026-11-07T21:55:44Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
-# EMU_ARGS=--bench 2000 AGENT_ARGS= PROXY_LOG=
+# 2026-11-07T23:20:01Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
+# EMU_ARGS=--bench 2000 AGENT_ARGS= PROXY_LOG= COLD=
 ## emu
 listening on 0.0.0.0:9010
-session 1 from 192.168.0.5:36314
+session 1 from 172.31.0.2:52620
 init file:///var/www/html/public/index.php (local /work/spikes/testbed/app/public/index.php)
-breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70032" resolved="unresolved"
+breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70009" resolved="unresolved"
 pause 1 at /work/spikes/testbed/app/public/index.php:44 i=Some(0) sum=Some(0) square=Some(0) check=ok
-bench stack_get: n=2000 us median=23.0 p99=152.8 min=22.0 max=389.8
-bench context_get -d 0 -c 0: n=2000 us median=26.4 p99=175.3 min=24.8 max=487.5
-bench property_get -d 0 -c 0 -n $item: n=2000 us median=23.7 p99=150.0 min=22.4 max=398.3
-bench all: n=6000 us median=25.6 p99=169.7 min=22.0 max=487.5
+bench stack_get: n=2000 us median=49.2 p99=244.0 min=20.4 max=446.1
+bench context_get -d 0 -c 0: n=2000 us median=56.1 p99=240.7 min=23.4 max=465.4
+bench property_get -d 0 -c 0 -n $item: n=2000 us median=51.3 p99=217.0 min=21.3 max=421.7
+bench all: n=6000 us median=51.3 p99=236.3 min=20.4 max=465.4
 pause 2 at /work/spikes/testbed/app/public/index.php:42
 pause 3 at /work/spikes/testbed/app/public/index.php:44 i=Some(1) sum=Some(0) square=Some(1) check=ok
 pause 4 at /work/spikes/testbed/app/public/index.php:44 i=Some(2) sum=Some(1) square=Some(4) check=ok
-stopping, stop -> stopped
+stopping, detach -> stopping
 session 1: 4 pauses, value checks ok=3 bad=0, tid mismatches=0, stream packets=7, notify packets=0, result=None
 ## proxy
 listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at ide:9010
 s1: relaying to ide:9010
-s1: ide->xd commands: n=6036 proxy_us median=3.7 p99=19.8 max=165.7
-s1: xd->ide packets: n=6044 proxy_us median=4.1 p99=20.4 max=78.7
+s1: ide->xd commands: n=6042 proxy_us median=8.0 p99=27.1 max=163.1
+s1: xd->ide packets: n=6050 proxy_us median=8.4 p99=26.5 max=131.5
 s1: closed
 ## requests
-request 1: 200 0.235494s {"iterations":3,"sum":5}
+request 1: 200 0.383449s {"iterations":3,"sum":5}
 ## exit status 0

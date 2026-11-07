@@ -95,12 +95,28 @@ fn parse_args() -> Args {
 /// addresses of values, and breakpoint IDs (Xdebug numbers them per
 /// worker process).
 fn normalize(x: &str) -> String {
+    // Superglobal entries that change on every request (PhpStorm reads
+    // context 1 at each pause): their CDATA value is blanked.
+    const PER_REQUEST: [&str; 3] = ["name=\"REMOTE_PORT\"", "name=\"REQUEST_TIME\"", "name=\"REQUEST_TIME_FLOAT\""];
     let mut out = String::with_capacity(x.len());
+    let mut blank_cdata = false;
     for (n, part) in x.split('<').enumerate() {
         if n > 0 {
             out.push('<');
         }
+        if blank_cdata && part.starts_with("![CDATA[") {
+            blank_cdata = false;
+            match part.find("]]>") {
+                Some(end) => {
+                    out.push_str("![CDATA[*");
+                    out.push_str(&part[end..]);
+                }
+                None => out.push_str(part),
+            }
+            continue;
+        }
         let (tag, rest) = part.split_at(part.find('>').unwrap_or(part.len()));
+        blank_cdata = tag.starts_with("property ") && PER_REQUEST.iter().any(|k| tag.contains(k));
         let mut keys = vec![" appid=\"", " xdebug:ctrl_socket=\"", " address=\""];
         if tag.starts_with("breakpoint ") || tag.contains("command=\"breakpoint_") {
             keys.push(" id=\"");
@@ -181,14 +197,21 @@ impl Emu<'_> {
         }
     }
 
-    /// The reads PhpStorm sends when a session pauses, plus value checks.
+    /// The reads PhpStorm 2026.3 sends when a session pauses, as captured
+    /// through the proxy (results/phpstorm-proxy-agent-proxy.log), plus
+    /// value checks: `context_names` once per session, then the locals
+    /// twice, the superglobals and the constants.
     fn on_pause(&mut self) -> io::Result<()> {
         self.pauses += 1;
         let st = self.send("stack_get")?;
         let (uri, line) = client::top_frame(&st.xml).unwrap_or_default();
-        self.send("context_names -d 0")?;
+        if self.pauses == 1 {
+            self.send("context_names")?;
+        }
         let ctx = self.send("context_get -d 0 -c 0")?;
-        let item = self.send("property_get -d 0 -c 0 -n $item")?;
+        let item = self.send("context_get -d 0 -c 0")?;
+        self.send("context_get -d 0 -c 1")?;
+        self.send("context_get -d 0 -c 2")?;
         let local = self.local(&uri);
         let mut note = String::new();
         if line == self.a.line && local == self.a.file {
@@ -253,26 +276,32 @@ impl Emu<'_> {
         let fileuri = init.split("fileuri=\"").nth(1).and_then(|s| s.split('"').next()).unwrap_or("?").to_string();
         println!("init {} (local {})", fileuri, self.local(&fileuri));
 
-        // PhpStorm finds its server configuration from these values.
-        for v in ["PHP_IDE_CONFIG", "SERVER_NAME", "SERVER_PORT", "REQUEST_URI"] {
-            self.send(&format!("eval isset($_SERVER['{v}']) ? $_SERVER['{v}'] : null"))?;
-        }
+        // The sequence PhpStorm 2026.3 sent through the proxy on
+        // 2026-11-07 (results/phpstorm-proxy-agent-proxy.log): an eval of
+        // Xdebug 2 settings, the features, stdout, a step_into that pauses
+        // on the first line, two evals that find its server configuration,
+        // the breakpoint, and run.
+        self.send("eval (string)(ini_get('xdebug.coverage_enable').';'.ini_get('xdebug.profiler_enable').';'.ini_get('xdebug.remote_autostart').';'.ini_get('xdebug.remote_connect_back').';'.ini_get('xdebug.remote_mode'))")?;
         for (f, v) in [
             ("show_hidden", "1"),
             ("max_depth", "1"),
             ("max_children", "100"),
-            ("max_data", "1024"),
             ("extended_properties", "1"),
             ("notify_ok", "1"),
             ("resolved_breakpoints", "1"),
-            ("breakpoint_details", "1"),
+            ("breakpoint_include_return_value", "1"),
         ] {
             self.send(&format!("feature_set -n {f} -v {v}"))?;
         }
         self.send("stdout -c 1")?;
+        self.send("status")?;
+        self.send("step_into")?;
+        self.send("eval getenv('PHP_IDE_CONFIG')!=false")?;
+        self.send("eval (string)(getenv('PHP_IDE_CONFIG'))")?;
         let target = self.remote(&self.a.file);
         let bp = self.send(&format!("breakpoint_set -t line -f {target} -n {}", self.a.line))?;
         println!("breakpoint {}:{} -> {target}: {}", self.a.file, self.a.line, short(&bp.xml));
+        self.send("stack_get")?;
 
         let mut r = self.send("run")?;
         let mut stepped = false;
@@ -293,8 +322,9 @@ impl Emu<'_> {
                     };
                 }
                 "stopping" => {
-                    let s = self.send("stop")?;
-                    println!("stopping, stop -> {}", attr(&s.xml, "status").unwrap_or_default());
+                    // PhpStorm ends a finished session with detach.
+                    let s = self.send("detach")?;
+                    println!("stopping, detach -> {}", attr(&s.xml, "status").unwrap_or_default());
                     break;
                 }
                 other => {

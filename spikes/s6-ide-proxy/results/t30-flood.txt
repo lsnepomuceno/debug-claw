@@ -1,35 +1,36 @@
-# 2026-11-07T21:57:46Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
+# 2026-11-07T23:19:52Z mode=bridge requests=1 url=http://127.0.0.1:8680/loop?n=3
 # EMU_ARGS= AGENT_ARGS=--pauses 4 --flood PROXY_LOG= COLD=
 ## emu
 listening on 0.0.0.0:9010
-session 1 from 192.168.0.5:38196
+session 1 from 172.31.0.2:53564
 init file:///var/www/html/public/index.php (local /work/spikes/testbed/app/public/index.php)
-breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70008" resolved="unresolved"
+breakpoint /work/spikes/testbed/app/public/index.php:44 -> file:///var/www/html/public/index.php: <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="70021" resolved="unresolved"
 pause 1 at /work/spikes/testbed/app/public/index.php:44 i=Some(0) sum=Some(0) square=Some(0) check=ok
 pause 2 at /work/spikes/testbed/app/public/index.php:42
 pause 3 at /work/spikes/testbed/app/public/index.php:44 i=Some(1) sum=Some(0) square=Some(1) check=ok
 pause 4 at /work/spikes/testbed/app/public/index.php:44 i=Some(2) sum=Some(1) square=Some(4) check=ok
-stopping, stop -> stopped
+stopping, detach -> stopping
 session 1: 4 pauses, value checks ok=3 bad=0, tid mismatches=0, stream packets=7, notify packets=0, result=None
 ## proxy
 listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at ide:9010
 s1: relaying to ide:9010
-s1: ide->xd commands: n=36 proxy_us median=18.2 p99=69.4 max=69.4
-s1: xd->ide packets: n=44 proxy_us median=16.7 p99=50.3 max=50.3
+s1: ide->xd commands: n=42 proxy_us median=20.8 p99=50.8 max=50.8
+s1: xd->ide packets: n=50 proxy_us median=19.2 p99=65.6 max=65.6
 s1: closed
 ## agent
 agent connected to 127.0.0.1:9100
-pause 1 at file:///var/www/html/public/index.php:44: i=Some(0) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=ok
-  flood: 0 reads of $i while paused
+  property_get -n $i: error Some(300)
+  property_get -n $sum: error Some(300)
+  property_get -n $item: error Some(300)
   property_get -c 1 -n $_SERVER['REQUEST_URI'] -m 5: error Some(901)
-pause 2 at file:///var/www/html/public/index.php:42: i=Some(1) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=None check=n/a (not the breakpoint line)
-  flood: 0 reads of $i while paused
-pause 3 at file:///var/www/html/public/index.php:44: i=Some(1) sum=Some(0) square=Some(1) REQUEST_URI(-m 5)=Some("/loop") check=ok
-  flood: 0 reads of $i while paused
-pause 4 at file:///var/www/html/public/index.php:44: i=Some(2) sum=Some(1) square=Some(4) REQUEST_URI(-m 5)=Some("/loop") check=ok
-  flood: 1 reads of $i while paused
-agent: checks ok=3 bad=0, tid mismatches=0, unsafe refused=0 not refused=0, flood reads=1
-agent injected reads: n=20 us median=187.8 p99=430.6 min=104.3 max=430.6
+pause 1 at file:///var/www/html/public/index.php:5: i=None sum=None square=None REQUEST_URI(-m 5)=None check=n/a (not the breakpoint line)
+pause 2 at file:///var/www/html/public/index.php:44: i=Some(0) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=ok
+  flood: 19 reads of $i while paused
+pause 3 at file:///var/www/html/public/index.php:42: i=Some(1) sum=Some(0) square=Some(0) REQUEST_URI(-m 5)=Some("/loop") check=n/a (not the breakpoint line)
+pause 4 at file:///var/www/html/public/index.php:44: i=Some(1) sum=Some(0) square=Some(1) REQUEST_URI(-m 5)=Some("/loop") check=ok
+  flood: 16 reads of $i while paused
+agent: checks ok=2 bad=0, tid mismatches=0, unsafe refused=0 not refused=0, flood reads=35
+agent injected reads: n=51 us median=50.1 p99=634.0 min=35.0 max=634.0
 ## requests
-request 1: 200 0.011817s {"iterations":3,"sum":5}
+request 1: 200 0.016083s {"iterations":3,"sum":5}
 ## exit status 0
