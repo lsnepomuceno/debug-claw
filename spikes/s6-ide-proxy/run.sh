@@ -11,12 +11,15 @@
 #            127.0.0.1:9010 in the same container
 #   bridge   the proxy on toolchain:9003 relays to the emulator in the
 #            ide container (ide:9010), across the Compose bridge
+#   noide    the proxy relays to ide:9011, where nothing listens
 # REQUESTS triggered requests are fired one after the other (default 1).
 # Environment:
 #   URL         request URL (default http://127.0.0.1:8680/loop?n=3)
 #   EMU_ARGS    extra ide_emu arguments (--hold-ms, --bench)
 #   AGENT_ARGS  if set, runs the agent in toolchain with these arguments
 #   PROXY_LOG   if set, the proxy logs every packet to results/PROXY_LOG
+#   COLD        if set, restarts php85 and skips the warm-up request, so
+#               OPcache is cold and Xdebug sends a breakpoint_resolved notify
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 export COMPOSE_PROJECT_NAME=testbed-s6 HTTP_PORT_85=8680 HTTP_PORT_83=8681
@@ -39,6 +42,11 @@ wait_for() {
     done
 }
 
+if [ -n "${COLD:-}" ]; then
+    dc restart php85 >/dev/null 2>&1
+    # No readiness request: any request through index.php would warm OPcache.
+    sleep 2
+fi
 emu="$bin/ide_emu --sessions $reqs --transcript $res/$name.transcript ${EMU_ARGS:-}"
 proxy="$bin/s6-ide-proxy --sessions $reqs ${PROXY_LOG:+--log $res/$PROXY_LOG}"
 pids=""
@@ -60,6 +68,12 @@ case "$mode" in
         pids="$pids $!"
         wait_for "$tmp/proxy" listening
         ;;
+    noide)
+        # shellcheck disable=SC2086
+        dc exec -T toolchain $proxy --ide ide:9011 >"$tmp/proxy" 2>&1 &
+        pids="$pids $!"
+        wait_for "$tmp/proxy" listening
+        ;;
     *) echo "unknown mode $mode" >&2; exit 2 ;;
 esac
 if [ -n "${AGENT_ARGS:-}" ]; then
@@ -71,7 +85,7 @@ fi
 
 # One untriggered request first, so OPcache is warm in every run: Xdebug
 # reports a breakpoint as resolved only for a file it sees compiled.
-curl -s -o /dev/null "$url"
+[ -n "${COLD:-}" ] || curl -s -o /dev/null "$url"
 n=0
 while [ "$n" -lt "$reqs" ]; do
     n=$((n + 1))
@@ -83,7 +97,7 @@ for p in $pids; do wait "$p" || status=1; done
 
 {
     echo "# $(date -u +%FT%TZ) mode=$mode requests=$reqs url=$url"
-    echo "# EMU_ARGS=${EMU_ARGS:-} AGENT_ARGS=${AGENT_ARGS:-} PROXY_LOG=${PROXY_LOG:-}"
+    echo "# EMU_ARGS=${EMU_ARGS:-} AGENT_ARGS=${AGENT_ARGS:-} PROXY_LOG=${PROXY_LOG:-} COLD=${COLD:-}"
     for f in emu proxy agent; do
         [ -f "$tmp/$f" ] || continue
         echo "## $f"
