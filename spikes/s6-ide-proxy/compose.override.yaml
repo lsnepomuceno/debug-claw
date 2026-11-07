@@ -30,3 +30,11 @@ services:
       - ../..:/work
       - cargo:/cargo
       - target:/target
+
+  # PHP_IDE_CONFIG names the PhpStorm server for the run with PhpStorm.
+  # It is ignored by the emulator.
+  nginx:
+    volumes:
+      - ./app:/var/www/html:ro
+      - ./app:/srv/app:ro
+      - ../s6-ide-proxy/nginx-phpstorm.conf:/etc/nginx/conf.d/default.conf:ro
