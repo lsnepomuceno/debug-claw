@@ -1,0 +1,23 @@
+# T-12: max_data on long strings, which the fixture does not have, built
+# with eval at index.php:44. The worst case for one read at a given limit
+# is max_children strings of max_data bytes each.
+feature_set -n max_depth -v 1
+feature_set -n max_children -v 32
+feature_set -n max_data -v 1024
+@5 eval str_repeat('x', 100000)
+@5 eval array_fill(0, 32, str_repeat('x', 5000))
+@5 eval array_fill(0, 100, str_repeat('x', 5000))
+feature_set -n max_data -v 512
+@5 eval array_fill(0, 32, str_repeat('x', 5000))
+feature_set -n max_data -v 256
+@5 eval array_fill(0, 32, str_repeat('x', 5000))
+feature_set -n max_children -v 8
+@5 eval array_fill(0, 32, str_repeat('x', 5000))
+feature_set -n max_children -v 32
+feature_set -n max_data -v 512
+feature_set -n max_depth -v 2
+@5 eval array_fill(0, 32, array_fill(0, 32, str_repeat('x', 5000)))
+feature_set -n max_depth -v 1
+feature_set -n max_data -v 0
+@5 eval str_repeat('x', 100000)
+@5 eval array_fill(0, 32, str_repeat('x', 5000))

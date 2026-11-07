@@ -1,6 +1,6 @@
 # S2 logpoints: working notes
 
-Raw notes for T-07 to T-10, kept so that `reports/s2-logpoints.md` (T-13) can be written from them. Criteria 6 and 7 (T-11, T-12) are not covered here; the last section lists what showed up about them along the way. The raw output of every run is in `results/`.
+Raw notes for T-07 to T-10, kept so that `reports/s2-logpoints.md` (T-13) could be written from them. Criteria 6 and 7 (T-11, T-12) are answered in the report itself; the section "Criteria 6 and 7" below only lists how to rerun them. The raw output of every run is in `results/`.
 
 ## Machine and versions
 
@@ -203,6 +203,28 @@ Every session had its own capture buffer and 0 mismatches, and every request ret
 With 4 at once, only 3 workers were free (2 start servers plus the one spawned earlier), and FPM's dynamic mode added a fourth about 317 ms later. The delay is on the FPM side: the listener accepted the other three sessions at once, and the fourth ran normally once its worker connected.
 
 Result: pass.
+
+## Criteria 6 and 7: how to rerun (T-11, T-12)
+
+T-11 and T-12 use a second binary, `/target/release/probe` (`src/bin/probe.rs`). It accepts one session, sets one line breakpoint (optionally `--hit N`), and at the pause sends the DBGp commands of a file under `scripts/`, printing for each one the response size in bytes, the time from write to the end of the response, and the decoded property tree. `probe.sh` starts it and fires the request. The fixture has no private, protected or static properties and no constants, so `probe/visibility.php` adds them; `compose.override.yaml` mounts it at `/probe` in php85, and it runs with the PHP CLI. The test bed must be started with the override for that one:
+
+```sh
+cd spikes/testbed
+COMPOSE_PROJECT_NAME=testbed-s2 HTTP_PORT_85=8280 HTTP_PORT_83=8281 \
+  docker compose -f compose.yaml -f ../s2-logpoints/compose.override.yaml up -d --build
+cd ../s2-logpoints && ./profile.sh bridge
+./probe.sh /var/www/html/public/index.php:44 t11-loop.txt 'url:/loop?n=5' --hit 3 > results/t11-loop.txt
+./probe.sh /var/www/html/src/Graph.php:40 t11-graph.txt 'url:/graph?depth=6&width=3' > results/t11-graph.txt
+./probe.sh /var/www/html/src/OrderService.php:44 t11-orders.txt 'post:/orders:customer_id=3' > results/t11-orders.txt
+./probe.sh /probe/visibility.php:33 t11-visibility.txt 'cli:/probe/visibility.php' > results/t11-visibility.txt
+./probe.sh /var/www/html/src/Graph.php:40 t12-depth.txt 'url:/graph?depth=6&width=3' --lines 6 > results/t12-depth.txt
+./probe.sh /var/www/html/src/Graph.php:40 t12-children.txt 'url:/graph?depth=3&width=50' --lines 4 > results/t12-children.txt
+./probe.sh /var/www/html/src/Graph.php:40 t12-zero.txt 'url:/graph?depth=6&width=3' --lines 8 > results/t12-zero.txt
+./probe.sh /var/www/html/public/index.php:44 t12-data.txt 'url:/loop?n=3' --lines 2 > results/t12-data.txt
+./t12-table.sh results/t12-depth.txt   # one line per read, with the limits in force
+```
+
+During these runs the S3 test bed (`testbed-s3`) was up on the same machine.
 
 ## Seen along the way, for criteria 6 and 7
 

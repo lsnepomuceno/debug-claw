@@ -1,0 +1,353 @@
+trigger url:/graph?depth=6&width=3 break /var/www/html/src/Graph.php:40 script t12-depth.txt args --lines 6
+listening on 0.0.0.0:9003
+init php=8.5.12
+paused at /var/www/html/src/Graph.php:40
+cmd feature_set -n max_children -v 32
+  bytes=220 us_median=90 us_min=90 us_max=90 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 1024
+  bytes=216 us_median=85 us_min=85 us_max=85 reps=1
+  props=0 success=1
+cmd feature_set -n max_depth -v 1
+  bytes=217 us_median=55 us_min=55 us_max=55 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=547 us_median=40 us_min=34 us_max=78 reps=5
+  props=3
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3]
+    $this->nodes type=int [facet=public] = 1092
+cmd context_get -c 0
+  bytes=558 us_median=58 us_min=37 us_max=85 reps=5
+  props=3
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3]
+    $this->nodes type=int [facet=public] = 1092
+cmd feature_set -n max_depth -v 2
+  bytes=218 us_median=72 us_min=72 us_max=72 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=942 us_median=48 us_min=44 us_max=82 reps=5
+  props=6
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4]
+      $this->roots[1] type=object [classname=App\Node numchildren=4]
+      $this->roots[2] type=object [classname=App\Node numchildren=4]
+    $this->nodes type=int [facet=public] = 1092
+cmd context_get -c 0
+  bytes=953 us_median=45 us_min=44 us_max=59 reps=5
+  props=6
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4]
+      $this->roots[1] type=object [classname=App\Node numchildren=4]
+      $this->roots[2] type=object [classname=App\Node numchildren=4]
+    $this->nodes type=int [facet=public] = 1092
+cmd feature_set -n max_depth -v 3
+  bytes=218 us_median=40 us_min=40 us_max=40 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=2616 us_median=92 us_min=85 us_max=109 reps=5
+  props=18
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3]
+        $this->roots[0]->meta type=array [facet=public numchildren=3]
+        $this->roots[0]->name type=string [facet=public readonly size=6] = "root-0"
+  ... more property lines
+cmd context_get -c 0
+  bytes=2627 us_median=88 us_min=76 us_max=151 reps=5
+  props=18
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3]
+        $this->roots[0]->meta type=array [facet=public numchildren=3]
+        $this->roots[0]->name type=string [facet=public readonly size=6] = "root-0"
+  ... more property lines
+cmd feature_set -n max_depth -v 4
+  bytes=218 us_median=54 us_min=54 us_max=54 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=5187 us_median=155 us_min=145 us_max=214 reps=5
+  props=36
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4]
+          $this->roots[0]->children[1] type=object [classname=App\Node numchildren=4]
+  ... more property lines
+cmd feature_set -n max_depth -v 5
+  bytes=218 us_median=69 us_min=69 us_max=69 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=12240 us_median=286 us_min=277 us_max=374 reps=5
+  props=78
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3]
+  ... more property lines
+cmd feature_set -n max_depth -v 6
+  bytes=218 us_median=61 us_min=61 us_max=61 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=26791 us_median=472 us_min=393 us_max=638 reps=5
+  props=168
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_depth -v 7
+  bytes=218 us_median=52 us_min=52 us_max=52 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=54556 us_median=812 us_min=711 us_max=955 reps=5
+  props=321
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_depth -v 8
+  bytes=218 us_median=43 us_min=43 us_max=43 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=107383 us_median=1906 us_min=1352 us_max=2237 reps=5
+  props=609
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_children -v 100000
+  bytes=221 us_median=123 us_min=123 us_max=123 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 0
+  bytes=217 us_median=21 us_min=21 us_max=21 reps=1
+  props=0 success=1
+cmd feature_set -n max_depth -v 1
+  bytes=218 us_median=14 us_min=14 us_max=14 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=551 us_median=49 us_min=40 us_max=373 reps=5
+  props=3
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3]
+    $this->nodes type=int [facet=public] = 1092
+cmd feature_set -n max_depth -v 4
+  bytes=218 us_median=39 us_min=39 us_max=39 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=5231 us_median=137 us_min=132 us_max=157 reps=5
+  props=36
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4]
+          $this->roots[0]->children[1] type=object [classname=App\Node numchildren=4]
+  ... more property lines
+cmd feature_set -n max_depth -v 8
+  bytes=218 us_median=72 us_min=72 us_max=72 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=108123 us_median=1953 us_min=1812 us_max=2033 reps=5
+  props=609
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 10
+  bytes=218 us_median=114 us_min=114 us_max=114 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=409703 us_median=5152 us_min=4743 us_max=7007 reps=5
+  props=2121
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 12
+  bytes=218 us_median=203 us_min=203 us_max=203 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=1475693 us_median=19230 us_min=18276 us_max=29620 reps=5
+  props=7035
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 14
+  bytes=219 us_median=194 us_min=194 us_max=194 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=4541745 us_median=57431 us_min=54836 us_max=85690 reps=5
+  props=19995
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 16
+  bytes=219 us_median=243 us_min=243 us_max=243 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=8661405 us_median=163156 us_min=110555 us_max=204686 reps=5
+  props=36519
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 18
+  bytes=219 us_median=216 us_min=216 us_max=216 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=12313452 us_median=221056 us_min=150803 us_max=256312 reps=5
+  props=50127
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_depth -v 20
+  bytes=219 us_median=197 us_min=197 us_max=197 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=13759059 us_median=265838 us_min=182090 us_max=290877 reps=3
+  props=55230
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=100000]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=100000]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=100000]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=100000]
+  ... more property lines
+cmd feature_set -n max_children -v 32
+  bytes=222 us_median=141 us_min=141 us_max=141 reps=1
+  props=0 success=1
+cmd feature_set -n max_depth -v 6
+  bytes=219 us_median=223 us_min=223 us_max=223 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 4
+  bytes=218 us_median=189 us_min=189 us_max=189 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=26756 us_median=703 us_min=624 us_max=32524 reps=5
+  props=168
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_data -v 64
+  bytes=218 us_median=121 us_min=121 us_max=121 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=26792 us_median=587 us_min=583 us_max=703 reps=5
+  props=168
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_data -v 0
+  bytes=218 us_median=99 us_min=99 us_max=99 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=26792 us_median=584 us_min=568 us_max=656 reps=5
+  props=168
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=32]
+    $this->roots type=array [facet=public numchildren=3 page=0 pagesize=32]
+      $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+        $this->roots[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+          $this->roots[0]->children[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=32]
+            $this->roots[0]->children[0]->children type=array [facet=public numchildren=3 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_data -v 4
+  bytes=218 us_median=105 us_min=105 us_max=105 reps=1
+  props=0 success=1
+cmd property_get -n $this->roots[0]->children[1]->name
+  bytes=376 us_median=68 us_min=68 us_max=68 reps=1
+  props=1
+  $this->roots[0]->children[1]->name type=string [size=8] = "root"
+cmd property_get -n $this->roots[0]->children[1]->name -m 0
+  bytes=380 us_median=46 us_min=46 us_max=46 reps=1
+  props=1
+  $this->roots[0]->children[1]->name type=string [size=8] = "root-0.1"
+cmd property_value -n $this->roots[0]->children[1]->name
+  bytes=251 us_median=37 us_min=37 us_max=37 reps=1
+  props=0
+cmd property_value -n $this->roots[0]->children[1]->name -m 0
+  bytes=255 us_median=35 us_min=35 us_max=35 reps=1
+  props=0
+cmd feature_set -n max_data -v 1024
+  bytes=218 us_median=52 us_min=52 us_max=52 reps=1
+  props=0 success=1
+cmd feature_set -n max_depth -v 1
+  bytes=219 us_median=40 us_min=40 us_max=40 reps=1
+  props=0 success=1
+cmd context_get -c 1
+  bytes=13256 us_median=234 us_min=223 us_max=350 reps=5
+  props=81
+  $_GET type=array [numchildren=2 page=0 pagesize=32]
+    $_GET["depth"] type=string [size=1] = "6"
+    $_GET["width"] type=string [size=1] = "3"
+  $_POST type=array [numchildren=0 page=0 pagesize=32]
+  $_COOKIE type=array [numchildren=1 page=0 pagesize=32]
+    $_COOKIE["XDEBUG_TRIGGER"] type=string [size=1] = "1"
+  ... more property lines
+cmd feature_set -n max_depth -v 2
+  bytes=219 us_median=48 us_min=48 us_max=48 reps=1
+  props=0 success=1
+cmd context_get -c 1
+  bytes=13256 us_median=240 us_min=224 us_max=286 reps=5
+  props=81
+  $_GET type=array [numchildren=2 page=0 pagesize=32]
+    $_GET["depth"] type=string [size=1] = "6"
+    $_GET["width"] type=string [size=1] = "3"
+  $_POST type=array [numchildren=0 page=0 pagesize=32]
+  $_COOKIE type=array [numchildren=1 page=0 pagesize=32]
+    $_COOKIE["XDEBUG_TRIGGER"] type=string [size=1] = "1"
+  ... more property lines
+cmd feature_set -n max_depth -v 1
+  bytes=219 us_median=41 us_min=41 us_max=41 reps=1
+  props=0 success=1
+cmd property_get -n $this -p 1
+  bytes=327 us_median=62 us_min=62 us_max=62 reps=1
+  props=1
+  $this type=object [classname=App\Graph numchildren=2 page=1 pagesize=32]
+detached
+request: http=200 time_s=3.640085
