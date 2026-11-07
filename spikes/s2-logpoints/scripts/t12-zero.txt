@@ -1,0 +1,15 @@
+# T-12: what 0 means for max_depth and max_children (max_data 0 is "no
+# limit", see t12-depth). Graph.php:40, depth=6 width=3.
+feature_set -n max_data -v 1024
+feature_set -n max_children -v 32
+feature_set -n max_depth -v 0
+property_get -n $this
+context_get -c 0
+feature_set -n max_depth -v 1
+feature_set -n max_children -v 0
+property_get -n $this
+feature_set -n max_children -v 1
+property_get -n $this
+feature_get -n max_depth
+feature_get -n max_children
+feature_get -n max_data

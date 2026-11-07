@@ -1,0 +1,32 @@
+# T-12: a wide object, Graph.php:40 on GET /graph?depth=3&width=50
+# (2550 nodes, 50 roots, 50 children per node). max_data 1024.
+feature_set -n max_data -v 1024
+feature_set -n max_depth -v 1
+feature_set -n max_children -v 10
+@5 property_get -n $this->roots
+feature_set -n max_children -v 32
+@5 property_get -n $this->roots
+feature_set -n max_children -v 100
+@5 property_get -n $this->roots
+feature_set -n max_depth -v 2
+feature_set -n max_children -v 10
+@5 property_get -n $this->roots
+feature_set -n max_children -v 32
+@5 property_get -n $this->roots
+feature_set -n max_children -v 100
+@5 property_get -n $this->roots
+feature_set -n max_depth -v 3
+feature_set -n max_children -v 10
+@5 property_get -n $this->roots
+feature_set -n max_children -v 32
+@5 property_get -n $this->roots
+feature_set -n max_children -v 100
+@5 property_get -n $this->roots
+# Paging with -p: pages of max_children entries
+feature_set -n max_depth -v 1
+feature_set -n max_children -v 32
+property_get -n $this->roots -p 0
+property_get -n $this->roots -p 1
+property_get -n $this->roots -p 2
+# A child read by name past the first page
+property_get -n $this->roots[45]->name

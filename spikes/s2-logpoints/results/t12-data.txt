@@ -1,0 +1,89 @@
+trigger url:/loop?n=3 break /var/www/html/public/index.php:44 script t12-data.txt args --lines 2
+listening on 0.0.0.0:9003
+init php=8.5.12
+paused at /var/www/html/public/index.php:44
+cmd feature_set -n max_depth -v 1
+  bytes=217 us_median=37 us_min=37 us_max=37 reps=1
+  props=0 success=1
+cmd feature_set -n max_children -v 32
+  bytes=220 us_median=30 us_min=30 us_max=30 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 1024
+  bytes=216 us_median=43 us_min=43 us_max=43 reps=1
+  props=0 success=1
+cmd eval str_repeat('x', 100000)
+  bytes=1626 us_median=47 us_min=42 us_max=85 reps=5
+  props=1
+  ? type=string [size=100000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (1026 chars received, quotes included)
+cmd eval array_fill(0, 32, str_repeat('x', 5000))
+  bytes=46816 us_median=306 us_min=254 us_max=410 reps=5
+  props=33
+  ? type=array [numchildren=32 page=0 pagesize=32]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (1026 chars received, quotes included)
+  ... more property lines
+cmd eval array_fill(0, 100, str_repeat('x', 5000))
+  bytes=46817 us_median=267 us_min=238 us_max=590 reps=5
+  props=33
+  ? type=array [numchildren=100 page=0 pagesize=32]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (1026 chars received, quotes included)
+  ... more property lines
+cmd feature_set -n max_data -v 512
+  bytes=217 us_median=161 us_min=161 us_max=161 reps=1
+  props=0 success=1
+cmd eval array_fill(0, 32, str_repeat('x', 5000))
+  bytes=24928 us_median=157 us_min=147 us_max=205 reps=5
+  props=33
+  ? type=array [numchildren=32 page=0 pagesize=32]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (514 chars received, quotes included)
+  ... more property lines
+cmd feature_set -n max_data -v 256
+  bytes=217 us_median=49 us_min=49 us_max=49 reps=1
+  props=0 success=1
+cmd eval array_fill(0, 32, str_repeat('x', 5000))
+  bytes=14048 us_median=102 us_min=100 us_max=126 reps=5
+  props=33
+  ? type=array [numchildren=32 page=0 pagesize=32]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (258 chars received, quotes included)
+  ... more property lines
+cmd feature_set -n max_children -v 8
+  bytes=221 us_median=28 us_min=28 us_max=28 reps=1
+  props=0 success=1
+cmd eval array_fill(0, 32, str_repeat('x', 5000))
+  bytes=3705 us_median=60 us_min=54 us_max=95 reps=5
+  props=9
+  ? type=array [numchildren=32 page=0 pagesize=8]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (258 chars received, quotes included)
+  ... more property lines
+cmd feature_set -n max_children -v 32
+  bytes=221 us_median=40 us_min=40 us_max=40 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 512
+  bytes=217 us_median=27 us_min=27 us_max=27 reps=1
+  props=0 success=1
+cmd feature_set -n max_depth -v 2
+  bytes=218 us_median=36 us_min=36 us_max=36 reps=1
+  props=0 success=1
+cmd eval array_fill(0, 32, array_fill(0, 32, str_repeat('x', 5000)))
+  bytes=808608 us_median=2943 us_min=2635 us_max=3989 reps=5
+  props=1057
+  ? type=array [numchildren=32 page=0 pagesize=32]
+    0 type=array [numchildren=32 page=0 pagesize=32]
+  ... more property lines
+cmd feature_set -n max_depth -v 1
+  bytes=218 us_median=216 us_min=216 us_max=216 reps=1
+  props=0 success=1
+cmd feature_set -n max_data -v 0
+  bytes=217 us_median=27 us_min=27 us_max=27 reps=1
+  props=0 success=1
+cmd eval str_repeat('x', 100000)
+  bytes=133594 us_median=278 us_min=275 us_max=522 reps=5
+  props=1
+  ? type=string [size=100000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (100002 chars received, quotes included)
+cmd eval array_fill(0, 32, str_repeat('x', 5000))
+  bytes=216416 us_median=531 us_min=504 us_max=617 reps=5
+  props=33
+  ? type=array [numchildren=32 page=0 pagesize=32]
+    0 type=string [size=5000] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (5002 chars received, quotes included)
+  ... more property lines
+detached
+request: http=200 time_s=0.029568

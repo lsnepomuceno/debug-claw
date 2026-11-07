@@ -1,0 +1,71 @@
+# T-12: $this in Graph::summary() (Graph.php:40), GET /graph?depth=6&width=3
+# (1092 nodes). Each read is sent 5 times; the probe prints the median.
+#
+# A: Xdebug's defaults (max_children 32, max_data 1024), max_depth 1 to 8.
+feature_set -n max_children -v 32
+feature_set -n max_data -v 1024
+feature_set -n max_depth -v 1
+@5 property_get -n $this
+@5 context_get -c 0
+feature_set -n max_depth -v 2
+@5 property_get -n $this
+@5 context_get -c 0
+feature_set -n max_depth -v 3
+@5 property_get -n $this
+@5 context_get -c 0
+feature_set -n max_depth -v 4
+@5 property_get -n $this
+feature_set -n max_depth -v 5
+@5 property_get -n $this
+feature_set -n max_depth -v 6
+@5 property_get -n $this
+feature_set -n max_depth -v 7
+@5 property_get -n $this
+feature_set -n max_depth -v 8
+@5 property_get -n $this
+# B: children and data not limited (max_data 0 is "no limit"), max_depth up
+# to 20. Parent links are followed (no cycle check), so the tree never ends.
+feature_set -n max_children -v 100000
+feature_set -n max_data -v 0
+feature_set -n max_depth -v 1
+@5 property_get -n $this
+feature_set -n max_depth -v 4
+@5 property_get -n $this
+feature_set -n max_depth -v 8
+@5 property_get -n $this
+feature_set -n max_depth -v 10
+@5 property_get -n $this
+feature_set -n max_depth -v 12
+@5 property_get -n $this
+feature_set -n max_depth -v 14
+@5 property_get -n $this
+feature_set -n max_depth -v 16
+@5 property_get -n $this
+feature_set -n max_depth -v 18
+@5 property_get -n $this
+feature_set -n max_depth -v 20
+@3 property_get -n $this
+# C: max_data on the same tree, max_depth 6, max_children 32
+feature_set -n max_children -v 32
+feature_set -n max_depth -v 6
+feature_set -n max_data -v 4
+@5 property_get -n $this
+feature_set -n max_data -v 64
+@5 property_get -n $this
+feature_set -n max_data -v 0
+@5 property_get -n $this
+# How a cut string is signalled
+feature_set -n max_data -v 4
+property_get -n $this->roots[0]->children[1]->name
+property_get -n $this->roots[0]->children[1]->name -m 0
+property_value -n $this->roots[0]->children[1]->name
+property_value -n $this->roots[0]->children[1]->name -m 0
+# Superglobals context with the defaults
+feature_set -n max_data -v 1024
+feature_set -n max_depth -v 1
+@5 context_get -c 1
+feature_set -n max_depth -v 2
+@5 context_get -c 1
+# Per-command depth: -d is the stack depth, not max_depth; check what -p does
+feature_set -n max_depth -v 1
+property_get -n $this -p 1
