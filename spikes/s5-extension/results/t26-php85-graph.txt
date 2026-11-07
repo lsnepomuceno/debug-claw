@@ -1,0 +1,112 @@
+# php85 /graph, 10 rounds of 2000 requests (+200 warmup), 2026-11-07T22:42:12Z
+round=1 cfg=off n=2000 median_us=461.2 p95_us=504.1 p99_us=584.5 mean_us=471.4 min_us=403.9 max_us=3983.6 reconnects=2
+  stats null}
+round=1 cfg=on n=2000 median_us=499.0 p95_us=553.2 p99_us=832.3 mean_us=512.8 min_us=441.0 max_us=3539.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=1 cfg=on-call n=2000 median_us=507.3 p95_us=548.3 p99_us=567.5 mean_us=509.6 min_us=443.7 max_us=870.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=1 cfg=closed n=2000 median_us=490.0 p95_us=519.7 p99_us=547.2 mean_us=490.9 min_us=438.5 max_us=708.4 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=1 cfg=gone n=2000 median_us=494.0 p95_us=542.0 p99_us=1544.7 mean_us=520.4 min_us=335.2 max_us=3971.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=2 cfg=on n=2000 median_us=489.7 p95_us=520.6 p99_us=547.6 mean_us=493.4 min_us=437.5 max_us=3311.8 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=2 cfg=on-call n=2000 median_us=505.6 p95_us=1019.0 p99_us=1152.6 mean_us=644.5 min_us=436.4 max_us=4087.2 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=2 cfg=closed n=2000 median_us=496.8 p95_us=545.8 p99_us=945.4 mean_us=513.8 min_us=416.7 max_us=3908.7 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=2 cfg=gone n=2000 median_us=487.9 p95_us=591.5 p99_us=969.9 mean_us=515.2 min_us=409.4 max_us=4201.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=2 cfg=off n=2000 median_us=456.9 p95_us=497.9 p99_us=752.5 mean_us=466.7 min_us=399.4 max_us=3536.9 reconnects=2
+  stats null}
+round=3 cfg=on-call n=2000 median_us=488.6 p95_us=523.0 p99_us=625.2 mean_us=494.1 min_us=442.0 max_us=3298.0 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=3 cfg=closed n=2000 median_us=490.0 p95_us=594.5 p99_us=870.8 mean_us=506.0 min_us=426.7 max_us=3487.2 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=3 cfg=gone n=2000 median_us=482.1 p95_us=515.4 p99_us=832.0 mean_us=492.9 min_us=439.3 max_us=3957.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=3 cfg=off n=2000 median_us=440.7 p95_us=466.0 p99_us=498.7 mean_us=445.7 min_us=380.5 max_us=4059.5 reconnects=2
+  stats null}
+round=3 cfg=on n=2000 median_us=481.8 p95_us=528.5 p99_us=880.6 mean_us=497.3 min_us=416.9 max_us=4096.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=4 cfg=closed n=2000 median_us=480.4 p95_us=517.7 p99_us=669.4 mean_us=487.7 min_us=432.0 max_us=2930.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=4 cfg=gone n=2000 median_us=488.3 p95_us=519.0 p99_us=545.7 mean_us=490.3 min_us=441.8 max_us=1461.2 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=4 cfg=off n=2000 median_us=450.2 p95_us=482.9 p99_us=512.6 mean_us=454.7 min_us=398.3 max_us=3484.4 reconnects=2
+  stats null}
+round=4 cfg=on n=2000 median_us=477.0 p95_us=510.0 p99_us=540.0 mean_us=481.6 min_us=428.3 max_us=3120.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=4 cfg=on-call n=2000 median_us=485.0 p95_us=517.1 p99_us=538.5 mean_us=486.9 min_us=426.2 max_us=984.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=5 cfg=gone n=2000 median_us=500.5 p95_us=529.0 p99_us=716.4 mean_us=510.7 min_us=409.8 max_us=3966.2 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=5 cfg=off n=2000 median_us=443.8 p95_us=478.3 p99_us=642.0 mean_us=451.7 min_us=381.6 max_us=3706.2 reconnects=2
+  stats null}
+round=5 cfg=on n=2000 median_us=478.8 p95_us=534.4 p99_us=768.5 mean_us=490.2 min_us=434.8 max_us=3497.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=5 cfg=on-call n=2000 median_us=482.2 p95_us=520.6 p99_us=999.0 mean_us=498.8 min_us=416.5 max_us=4575.8 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=5 cfg=closed n=2000 median_us=476.8 p95_us=512.0 p99_us=561.8 mean_us=482.2 min_us=413.2 max_us=3771.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=6 cfg=off n=2000 median_us=441.4 p95_us=506.4 p99_us=797.7 mean_us=454.8 min_us=380.1 max_us=4303.8 reconnects=2
+  stats null}
+round=6 cfg=on n=2000 median_us=479.7 p95_us=517.1 p99_us=562.0 mean_us=482.3 min_us=429.1 max_us=996.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=6 cfg=on-call n=2000 median_us=492.3 p95_us=533.3 p99_us=558.7 mean_us=494.1 min_us=429.1 max_us=2206.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=6 cfg=closed n=2000 median_us=485.4 p95_us=557.8 p99_us=916.8 mean_us=500.5 min_us=425.8 max_us=4413.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=6 cfg=gone n=2000 median_us=479.1 p95_us=517.7 p99_us=799.0 mean_us=487.2 min_us=416.4 max_us=2623.2 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=7 cfg=on n=2000 median_us=477.0 p95_us=514.6 p99_us=563.0 mean_us=482.9 min_us=412.3 max_us=3383.4 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=7 cfg=on-call n=2000 median_us=478.6 p95_us=561.8 p99_us=989.4 mean_us=493.8 min_us=424.6 max_us=3264.8 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=7 cfg=closed n=2000 median_us=483.0 p95_us=512.6 p99_us=533.1 mean_us=483.7 min_us=426.2 max_us=2183.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=7 cfg=gone n=2000 median_us=477.4 p95_us=522.4 p99_us=814.1 mean_us=490.0 min_us=421.9 max_us=3429.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=7 cfg=off n=2000 median_us=445.4 p95_us=476.6 p99_us=534.5 mean_us=447.2 min_us=389.1 max_us=856.6 reconnects=2
+  stats null}
+round=8 cfg=on-call n=2000 median_us=480.3 p95_us=577.7 p99_us=966.5 mean_us=504.6 min_us=400.8 max_us=3943.8 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=8 cfg=closed n=2000 median_us=479.8 p95_us=509.2 p99_us=565.8 mean_us=484.7 min_us=420.3 max_us=3051.7 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=8 cfg=gone n=2000 median_us=488.4 p95_us=646.9 p99_us=1672.0 mean_us=534.7 min_us=414.2 max_us=4020.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=8 cfg=off n=2000 median_us=449.1 p95_us=524.9 p99_us=865.4 mean_us=465.3 min_us=389.9 max_us=3900.4 reconnects=2
+  stats null}
+round=8 cfg=on n=2000 median_us=484.1 p95_us=586.5 p99_us=680.8 mean_us=508.0 min_us=430.2 max_us=3517.6 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=9 cfg=closed n=2000 median_us=474.0 p95_us=509.1 p99_us=524.1 mean_us=478.1 min_us=428.7 max_us=1438.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=9 cfg=gone n=2000 median_us=478.8 p95_us=511.4 p99_us=536.0 mean_us=484.9 min_us=424.2 max_us=3337.1 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=9 cfg=off n=2000 median_us=443.0 p95_us=510.4 p99_us=806.4 mean_us=456.7 min_us=381.9 max_us=4381.2 reconnects=2
+  stats null}
+round=9 cfg=on n=2000 median_us=477.4 p95_us=509.4 p99_us=524.3 mean_us=480.7 min_us=425.9 max_us=2953.7 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=9 cfg=on-call n=2000 median_us=484.3 p95_us=514.6 p99_us=537.8 mean_us=485.7 min_us=423.7 max_us=2665.1 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=10 cfg=gone n=2000 median_us=494.3 p95_us=917.0 p99_us=1014.9 mean_us=545.9 min_us=428.6 max_us=3667.5 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=10 cfg=off n=2000 median_us=446.4 p95_us=863.4 p99_us=931.8 mean_us=494.4 min_us=394.3 max_us=4012.8 reconnects=2
+  stats null}
+round=10 cfg=on n=2000 median_us=488.4 p95_us=625.6 p99_us=803.0 mean_us=510.9 min_us=431.7 max_us=4044.3 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=10 cfg=on-call n=2000 median_us=477.1 p95_us=561.6 p99_us=824.2 mean_us=491.3 min_us=430.2 max_us=3066.1 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+round=10 cfg=closed n=2000 median_us=480.3 p95_us=507.6 p99_us=542.4 mean_us=482.7 min_us=429.3 max_us=1177.1 reconnects=2
+  stats {"init_calls":35215,"init_observed":0,"begin_calls":0,"end_calls":0,"events_queued":0,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":2201,"pending_capacity":65536,"pending_len":0,"down":false}}
+cfg            n median_us    p95_us    p99_us round_medians_us           d_med_us  d_med_%  d_p95_us
+off        20000     447.5     498.2     861.6 440.7-461.2                     0.0     0.00       0.0
+on         20000     483.1     549.6     670.2 477.0-499.0                    35.6     7.96      51.4
+on-call    20000     487.0     579.5    1007.1 477.1-507.3                    39.5     8.83      81.3
+closed     20000     483.5     521.1     693.7 474.0-496.8                    36.0     8.04      22.9
+gone       20000     486.9     570.4     971.0 477.4-500.5                    39.4     8.80      72.2
+cfg       rounds  d_med_us            d_range_us
+on            10      35.0       26.8 to     42.0
+on-call       10      39.8       30.7 to     50.9
+closed        10      33.5       28.8 to     49.3
+gone          10      37.9       31.0 to     56.7

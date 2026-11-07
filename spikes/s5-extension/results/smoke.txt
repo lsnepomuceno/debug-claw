@@ -1,0 +1,148 @@
+## php85 CLI: app/smoke.php
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+Debian clang version 19.1.7 (3+b1)
+8.5.12
+ZTS=0 debug=0
+debug_claw_s5
+b
+caught: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: t.id
+{"init_calls":9,"init_observed":1,"begin_calls":4,"end_calls":4,"events_queued":4,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":0,"pending_capacity":65536,"pending_len":343,"down":false}
+## php85 FPM: GET /queries?n=3
+ n=1 median_us=1452.7 p95_us=1452.7 p99_us=1452.7 mean_us=1452.7 min_us=1452.7 max_us=1452.7 reconnects=0
+{"init_calls":33,"init_observed":1,"begin_calls":53,"end_calls":53,"events_queued":53,"events_sent":53,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":1,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":4449,"requests":2,"pending_capacity":65536,"pending_len":0,"down":false}}
+## php83 CLI: app/smoke.php
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+Debian clang version 19.1.7 (3+b1)
+8.3.36
+ZTS=0 debug=0
+debug_claw_s5
+b
+caught: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: t.id
+{"init_calls":9,"init_observed":1,"begin_calls":4,"end_calls":4,"events_queued":4,"events_sent":0,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":0,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":0,"requests":0,"pending_capacity":65536,"pending_len":343,"down":false}
+## php83 FPM: GET /queries?n=3
+ n=1 median_us=1182.2 p95_us=1182.2 p99_us=1182.2 mean_us=1182.2 min_us=1182.2 max_us=1182.2 reconnects=0
+{"init_calls":35,"init_observed":1,"begin_calls":53,"end_calls":53,"events_queued":53,"events_sent":53,"events_dropped_down":0,"events_dropped_full":0,"connect_attempts":1,"connect_failures":0,"write_errors":0,"would_block":0,"bytes_sent":4448,"requests":2,"pending_capacity":65536,"pending_len":0,"down":false}}
+## listener output
+listening on 0.0.0.0:7781, printing every 1 line(s)
+#1 {"pid":32,"req":0,"ns":7515,"sql":"INSERT INTO t (name) VALUES (?) /* \"quoted\"\n\tnext line */"}
+#2 {"pid":32,"req":0,"ns":1670,"sql":"INSERT INTO t (name) VALUES (?) /* \"quoted\"\n\tnext line */"}
+#3 {"pid":32,"req":0,"ns":2650,"sql":"SELECT name FROM t WHERE id = ?"}
+#4 {"pid":32,"req":0,"ns":9205,"sql":"INSERT INTO t (id, name) VALUES (?, ?)"}
+connection from 10.250.85.4:60610
+closed 10.250.85.4:60610: 4 lines on this connection, 4 total, 0 malformed
+connection from 10.250.85.4:60622
+#5 {"pid":7,"req":1,"ns":10470,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#6 {"pid":7,"req":1,"ns":2097,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#7 {"pid":7,"req":1,"ns":836,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#8 {"pid":7,"req":1,"ns":578,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#9 {"pid":7,"req":1,"ns":542,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#10 {"pid":7,"req":1,"ns":525,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#11 {"pid":7,"req":1,"ns":767,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#12 {"pid":7,"req":1,"ns":744,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#13 {"pid":7,"req":1,"ns":624,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#14 {"pid":7,"req":1,"ns":568,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#15 {"pid":7,"req":1,"ns":726,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#16 {"pid":7,"req":1,"ns":547,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#17 {"pid":7,"req":1,"ns":580,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#18 {"pid":7,"req":1,"ns":601,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#19 {"pid":7,"req":1,"ns":508,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#20 {"pid":7,"req":1,"ns":563,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#21 {"pid":7,"req":1,"ns":553,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#22 {"pid":7,"req":1,"ns":553,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#23 {"pid":7,"req":1,"ns":543,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#24 {"pid":7,"req":1,"ns":548,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#25 {"pid":7,"req":1,"ns":550,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#26 {"pid":7,"req":1,"ns":541,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#27 {"pid":7,"req":1,"ns":625,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#28 {"pid":7,"req":1,"ns":615,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#29 {"pid":7,"req":1,"ns":541,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#30 {"pid":7,"req":1,"ns":522,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#31 {"pid":7,"req":1,"ns":606,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#32 {"pid":7,"req":1,"ns":998,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#33 {"pid":7,"req":1,"ns":897,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#34 {"pid":7,"req":1,"ns":957,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#35 {"pid":7,"req":1,"ns":1055,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#36 {"pid":7,"req":1,"ns":548,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#37 {"pid":7,"req":1,"ns":496,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#38 {"pid":7,"req":1,"ns":496,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#39 {"pid":7,"req":1,"ns":487,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#40 {"pid":7,"req":1,"ns":525,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#41 {"pid":7,"req":1,"ns":545,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#42 {"pid":7,"req":1,"ns":545,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#43 {"pid":7,"req":1,"ns":489,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#44 {"pid":7,"req":1,"ns":471,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#45 {"pid":7,"req":1,"ns":530,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#46 {"pid":7,"req":1,"ns":566,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#47 {"pid":7,"req":1,"ns":497,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#48 {"pid":7,"req":1,"ns":588,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#49 {"pid":7,"req":1,"ns":505,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#50 {"pid":7,"req":1,"ns":542,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#51 {"pid":7,"req":1,"ns":552,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#52 {"pid":7,"req":1,"ns":547,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#53 {"pid":7,"req":1,"ns":531,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#54 {"pid":7,"req":1,"ns":560,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#55 {"pid":7,"req":1,"ns":2735,"sql":"SELECT name, price FROM products WHERE id = ?"}
+#56 {"pid":7,"req":1,"ns":1011,"sql":"SELECT name, price FROM products WHERE id = ?"}
+#57 {"pid":7,"req":1,"ns":477,"sql":"SELECT name, price FROM products WHERE id = ?"}
+connection from 10.250.85.2:39986
+#58 {"pid":19,"req":0,"ns":9141,"sql":"INSERT INTO t (name) VALUES (?) /* \"quoted\"\n\tnext line */"}
+#59 {"pid":19,"req":0,"ns":1855,"sql":"INSERT INTO t (name) VALUES (?) /* \"quoted\"\n\tnext line */"}
+#60 {"pid":19,"req":0,"ns":3349,"sql":"SELECT name FROM t WHERE id = ?"}
+#61 {"pid":19,"req":0,"ns":9133,"sql":"INSERT INTO t (id, name) VALUES (?, ?)"}
+closed 10.250.85.2:39986: 4 lines on this connection, 61 total, 0 malformed
+connection from 10.250.85.2:40000
+#62 {"pid":7,"req":1,"ns":10172,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#63 {"pid":7,"req":1,"ns":1775,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#64 {"pid":7,"req":1,"ns":775,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#65 {"pid":7,"req":1,"ns":567,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#66 {"pid":7,"req":1,"ns":542,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#67 {"pid":7,"req":1,"ns":500,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#68 {"pid":7,"req":1,"ns":805,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#69 {"pid":7,"req":1,"ns":717,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#70 {"pid":7,"req":1,"ns":646,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#71 {"pid":7,"req":1,"ns":571,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#72 {"pid":7,"req":1,"ns":694,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#73 {"pid":7,"req":1,"ns":539,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#74 {"pid":7,"req":1,"ns":554,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#75 {"pid":7,"req":1,"ns":561,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#76 {"pid":7,"req":1,"ns":496,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#77 {"pid":7,"req":1,"ns":551,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#78 {"pid":7,"req":1,"ns":593,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#79 {"pid":7,"req":1,"ns":533,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#80 {"pid":7,"req":1,"ns":517,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#81 {"pid":7,"req":1,"ns":543,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#82 {"pid":7,"req":1,"ns":548,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#83 {"pid":7,"req":1,"ns":583,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#84 {"pid":7,"req":1,"ns":626,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#85 {"pid":7,"req":1,"ns":608,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#86 {"pid":7,"req":1,"ns":515,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#87 {"pid":7,"req":1,"ns":507,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#88 {"pid":7,"req":1,"ns":676,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#89 {"pid":7,"req":1,"ns":552,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#90 {"pid":7,"req":1,"ns":527,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#91 {"pid":7,"req":1,"ns":513,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#92 {"pid":7,"req":1,"ns":638,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#93 {"pid":7,"req":1,"ns":584,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#94 {"pid":7,"req":1,"ns":580,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#95 {"pid":7,"req":1,"ns":554,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#96 {"pid":7,"req":1,"ns":517,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#97 {"pid":7,"req":1,"ns":521,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#98 {"pid":7,"req":1,"ns":632,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#99 {"pid":7,"req":1,"ns":579,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#100 {"pid":7,"req":1,"ns":532,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#101 {"pid":7,"req":1,"ns":511,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#102 {"pid":7,"req":1,"ns":572,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#103 {"pid":7,"req":1,"ns":631,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#104 {"pid":7,"req":1,"ns":554,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#105 {"pid":7,"req":1,"ns":645,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#106 {"pid":7,"req":1,"ns":521,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#107 {"pid":7,"req":1,"ns":583,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#108 {"pid":7,"req":1,"ns":598,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#109 {"pid":7,"req":1,"ns":664,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#110 {"pid":7,"req":1,"ns":560,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#111 {"pid":7,"req":1,"ns":527,"sql":"INSERT INTO products (name, price) VALUES (?, ?)"}
+#112 {"pid":7,"req":1,"ns":2680,"sql":"SELECT name, price FROM products WHERE id = ?"}
+#113 {"pid":7,"req":1,"ns":1105,"sql":"SELECT name, price FROM products WHERE id = ?"}
+#114 {"pid":7,"req":1,"ns":558,"sql":"SELECT name, price FROM products WHERE id = ?"}
