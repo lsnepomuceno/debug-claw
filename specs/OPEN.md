@@ -2,13 +2,6 @@
 
 Questions without an answer yet. Each one says who decides and what it blocks. When a question is answered, the answer moves to an ADR or a spec, and the entry here is removed.
 
-## O-01 License
-
-The repository is public but has no license, so nobody can legally reuse the code. Common choices for Rust projects are MIT, Apache-2.0, or both. The reviewer prompts in [`reviewers/`](reviewers/README.md) are derived from Apache-2.0 material and keep that license whatever is chosen here.
-
-- Decides: Lucas.
-- Blocks: the first code that is not a spike.
-
 ## O-02 Minimum PHP and Xdebug versions
 
 Which PHP versions and which Xdebug versions are supported. This limits which DBGp features the engine can rely on and which PHP versions the extension has to build for.

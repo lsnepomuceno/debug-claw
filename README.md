@@ -16,3 +16,7 @@ Design phase. There is no code yet. The project is specified in [`specs/`](specs
 - [`specs/README.md`](specs/README.md): how specs work here and which milestone is active.
 - [`specs/decisions/`](specs/decisions/): architecture decisions, including the options that were rejected.
 - [`specs/OPEN.md`](specs/OPEN.md): questions that are still unanswered.
+
+## License
+
+[MIT](LICENSE), except [`specs/reviewers/`](specs/reviewers/README.md#license), which is Apache-2.0.

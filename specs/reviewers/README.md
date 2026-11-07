@@ -13,6 +13,6 @@ Start one new agent per review. Give it the prompt file, the target document and
 
 ## License
 
-Everything in this folder is licensed under the Apache License 2.0 ([LICENSE](LICENSE)), whatever license the rest of the repository uses.
+Everything in this folder is licensed under the Apache License 2.0 ([LICENSE](LICENSE)). The rest of the repository is MIT ([ADR-0009](../decisions/0009-mit-license.md)).
 
 `implementation-readiness.md` is a modified version of `agents/implementation_readiness.md` from [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model), commit `e9e1f06`. The file header lists the changes. `mcp-contract.md` was written for this project and uses the same structure.
