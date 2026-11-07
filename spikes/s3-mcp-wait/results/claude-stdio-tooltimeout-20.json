@@ -1,0 +1,7 @@
+{
+  "is_error": false,
+  "result": "MCP server \"s3\" tool \"wait\" timed out after 20s",
+  "duration_ms": 25116,
+  "num_turns": 3,
+  "total_cost_usd": 0.0037742400000000003
+}

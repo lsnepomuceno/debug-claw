@@ -1,0 +1,7 @@
+{
+  "is_error": false,
+  "result": "Não vi nada além dos dois resultados. O `fire` respondeu \"event scheduled in 5 s\" e o `sleep` respondeu \"slept 15 s\". Não apareceu nenhuma notificação, log ou outro conteúdo do servidor s3, então não há trecho para citar.",
+  "duration_ms": 21411,
+  "num_turns": 4,
+  "total_cost_usd": 0.00414758
+}

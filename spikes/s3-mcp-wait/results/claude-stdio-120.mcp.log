@@ -1,0 +1,16 @@
+# case stdio-120, config claude/stdio.json, exit 0, wall 126.0 s
+2026-11-07T21:50:38.504Z [DEBUG] MCP server "s3": Starting connection with timeout of 30000ms
+2026-11-07T21:50:38.745Z [ERROR] MCP server "s3" Server stderr: s3-shim: forwarding stdio to http://127.0.0.1:8390/mcp
+2026-11-07T21:50:38.745Z [DEBUG] MCP server "s3": Successfully connected (transport: stdio) in 346ms
+2026-11-07T21:50:38.746Z [DEBUG] MCP server "s3": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":true,"serverVersion":{"name":"rmcp","version":"3.9.0"},"protocolEra":"modern","negotiatedProtocolVersion":"2026-07-28"}
+2026-11-07T21:50:38.746Z [DEBUG] [MCP] Server "s3" connected with subscribe=true
+2026-11-07T21:50:42.208Z [DEBUG] MCP server "s3": Calling MCP tool: wait
+2026-11-07T21:51:12.213Z [DEBUG] MCP server "s3": Tool 'wait' still running (30s elapsed)
+2026-11-07T21:51:42.214Z [DEBUG] MCP server "s3": Tool 'wait' still running (60s elapsed)
+2026-11-07T21:52:12.213Z [DEBUG] MCP server "s3": Tool 'wait' still running (90s elapsed)
+2026-11-07T21:52:42.214Z [DEBUG] MCP server "s3": Tool 'wait' still running (120s elapsed)
+2026-11-07T21:52:42.216Z [DEBUG] MCP server "s3": Tool 'wait' completed successfully in 2m 0s
+2026-11-07T21:52:43.173Z [DEBUG] MCP server "s3": Sending SIGINT to MCP server process
+2026-11-07T21:52:43.175Z [DEBUG] MCP server "s3": STDIO connection closed after 124s (cleanly)
+2026-11-07T21:52:43.175Z [DEBUG] MCP server "s3": Cleared connection cache for reconnection
+2026-11-07T21:52:43.223Z [DEBUG] MCP server "s3": MCP server process exited cleanly

@@ -1,0 +1,11 @@
+# case timeout-59, 2026-11-07T21:38:03Z
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "timeout: no event after 59.0 s"
+    }
+  ],
+  "isError": false
+}
+# wall 59.7 s, exit 0

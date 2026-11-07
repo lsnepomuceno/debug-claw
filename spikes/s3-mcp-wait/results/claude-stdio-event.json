@@ -1,0 +1,7 @@
+{
+  "is_error": false,
+  "result": "paused: event #2 from http trigger after 32.1 s",
+  "duration_ms": 37627,
+  "num_turns": 3,
+  "total_cost_usd": 0.00374485
+}

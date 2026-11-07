@@ -1,0 +1,13 @@
+# case config-5, 2026-11-07T21:41:07Z
+[mcp-inspector] Secrets are not written anywhere and are lost on exit.
+[mcp-inspector] How the secret store is chosen, and how to secure it: https://github.com/modelcontextprotocol/inspector/blob/main/docs/secret-storage.md
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "timeout: no event after 8.0 s"
+    }
+  ],
+  "isError": false
+}
+# wall 8.7 s, exit 0

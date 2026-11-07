@@ -1,0 +1,12 @@
+# case event-45, 2026-11-07T21:39:03Z
+event scheduled in 45 s
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "paused: event #1 from http trigger after 44.5 s"
+    }
+  ],
+  "isError": false
+}
+# wall 45.2 s, exit 0

@@ -1,0 +1,11 @@
+# mode idle, window 600 s, host pid 243605, CLK_TCK 100, 2026-11-07T21:55:33Z
+## start
+thread 243605 s3-daemon utime=0 stime=0 vol=1 nonvol=0
+VmHWM: 4360 VmRSS: 4360 Threads: 1 
+## end
+thread 243605 s3-daemon utime=0 stime=0 vol=1 nonvol=0
+VmHWM: 4360 VmRSS: 4360 Threads: 1 
+## delta over 600 s (all threads)
+cpu ticks: utime 0 stime 0 (0 ms)
+context switches: voluntary 0 nonvoluntary 0
+wakeups per second: 0

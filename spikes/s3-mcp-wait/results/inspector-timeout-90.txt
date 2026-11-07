@@ -1,0 +1,4 @@
+# case timeout-90, 2026-11-07T21:39:54Z
+{"error":{"code":"error","message":"Request timed out after 1m00s (tools/call). 1 request is unanswered: tools/call (sent 1m00s ago). Last response received 1m00s ago (tools/list). Notification stream (GET /mcp) open for 1m00s, 1 event delivered.","cause":"Request timed out"}}
+
+# wall 60.8 s, exit 0
