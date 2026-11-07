@@ -1,0 +1,57 @@
+# Spike S4: the egui app in Docker. See README.md.
+#
+#   docker compose up -d --build                 # ui: Xvfb, software GL/Vulkan
+#   docker compose --profile host up -d ui-host  # host X11 display and GPU
+#
+# Both services share one image and the cargo volumes, and run as the
+# host user. Only ui-host sees the host display and /dev/dri, so nothing
+# started in ui can open a window on the desktop.
+name: s4-egui
+
+x-common: &common
+  build:
+    context: .
+    args:
+      UID: "${HOST_UID:-1000}"
+      GID: "${HOST_GID:-1000}"
+  image: s4-egui-toolchain
+  user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+  init: true
+  working_dir: /work/spikes/s4-egui
+  volumes:
+    - ../..:/work
+    - cargo:/cargo
+    - target:/target
+
+services:
+  # A virtual 1920x1080 display at :99 inside the container. Mesa falls
+  # back to llvmpipe (GL) and lavapipe (Vulkan), since there is no GPU.
+  ui:
+    <<: *common
+    environment:
+      DISPLAY: ":99"
+    command: ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp >/tmp/xvfb.log 2>&1 & exec sleep infinity"]
+
+  # The host X11 session and the GPU render node, for the hardware
+  # numbers. The host allows local connections from the same user
+  # (xhost SI:localuser), so no cookie is mounted.
+  ui-host:
+    <<: *common
+    profiles: ["host"]
+    environment:
+      DISPLAY: "${HOST_DISPLAY:-:0}"
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "${RENDER_GID:-110}"
+      - "${VIDEO_GID:-44}"
+    volumes:
+      - ../..:/work
+      - cargo:/cargo
+      - target:/target
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    command: ["sleep", "infinity"]
+
+volumes:
+  cargo:
+  target:

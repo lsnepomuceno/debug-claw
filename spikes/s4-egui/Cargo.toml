@@ -1,0 +1,25 @@
+[package]
+name = "s4-egui"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Spike S4: egui views for large debugging data"
+
+[dependencies]
+# eframe's default features (wgpu, accesskit, clipboard, x11, wayland,
+# system fonts) plus glow. Both renderers are compiled in and --backend
+# picks one at start, so the glow and wgpu numbers come from one binary.
+eframe = { version = "0.37", features = ["glow"] }
+# egui-phosphor 0.14 is built for egui 0.36. Only its font bytes and
+# codepoint constants are used, and they do not depend on egui, so the
+# font is registered by hand with egui 0.37 types (see theme.rs).
+egui-phosphor = "0.14"
+# Syntax highlighting for the source view (all MIT).
+tree-sitter-highlight = "0.27"
+tree-sitter-php = "0.25"
+# Only to write the screenshots.
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[profile.release]
+debug = "line-tables-only"
