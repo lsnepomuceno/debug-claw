@@ -13,3 +13,7 @@
 
 # Xdebug output collected by spikes
 /spikes/**/xdebug-output/
+
+# Worktrees and local settings of coding agents
+/.claude/worktrees/
+/.claude/settings.local.json
