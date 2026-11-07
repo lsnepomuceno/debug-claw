@@ -1,0 +1,33 @@
+[package]
+name = "s3-mcp-wait"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Spike S3: a blocking MCP tool over Streamable HTTP, plus a stdio shim"
+
+# rmcp is the official Rust MCP SDK (Apache-2.0). The rest is the HTTP
+# server it plugs into (hyper, MIT) and serde/schemars for tool params.
+# reqwest comes in through rmcp's HTTP client feature, without TLS: the
+# shim only talks plain HTTP to the daemon.
+[dependencies]
+rmcp = { version = "=3.9.0", default-features = false, features = [
+    "server",
+    "macros",
+    # The HTTP client transport does not build without "client" (3.9.0).
+    "client",
+    "transport-streamable-http-server",
+    "transport-streamable-http-client-reqwest",
+    "transport-io",
+] }
+tokio = { version = "1", features = ["rt", "macros", "net", "time", "sync", "io-std"] }
+hyper = { version = "1", features = ["server", "http1"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+http-body-util = "0.1"
+bytes = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+schemars = "1"
+
+[profile.release]
+strip = true
