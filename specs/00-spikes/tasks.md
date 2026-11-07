@@ -26,11 +26,11 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## S3 Blocking MCP tools
 
-- [ ] T-14 Serve a `wait` tool over Streamable HTTP and call it from Claude Code and the MCP Inspector. Closes S3 criteria 1 and 2.
-- [ ] T-15 Put the stdio shim in front of it. Closes S3 criterion 3.
-- [ ] T-16 Test server-initiated notifications in the same clients. Closes S3 criterion 4.
-- [ ] T-17 Measure the idle server for 10 minutes and the CPU of a blocked `wait`. Closes S3 criteria 5 and 6.
-- [ ] T-18 Write `reports/s3-mcp-wait.md`.
+- [x] T-14 Serve a `wait` tool over Streamable HTTP and call it from Claude Code and the MCP Inspector. Closes S3 criteria 1 and 2.
+- [x] T-15 Put the stdio shim in front of it. Closes S3 criterion 3.
+- [x] T-16 Test server-initiated notifications in the same clients. Closes S3 criterion 4.
+- [x] T-17 Measure the idle server for 10 minutes and the CPU of a blocked `wait`. Closes S3 criteria 5 and 6.
+- [x] T-18 Write `reports/s3-mcp-wait.md`.
 
 ## S4 Native UI
 
