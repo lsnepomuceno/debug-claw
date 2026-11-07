@@ -25,7 +25,7 @@ How the daemon stores sessions, events and breakpoints, and whether anything sur
 
 ## O-05 Eval policy
 
-Evaluating PHP expressions runs code inside the application. It is off by default (see [vision](../docs/vision.md)), but the switch is still open: global, per project or per session, and whether logpoint expressions count as eval.
+Evaluating PHP expressions runs code inside the application. It is off by default (see [vision](../docs/vision.md)), but the switch is still open: global, per project or per session, and whether logpoint expressions count as eval. The same answer sets the permission scopes an MCP client can be granted (read, control execution, eval, set variables) and whether the desktop app can grant them per client.
 
 - Decides: Lucas, after S2.
 - Blocks: milestone 1 design.
@@ -50,3 +50,10 @@ The budgets in [docs/performance.md](../docs/performance.md#budgets) are drafts.
 
 - Decides: Lucas, from the spike reports.
 - Blocks: milestone 1 requirements.
+
+## O-09 Running PHP outside a request
+
+The console with no paused request and running a CLI script under the debugger both need debug-claw to start a PHP process. That PHP lives where the application lives: on the host, in the application's container, or in a container debug-claw starts with the project mounted. Each option needs some configuration, which works against [principle 3](../docs/vision.md#principles), and the answer also decides how the project's autoloader is found.
+
+- Decides: Lucas.
+- Blocks: nothing yet. The console inside a paused request does not depend on it.

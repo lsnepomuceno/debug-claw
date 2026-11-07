@@ -24,11 +24,11 @@ Only one milestone is active at a time. The others are frozen: they exist so the
 
 ## Candidate milestones
 
-These come after the spikes. Their order and scope are tentative and will be revised with the spike reports. They get a folder only when they are about to start.
+These come after the spikes. Their order and scope are tentative and will be revised with the spike reports. They get a folder only when they are about to start. [docs/features.md](../docs/features.md) maps each planned feature to one of them.
 
-1. Daemon and DBGp engine, driven only through MCP: sessions, line and exception breakpoints, stack, variables, step, continue, stop.
-2. Logpoints and request correlation: capture without pausing, request IDs, the request timeline tool.
-3. Desktop app: sessions, variables, breakpoints and the request timeline.
+1. Daemon and DBGp engine, driven only through MCP: sessions, line and exception breakpoints, stack, variables, watches, eval in the paused frame, step, continue, stop, and firing a triggered request.
+2. Logpoints and request correlation: capture without pausing, snapshot points, exception capture, request IDs, the request timeline tool.
+3. Desktop app: feed, debugger with console, requests, breakpoints and agent activity, as described in [docs/ui.md](../docs/ui.md).
 4. Dump client: a PHP file loaded with `auto_prepend_file`, with labels, colors, screens and tables.
 5. Profiling.
 6. PHP extension in Rust: PDO, curl and exception observers.

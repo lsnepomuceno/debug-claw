@@ -19,6 +19,7 @@ Exit criteria:
 - A breakpoint set on a host path pauses the request inside the container, in at least two layouts: the project mounted at the container root of the web server, and a project whose entry script is in a subfolder (`public/`).
 - The report lists the cases where inference fails or is ambiguous (the same relative path in two places, vendor mounted elsewhere, symlinks), and what the daemon should ask the user in each.
 - The report says whether the mapping can be learned on the first session and reused, and what invalidates it.
+- The report lists which DBGp features the Xdebug versions in the test bed support, from `feature_get` and by trying each one: the contexts from `context_names` (locals, superglobals, constants), class constants and statics in property trees, the asynchronous `break` command, `stdout` redirection, `property_set`, exception breakpoints on PHP warnings and notices, `call` and `return` breakpoints, and the `watch` breakpoint type. Rows of [docs/features.md](../../docs/features.md) depend on these answers.
 
 Serves: [ADR-0003](../decisions/0003-framework-agnostic.md).
 
@@ -67,6 +68,7 @@ Exit criteria:
 - With the window open and no input or new data, the app uses 0% CPU, because it repaints only on events.
 - The report gives the RSS with each dataset loaded, for the `glow` and `wgpu` backends, against the desktop app budgets in [docs/performance.md](../../docs/performance.md#budgets), and recommends a backend.
 - The views hold only what is on screen plus a fixed margin: memory with 100 000 tree nodes is close to memory with 1 000.
+- Styled mockups of the feed and the debugger from [docs/ui.md](../../docs/ui.md), with the candidate fonts and icons, tooltips on enabled and disabled buttons, and both themes. The report includes screenshots, and Lucas judges whether the result looks finished enough.
 - If egui fails any of the above, the report says where, and whether iced or Slint would do better on the failing case.
 
 Serves: [ADR-0001](../decisions/0001-rust-native-ui.md).
