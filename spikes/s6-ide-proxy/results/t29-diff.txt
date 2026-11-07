@@ -1,0 +1,5 @@
+t29-direct-b: transcript identical to t29-direct-a (81 lines)
+t29-loop: transcript identical to t29-direct-a (81 lines)
+t29-bridge: transcript identical to t29-direct-a (81 lines)
+t30-inject: transcript identical to t29-direct-hold (97 lines)
+t30-flood: transcript identical to t29-direct-a (81 lines)
