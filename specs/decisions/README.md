@@ -17,6 +17,6 @@
 | [0013](0013-path-mapping.md) | Path mapping inferred from what Xdebug reports | accepted |
 | [0014](0014-reading-values.md) | Reading values over DBGp | accepted |
 | [0015](0015-logpoints.md) | Logpoints over DBGp | accepted |
-| [0016](0016-ide-proxy-mode.md) | IDE proxy mode | proposed |
+| [0016](0016-ide-proxy-mode.md) | IDE proxy mode | accepted |
 
 The format is described in [CONVENTIONS.md](../CONVENTIONS.md#decisions).

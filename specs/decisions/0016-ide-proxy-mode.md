@@ -1,13 +1,12 @@
 # ADR-0016: IDE proxy mode
 
-- Status: proposed
+- Status: accepted
 - Date: 2026-11-07
-- Confirmed by: spike S6 criteria 1 and 2 run with PhpStorm (tasks T-29 and T-30)
 - Evidence: [S6 report](../00-spikes/reports/s6-ide-proxy.md)
 
 ## Context
 
-Xdebug connects to one client per request ([ADR-0003](0003-framework-agnostic.md)). A user who debugs in PhpStorm and also wants an agent to read the same session needs debug-claw between the two. Spike S6 built a proxy and tested it against an emulator that replays what PhpStorm sends. A run with PhpStorm itself is still pending.
+Xdebug connects to one client per request ([ADR-0003](0003-framework-agnostic.md)). A user who debugs in PhpStorm and also wants an agent to read the same session needs debug-claw between the two. Spike S6 built a proxy and tested it with PhpStorm 2026.3 and with an emulator that replays PhpStorm's captured command sequence.
 
 ## Decision
 
@@ -28,6 +27,8 @@ Xdebug connects to one client per request ([ADR-0003](0003-framework-agnostic.md
 ## Consequences
 
 - The agent's view of an IDE-driven session is read only, and only during the IDE's pauses.
-- Against the emulator the proxy added 11 to 33 us at the median and up to 163 us at p99 per round trip. The slowest single round trip took 610 us.
-- How the daemon finds the IDE, agent breakpoints while the IDE drives, stream packets for the agent, and which session the agent reads when several run at once stay open ([O-18](../OPEN.md#o-18-proxy-mode-details)).
-- The ADR is accepted once criteria 1 and 2 of S6 pass with PhpStorm, following the steps in the S6 report.
+- The proxy added 12 to 38 us at the median and up to 173 us at p99 per round trip. The slowest single round trip took 726 us.
+- PhpStorm makes a pause for itself: after `init` it sends `step_into`, so the script stops on its first line while PhpStorm reads `PHP_IDE_CONFIG` and sets its breakpoints. The agent's wait sees that pause too ([O-18](../OPEN.md#o-18-proxy-mode-details)).
+- PhpStorm sends `eval` itself, three times per session, to read Xdebug settings and `PHP_IDE_CONFIG`. Those pass through unchanged: the eval policy ([O-05](../OPEN.md#o-05-eval-policy)) covers the daemon and the agent, not the IDE.
+- PhpStorm ends a finished session with `detach`.
+- How the daemon finds the IDE, agent breakpoints while the IDE drives, stream packets for the agent, which session the agent reads when several run at once, and whether the agent's wait skips the IDE's own pauses stay open ([O-18](../OPEN.md#o-18-proxy-mode-details)).

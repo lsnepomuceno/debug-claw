@@ -20,7 +20,7 @@ Only one milestone is active at a time. The others are frozen: they exist so the
 
 | Milestone | State | Goal |
 |---|---|---|
-| [00-spikes](00-spikes/requirements.md) | done, except T-29 and T-30, which wait for a run with PhpStorm | Test the riskiest assumptions with throwaway code before fixing any design |
+| [00-spikes](00-spikes/requirements.md) | done | Test the riskiest assumptions with throwaway code before fixing any design |
 | [01-engine](01-engine/requirements.md) | requirements | Daemon and DBGp engine, driven only through MCP: sessions, line and exception breakpoints, stack, variables, watches, eval in the paused frame, step, continue, stop, and firing a triggered request |
 
 ## Candidate milestones
