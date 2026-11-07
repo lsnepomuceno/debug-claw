@@ -20,9 +20,9 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 - [x] T-08 Measure the time per hit, local and container, with 1 and 5 expressions, and the daemon's CPU and memory over 10 000 hits. Closes S2 criteria 2 and 3.
 - [x] T-09 Test `hit_value` and `hit_condition`. Closes S2 criterion 4.
 - [x] T-10 Run two triggered requests at once. Closes S2 criterion 5.
-- [ ] T-11 List which expressions `property_get` can read without eval. Closes S2 criterion 6.
-- [ ] T-12 Compare DBGp response sizes with and without the size limits. Closes S2 criterion 7.
-- [ ] T-13 Write `reports/s2-logpoints.md`.
+- [x] T-11 List which expressions `property_get` can read without eval. Closes S2 criterion 6.
+- [x] T-12 Compare DBGp response sizes with and without the size limits. Closes S2 criterion 7.
+- [x] T-13 Write `reports/s2-logpoints.md`.
 
 ## S3 Blocking MCP tools
 
