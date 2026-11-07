@@ -1,0 +1,40 @@
+scenario mode=bridge reps=1 n=10000 args=--exprs 5 --buffer-cap 1000 --mem-every 5000 --quiet
+request http=200 time_s=0.726892 body_sum_ok=yes
+median_s=0.726892
+listening on 0.0.0.0:9003 for 1 session(s)
+process at=start t_ms=0.1 rss_kb=2192 hwm_kb=2192 cpu_user_ms=10 cpu_sys_ms=0
+mem session=1 pause=5000 rss_kb=2624 buffer_len=1000 cpu_ms=220
+mem session=1 pause=10000 rss_kb=2628 buffer_len=1000 cpu_ms=410
+session id=1 peer=192.168.0.4:35770 appid=177 start_ms=59.0 end_ms=782.6 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.56 total_ms=723.6 hold_avg_us=63.6 hold_p50_us<=60 hold_p99_us<=160 hold_max_us=689 gap_avg_us=8.7 gap_p50_us<=10 gap_p99_us<=30 gap_max_us=402 bp_hit_count=-
+session id=1 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=1 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+process at=end t_ms=782.9 rss_kb=2408 hwm_kb=2408 cpu_user_ms=170 cpu_sys_ms=240
+cgroup before usage_usec 14294631
+cgroup before user_usec 8079041
+cgroup before system_usec 6215589
+cgroup after usage_usec 14745061
+cgroup after user_usec 8273187
+cgroup after system_usec 6471874
+cgroup delta usage_usec_ms=450.4
+cgroup delta user_usec_ms=194.1
+cgroup delta system_usec_ms=256.3
+scenario mode=bridge reps=1 n=10000 args=--exprs 5 --pipeline --buffer-cap 1000 --mem-every 5000 --quiet
+request http=200 time_s=0.422012 body_sum_ok=yes
+median_s=0.422012
+listening on 0.0.0.0:9003 for 1 session(s)
+process at=start t_ms=0.1 rss_kb=2204 hwm_kb=2204 cpu_user_ms=10 cpu_sys_ms=0
+mem session=1 pause=5000 rss_kb=2576 buffer_len=1000 cpu_ms=130
+mem session=1 pause=10000 rss_kb=2580 buffer_len=1000 cpu_ms=250
+session id=1 peer=192.168.0.4:35780 appid=176 start_ms=60.3 end_ms=479.9 pauses=10000 mismatches=0 buffer_len=1000 evicted=9000 setup_ms=0.44 total_ms=419.6 hold_avg_us=4.0 hold_p50_us<=10 hold_p99_us<=10 hold_max_us=44 gap_avg_us=37.9 gap_p50_us<=40 gap_p99_us<=100 gap_max_us=331 bp_hit_count=-
+session id=1 oldest_capture=#9001[{index=9000,square=81000000} | 9000 | 242959501500 | 10000 | 81000000]
+session id=1 newest_capture=#10000[{index=9999,square=99980001} | 9999 | 333183354999 | 10000 | 99980001]
+process at=end t_ms=480.2 rss_kb=2392 hwm_kb=2432 cpu_user_ms=140 cpu_sys_ms=110
+cgroup before usage_usec 14770008
+cgroup before user_usec 8292829
+cgroup before system_usec 6477179
+cgroup after usage_usec 15059894
+cgroup after user_usec 8452189
+cgroup after system_usec 6607704
+cgroup delta usage_usec_ms=289.9
+cgroup delta user_usec_ms=159.4
+cgroup delta system_usec_ms=130.5
