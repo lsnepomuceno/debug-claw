@@ -1,0 +1,202 @@
+trigger cli:/probe/visibility.php break /probe/visibility.php:33 script t11-visibility.txt args 
+listening on 0.0.0.0:9003
+init php=8.5.12
+paused at /probe/visibility.php:33
+cmd feature_set -n max_depth -v 1
+  bytes=217 us_median=50 us_min=50 us_max=50 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=1520 us_median=126 us_min=126 us_max=126 reps=1
+  props=10
+  $this type=object [classname=Account numchildren=9 page=0 pagesize=32]
+    $this::currency type=string [facet=static public size=3] = "EUR"
+    $this::registry type=array [facet=static private numchildren=1]
+    $this::instances type=int [facet=static protected] = 1
+    $this->*Base*baseSecret type=string [facet=private size=12] = "base-private"
+    $this->tags type=array [facet=protected numchildren=2]
+    $this->secret type=string [facet=private size=15] = "account-private"
+    $this->balance type=float [facet=protected] = 10.5
+    $this->next type=object [classname=Account facet=public numchildren=9]
+    $this->nested type=array [facet=public numchildren=1]
+cmd property_get -n $this->secret
+  bytes=333 us_median=43 us_min=43 us_max=43 reps=1
+  props=1
+  $this->secret type=string [size=15] = "account-private"
+cmd property_get -n $this->balance
+  bytes=290 us_median=35 us_min=35 us_max=35 reps=1
+  props=1
+  $this->balance type=float [] = 10.5
+cmd property_get -n $this->baseSecret
+  bytes=290 us_median=33 us_min=33 us_max=33 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $this->tags
+  bytes=535 us_median=57 us_min=57 us_max=57 reps=1
+  props=3
+  $this->tags type=array [numchildren=2 page=0 pagesize=32]
+    $this->tags["x"] type=int [] = 1
+    $this->tags[7] type=string [size=5] = "seven"
+cmd property_get -n $this->tags['x']
+  bytes=305 us_median=40 us_min=40 us_max=40 reps=1
+  props=1
+  $this->tags[&#39;x&#39;] type=int [] = 1
+cmd property_get -n $this->tags[7]
+  bytes=323 us_median=96 us_min=96 us_max=96 reps=1
+  props=1
+  $this->tags[7] type=string [size=5] = "seven"
+cmd property_get -n $this->nested['level1']['level2'][0]
+  bytes=399 us_median=29 us_min=29 us_max=29 reps=1
+  props=1
+  $this->nested[&#39;level1&#39;][&#39;level2&#39;][0] type=string [size=4] = "deep"
+cmd property_get -n $this->nested['level1']['level2']['k']
+  bytes=415 us_median=17 us_min=17 us_max=17 reps=1
+  props=1
+  $this->nested[&#39;level1&#39;][&#39;level2&#39;][&#39;k&#39;] type=string [size=1] = "v"
+cmd property_get -n $this->next
+  bytes=1569 us_median=50 us_min=50 us_max=50 reps=1
+  props=10
+  $this->next type=object [classname=Account numchildren=9 page=0 pagesize=32]
+    $this->next::currency type=string [facet=static public size=3] = "EUR"
+    $this->next::registry type=array [facet=static private numchildren=1]
+    $this->next::instances type=int [facet=static protected] = 1
+    $this->next->*Base*baseSecret type=string [facet=private size=12] = "base-private"
+    $this->next->tags type=array [facet=protected numchildren=2]
+    $this->next->secret type=string [facet=private size=15] = "account-private"
+    $this->next->balance type=float [facet=protected] = 10.5
+    $this->next->next type=null [facet=public]
+    $this->next->nested type=array [facet=public numchildren=1]
+cmd property_get -n $this->next->secret
+  bytes=352 us_median=14 us_min=14 us_max=14 reps=1
+  props=1
+  $this->next->secret type=string [size=15] = "account-private"
+cmd property_get -n $local
+  bytes=314 us_median=14 us_min=14 us_max=14 reps=1
+  props=1
+  $local type=string [size=15] = "balance is 10.5"
+cmd property_get -n $this->*Base*baseSecret
+  bytes=350 us_median=55 us_min=55 us_max=55 reps=1
+  props=1
+  $this->*Base*baseSecret type=string [size=12] = "base-private"
+cmd property_get -n $this::currency
+  bytes=315 us_median=50 us_min=50 us_max=50 reps=1
+  props=1
+  $this::currency type=string [size=3] = "EUR"
+cmd property_get -n $this::registry
+  bytes=419 us_median=42 us_min=42 us_max=42 reps=1
+  props=2
+  $this::registry type=array [numchildren=1 page=0 pagesize=32]
+    $this::registry["a"] type=int [] = 1
+cmd property_get -n $this::instances
+  bytes=284 us_median=43 us_min=43 us_max=43 reps=1
+  props=1
+  $this::instances type=int [] = 1
+cmd property_get -n self::$currency
+  bytes=291 us_median=29 us_min=29 us_max=29 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n self::currency
+  bytes=291 us_median=40 us_min=40 us_max=40 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n Account::$currency
+  bytes=291 us_median=41 us_min=41 us_max=41 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n \Account::$currency
+  bytes=291 us_median=40 us_min=40 us_max=40 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n static::currency
+  bytes=291 us_median=25 us_min=25 us_max=25 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 2 -n APP_MODE
+  bytes=322 us_median=13 us_min=13 us_max=13 reps=1
+  props=1
+  APP_MODE type=string [facet=constant size=5] = "probe"
+cmd property_get -c 2 -n APP_LEVEL
+  bytes=287 us_median=11 us_min=11 us_max=11 reps=1
+  props=1
+  APP_LEVEL type=int [facet=constant] = 3
+cmd property_get -n APP_MODE
+  bytes=291 us_median=12 us_min=12 us_max=12 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n self::KIND
+  bytes=291 us_median=11 us_min=11 us_max=11 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n Account::KIND
+  bytes=291 us_median=15 us_min=15 us_max=15 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -c 2 -n PHP_VERSION
+  bytes=328 us_median=12 us_min=12 us_max=12 reps=1
+  props=1
+  PHP_VERSION type=string [facet=constant size=6] = "8.5.12"
+cmd eval self::KIND
+  bytes=261 us_median=42 us_min=42 us_max=42 reps=1
+  props=1
+  ? type=string [size=4] = "base"
+cmd eval APP_MODE
+  bytes=261 us_median=16 us_min=16 us_max=16 reps=1
+  props=1
+  ? type=string [size=5] = "probe"
+cmd eval self::$currency
+  bytes=257 us_median=13 us_min=13 us_max=13 reps=1
+  props=1
+  ? type=string [size=3] = "EUR"
+cmd eval $this->secret
+  bytes=274 us_median=14 us_min=14 us_max=14 reps=1
+  props=1
+  ? type=string [size=15] = "account-private"
+cmd property_get -n "$this->balance * 2"
+  bytes=291 us_median=12 us_min=12 us_max=12 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n "$this->tags[7] . 'x'"
+  bytes=351 us_median=14 us_min=14 us_max=14 reps=1
+  props=1
+  $this->tags[7] . &#39;x&#39; type=string [size=5] = "seven"
+cmd property_get -n $this->tags[x]
+  bytes=548 us_median=15 us_min=15 us_max=15 reps=1
+  props=3
+  $this->tags[x] type=array [numchildren=2 page=0 pagesize=32]
+    $this->tags[x]["x"] type=int [] = 1
+    $this->tags[x][7] type=string [size=5] = "seven"
+cmd property_get -n $this->nested[level1]
+  bytes=291 us_median=11 us_min=11 us_max=11 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n "$local garbage"
+  bytes=291 us_median=11 us_min=11 us_max=11 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $local[0]
+  bytes=291 us_median=13 us_min=13 us_max=13 reps=1
+  props=0
+  error code=300 can not get property
+cmd context_names
+  bytes=330 us_median=12 us_min=12 us_max=12 reps=1
+  props=0
+cmd context_get -c 0
+  bytes=1659 us_median=51 us_min=51 us_max=51 reps=1
+  props=11
+  $local type=string [size=15] = "balance is 10.5"
+  $this type=object [classname=Account numchildren=9 page=0 pagesize=32]
+    $this::currency type=string [facet=static public size=3] = "EUR"
+    $this::registry type=array [facet=static private numchildren=1]
+    $this::instances type=int [facet=static protected] = 1
+    $this->*Base*baseSecret type=string [facet=private size=12] = "base-private"
+    $this->tags type=array [facet=protected numchildren=2]
+    $this->secret type=string [facet=private size=15] = "account-private"
+    $this->balance type=float [facet=protected] = 10.5
+    $this->next type=object [classname=Account facet=public numchildren=9]
+    $this->nested type=array [facet=public numchildren=1]
+cmd context_get -c 2
+  bytes=433 us_median=20 us_min=20 us_max=20 reps=1
+  props=2
+  APP_MODE type=string [facet=constant size=5] = "probe"
+  APP_LEVEL type=int [facet=constant] = 3
+detached
+request: 10.5

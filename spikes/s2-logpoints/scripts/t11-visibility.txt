@@ -1,0 +1,48 @@
+# T-11 at /probe/visibility.php:33 inside Account::balance().
+feature_set -n max_depth -v 1
+# $this and its properties by visibility
+property_get -n $this
+property_get -n $this->secret
+property_get -n $this->balance
+property_get -n $this->baseSecret
+property_get -n $this->tags
+property_get -n $this->tags['x']
+property_get -n $this->tags[7]
+property_get -n $this->nested['level1']['level2'][0]
+property_get -n $this->nested['level1']['level2']['k']
+property_get -n $this->next
+property_get -n $this->next->secret
+property_get -n $local
+# Private property of the parent class, in the fullname Xdebug uses
+property_get -n $this->*Base*baseSecret
+# Static properties
+property_get -n $this::currency
+property_get -n $this::registry
+property_get -n $this::instances
+property_get -n self::$currency
+property_get -n self::currency
+property_get -n Account::$currency
+property_get -n \Account::$currency
+property_get -n static::currency
+# Constants: user, class, built-in
+property_get -c 2 -n APP_MODE
+property_get -c 2 -n APP_LEVEL
+property_get -n APP_MODE
+property_get -n self::KIND
+property_get -n Account::KIND
+property_get -c 2 -n PHP_VERSION
+eval self::KIND
+eval APP_MODE
+eval self::$currency
+eval $this->secret
+# Trailing text after a name (the loop showed it is ignored after "]")
+property_get -n "$this->balance * 2"
+property_get -n "$this->tags[7] . 'x'"
+property_get -n $this->tags[x]
+property_get -n $this->nested[level1]
+property_get -n "$local garbage"
+property_get -n $local[0]
+# Contexts
+context_names
+context_get -c 0
+context_get -c 2

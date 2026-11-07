@@ -1,0 +1,54 @@
+# T-11 at index.php:44 inside loop(), third visit (--hit 3): $i = 2,
+# $item = [index => 2, square => 4], $sum = 1, $n = 5.
+feature_set -n max_depth -v 2
+# Plain variables and a function argument
+property_get -n $i
+property_get -n $sum
+property_get -n $n
+property_get -n $item
+# Array keys: string, quoted with double quotes, int on a list
+property_get -n $item['square']
+property_get -n $item["index"]
+property_get -n $item[square]
+# A variable that does not exist yet / an unset key
+property_get -n $nothing
+property_get -n $item['missing']
+# Superglobals, from the locals context and from context 1
+property_get -n $_GET['n']
+property_get -n $_SERVER['REQUEST_URI']
+property_get -n $_SERVER["REQUEST_METHOD"]
+property_get -c 1 -n $_GET['n']
+property_get -n $GLOBALS['path']
+property_get -n $GLOBALS
+property_get -c 1 -n $GLOBALS['path']
+property_get -c 1 -n $_SERVER['REQUEST_URI']
+property_get -c 1 -n $_SERVER
+# Constants
+property_get -n PHP_INT_MAX
+property_get -n PHP_VERSION
+property_get -c 2 -n PHP_VERSION
+property_get -n M_PI
+property_get -c 2 -n PHP_INT_MAX
+property_get -c 2 -n M_PI
+property_get -c 2 -n E_ALL
+# Not variables: arithmetic, interpolation, calls, casts
+property_get -n "$i + 1"
+property_get -n $i+1
+property_get -n "$item['square'] * 2"
+property_get -n "$item['square'] + 100"
+property_get -n $item['square']garbage
+property_get -n "$item['square'] . 'x'"
+property_get -n "$item['index'] ?? 0"
+property_get -n "\"i=$i\""
+property_get -n count($item)
+property_get -n strlen('abc')
+property_get -n (int)$i
+property_get -n $item['index']->foo
+property_get -n "$i ?? 0"
+# The same through eval, for comparison
+eval $i + 1
+eval $item['square'] * 2
+eval "i=$i sum=$sum"
+eval count($item)
+eval PHP_VERSION
+eval $_GET['n']

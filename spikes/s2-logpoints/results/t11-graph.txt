@@ -1,0 +1,99 @@
+trigger url:/graph?depth=6&width=3 break /var/www/html/src/Graph.php:40 script t11-graph.txt args 
+listening on 0.0.0.0:9003
+init php=8.5.12
+paused at /var/www/html/src/Graph.php:40
+cmd feature_set -n max_depth -v 1
+  bytes=217 us_median=30 us_min=30 us_max=30 reps=1
+  props=0 success=1
+cmd feature_set -n max_children -v 4
+  bytes=220 us_median=15 us_min=15 us_max=15 reps=1
+  props=0 success=1
+cmd property_get -n $this
+  bytes=545 us_median=49 us_min=49 us_max=49 reps=1
+  props=3
+  $this type=object [classname=App\Graph numchildren=2 page=0 pagesize=4]
+    $this->roots type=array [facet=public numchildren=3]
+    $this->nodes type=int [facet=public] = 1092
+cmd property_get -n $this->nodes
+  bytes=284 us_median=15 us_min=15 us_max=15 reps=1
+  props=1
+  $this->nodes type=int [] = 1092
+cmd property_get -n $this->roots
+  bytes=693 us_median=27 us_min=27 us_max=27 reps=1
+  props=4
+  $this->roots type=array [numchildren=3 page=0 pagesize=4]
+    $this->roots[0] type=object [classname=App\Node numchildren=4]
+    $this->roots[1] type=object [classname=App\Node numchildren=4]
+    $this->roots[2] type=object [classname=App\Node numchildren=4]
+cmd property_get -n $this->roots[0]
+  bytes=884 us_median=27 us_min=27 us_max=27 reps=1
+  props=5
+  $this->roots[0] type=object [classname=App\Node numchildren=4 page=0 pagesize=4]
+    $this->roots[0]->children type=array [facet=public numchildren=3]
+    $this->roots[0]->meta type=array [facet=public numchildren=3]
+    $this->roots[0]->name type=string [facet=public readonly size=6] = "root-0"
+    $this->roots[0]->parent type=null [facet=public readonly]
+cmd property_get -n $this->roots[0]->name
+  bytes=342 us_median=16 us_min=16 us_max=16 reps=1
+  props=1
+  $this->roots[0]->name type=string [size=6] = "root-0"
+cmd property_get -n $this->roots[0]->children[1]->name
+  bytes=379 us_median=15 us_min=15 us_max=15 reps=1
+  props=1
+  $this->roots[0]->children[1]->name type=string [size=8] = "root-0.1"
+cmd property_get -n $this->roots[0]->children[1]->parent->name
+  bytes=397 us_median=16 us_min=16 us_max=16 reps=1
+  props=1
+  $this->roots[0]->children[1]->parent->name type=string [size=6] = "root-0"
+cmd property_get -n $this->roots[0]->meta['tags'][1]
+  bytes=377 us_median=14 us_min=14 us_max=14 reps=1
+  props=1
+  $this->roots[0]->meta[&#39;tags&#39;][1] type=string [size=1] = "b"
+cmd property_get -n $this->roots[0]->meta["enabled"]
+  bytes=349 us_median=15 us_min=15 us_max=15 reps=1
+  props=1
+  $this->roots[0]->meta["enabled"] type=bool [] = 1
+cmd property_get -n $this->roots[2]->children[2]->children[2]->children[2]->children[2]->children[2]->name
+  bytes=520 us_median=16 us_min=16 us_max=16 reps=1
+  props=1
+  $this->roots[2]->children[2]->children[2]->children[2]->children[2]->children[2]->name type=string [size=16] = "root-2.2.2.2.2.2"
+cmd property_get -n $this->roots[0]->missing
+  bytes=291 us_median=17 us_min=17 us_max=17 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $this->roots[9]
+  bytes=291 us_median=15 us_min=15 us_max=15 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $this->summary()
+  bytes=291 us_median=17 us_min=17 us_max=17 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n count($this->roots)
+  bytes=291 us_median=13 us_min=13 us_max=13 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n $this::class
+  bytes=291 us_median=13 us_min=13 us_max=13 reps=1
+  props=0
+  error code=300 can not get property
+cmd property_get -n self::class
+  bytes=291 us_median=13 us_min=13 us_max=13 reps=1
+  props=0
+  error code=300 can not get property
+cmd eval $this->summary()
+  bytes=383 us_median=33 us_min=33 us_max=33 reps=1
+  props=3
+  ? type=array [numchildren=2 page=0 pagesize=4]
+    roots type=int [] = 3
+    nodes type=int [] = 1092
+cmd eval count($this->roots)
+  bytes=224 us_median=18 us_min=18 us_max=18 reps=1
+  props=1
+  ? type=int [] = 3
+cmd eval $this->roots[0]->children[1]->name . '!'
+  bytes=265 us_median=20 us_min=20 us_max=20 reps=1
+  props=1
+  ? type=string [size=9] = "root-0.1!"
+detached
+request: http=200 time_s=0.004934
