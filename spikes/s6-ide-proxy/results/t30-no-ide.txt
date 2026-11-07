@@ -1,8 +1,8 @@
-# 2026-11-07T21:58:58Z mode=noide requests=1 url=http://127.0.0.1:8680/loop?n=3
+# 2026-11-07T23:19:57Z mode=noide requests=1 url=http://127.0.0.1:8680/loop?n=3
 # EMU_ARGS= AGENT_ARGS= PROXY_LOG= COLD=
 ## proxy
 listening on 0.0.0.0:9003 for Xdebug, control on 127.0.0.1:9100, IDE at ide:9011
 s1: IDE at ide:9011 unreachable (Connection refused (os error 111)), dropping the session
 ## requests
-request 1: 200 0.003058s {"iterations":3,"sum":5}
+request 1: 200 0.002092s {"iterations":3,"sum":5}
 ## exit status 0

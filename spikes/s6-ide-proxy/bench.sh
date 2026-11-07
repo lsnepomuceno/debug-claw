@@ -15,7 +15,7 @@ while [ "$r" -le "$reps" ]; do
     for mode in direct loop bridge; do
         EMU_ARGS="--bench $rounds" ./run.sh "$mode" "bench-$mode-$r" >/dev/null
     done
-    EMU_ARGS="--bench $rounds" AGENT_ARGS="--pauses 1 --flood" ./run.sh bridge "bench-bridge-flood-$r" >/dev/null
+    EMU_ARGS="--bench $rounds" AGENT_ARGS="--pauses 2 --flood" ./run.sh bridge "bench-bridge-flood-$r" >/dev/null
     r=$((r + 1))
 done
 {
