@@ -12,6 +12,8 @@ Requirements describe observable behavior, not implementation. "When a session p
 
 Requirements do not name technologies, except the external protocols the tool must speak (DBGp, MCP, HTTP) and the external software it integrates with (Xdebug, PHP, the IDE).
 
+Every milestone has requirements for the [resource budgets](../docs/performance.md#budgets) that apply to it, with acceptance criteria that measure them. A milestone is not done while it misses a budget. See [ADR-0008](decisions/0008-resource-budgets.md).
+
 Every requirement needs a test. If you cannot write the test that proves the requirement holds, the requirement is too vague to implement.
 
 Every design block points to the requirement it serves (`Serves: R-03`). Design does not invent requirements.

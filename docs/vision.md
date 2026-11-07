@@ -23,6 +23,7 @@ A local daemon and a native desktop app, written in Rust, that:
 4. The request is the unit. Every event (pause, dump, logpoint hit, exception, profile) belongs to a request. An agent can ask for everything that happened during one request in a single call.
 5. Non-blocking by default. Logpoints capture values and let the request continue. A paused request holds a PHP worker, so pauses have timeouts and are released when no one is driving them.
 6. Local and explicit about risk. The daemon binds to the loopback interface. Evaluating PHP expressions runs code inside the application, so it is off until the user turns it on.
+7. Light on resources. Memory and CPU use have budgets, and missing one is a bug. The cost added to the PHP request matters most, because it distorts what the developer measures. See [performance](performance.md).
 
 ## Non-goals
 

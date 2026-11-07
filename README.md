@@ -11,6 +11,7 @@ Design phase. There is no code yet. The project is specified in [`specs/`](specs
 ## Where to read
 
 - [`docs/vision.md`](docs/vision.md): what the tool is for, its principles and its non-goals.
+- [`docs/performance.md`](docs/performance.md): resource budgets and the rules that keep memory and CPU use low.
 - [`docs/prior-art.md`](docs/prior-art.md): what LaraDumps and Buggregator do, and where this project differs.
 - [`specs/README.md`](specs/README.md): how specs work here and which milestone is active.
 - [`specs/decisions/`](specs/decisions/): architecture decisions, including the options that were rejected.

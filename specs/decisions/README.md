@@ -9,5 +9,6 @@
 | [0005](0005-layered-php-integration.md) | Layered PHP integration | proposed |
 | [0006](0006-english-repository.md) | English for everything in the repository | accepted |
 | [0007](0007-spec-process.md) | Spec process and fresh-context reviews | accepted |
+| [0008](0008-resource-budgets.md) | Resource use is a requirement, with budgets | accepted |
 
 The format is described in [CONVENTIONS.md](../CONVENTIONS.md#decisions).

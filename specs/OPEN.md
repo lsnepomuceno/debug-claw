@@ -50,3 +50,10 @@ Whether the daemon also accepts the Symfony VarDumper server protocol, Monolog o
 
 - Decides: Lucas.
 - Blocks: nothing yet.
+
+## O-08 Confirm the resource budgets
+
+The budgets in [docs/performance.md](../docs/performance.md#budgets) are drafts. Each spike measures its rows and proposes a final number.
+
+- Decides: Lucas, from the spike reports.
+- Blocks: milestone 1 requirements.
