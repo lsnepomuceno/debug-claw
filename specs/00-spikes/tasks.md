@@ -9,10 +9,10 @@ Each task names the exit criteria it closes (see [requirements.md](requirements.
 
 ## S1 Path mapping
 
-- [ ] T-03 Read the `init` packet and infer the mapping by longest suffix. Closes S1 criterion 1 for the root layout.
-- [ ] T-04 Repeat with the `public/` entry script layout. Closes S1 criterion 1.
-- [ ] T-05 Build the ambiguous cases (duplicate relative path, vendor elsewhere, symlink) and record the results. Closes S1 criteria 2 and 3.
-- [ ] T-06 Probe the DBGp features listed in S1 criterion 4, then write `reports/s1-path-mapping.md`. Closes S1 criterion 4.
+- [x] T-03 Read the `init` packet and infer the mapping by longest suffix. Closes S1 criterion 1 for the root layout.
+- [x] T-04 Repeat with the `public/` entry script layout. Closes S1 criterion 1.
+- [x] T-05 Build the ambiguous cases (duplicate relative path, vendor elsewhere, symlink) and record the results. Closes S1 criteria 2 and 3.
+- [x] T-06 Probe the DBGp features listed in S1 criterion 4, then write `reports/s1-path-mapping.md`. Closes S1 criterion 4.
 
 ## S2 Logpoints
 
