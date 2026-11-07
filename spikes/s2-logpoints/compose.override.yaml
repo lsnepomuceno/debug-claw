@@ -1,0 +1,10 @@
+# Extra mount for S2 (T-11), layered on the shared test bed without
+# changing it:
+#
+#   docker compose -f ../testbed/compose.yaml -f compose.override.yaml up -d
+#
+# Relative paths resolve against the first file's folder (spikes/testbed).
+services:
+  php85:
+    volumes:
+      - ../s2-logpoints/probe:/probe:ro
