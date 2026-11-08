@@ -49,7 +49,7 @@ segment   = "->" identifier
 constant  = identifier                             ; no "$": property_get -c 2
 ```
 
-Every other expression needs eval: calls, operators, casts, `??`, interpolation, class constants, `Class::$static`, `self::`, `static::`, `::class` and `$GLOBALS`. Whether and when eval is allowed is [O-05](../OPEN.md#o-05-eval-policy).
+Every other expression needs eval: calls, operators, casts, `??`, interpolation, class constants, `Class::$static`, `self::`, `static::`, `::class` and `$GLOBALS`. Whether and when eval is allowed is [ADR-0018](0018-eval-policy.md).
 
 Writing a value with `property_set` counts as eval, because Xdebug evaluates the value as PHP (S1).
 

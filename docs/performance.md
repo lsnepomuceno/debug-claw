@@ -24,23 +24,26 @@ The cost that matters most is the one added to the PHP request, because it disto
 
 ## Budgets
 
-State: draft. The numbers below are starting targets and stay in force until each row is decided ([O-08](../specs/OPEN.md#o-08-confirm-the-resource-budgets)). The spikes measured their rows, and their proposals are in the [next table](#measured-and-proposed).
+State: decided on 2026-11-07 from the spike reports. The measurements behind each number are in the [next table](#measured-and-proposed). Two points stay open in [O-08](../specs/OPEN.md#o-08-budgets-left-open).
 
-| Component | Situation | Draft budget | Measured in |
+| Component | Situation | Budget | Measured in |
 |---|---|---|---|
-| Daemon | Idle, no sessions | RSS at most 20 MB, CPU 0% with no periodic wakeups faster than once per second | S3 |
+| Daemon | Idle, no sessions | RSS at most 20 MB, CPU 0% with no periodic wakeups faster than once per second | S3, and milestone 1 for the real daemon |
 | Daemon | 10 sessions open, 10 000 stored events | RSS at most 100 MB | milestone 1 |
-| Desktop app | Window open, nothing changing | CPU 0% (no repaint) | S4 |
+| Daemon | CPU per logpoint hit | not set yet ([O-08](../specs/OPEN.md#o-08-budgets-left-open)) | S2 |
+| Desktop app | Window open, nothing changing | CPU 0% (no repaint). Whether the daemon's wakeup rule also applies is open ([O-08](../specs/OPEN.md#o-08-budgets-left-open)) | S4 |
 | Desktop app | Showing the large S4 datasets | RSS at most 200 MB | S4 |
-| Logpoint | One hit with 5 expressions, daemon and PHP on the same host | at most 5 ms added to the request | S2 |
+| Desktop app | Frame time in the large views | p99 under 8 ms of CPU on a mid-range laptop GPU | S4 |
+| Logpoint | One hit with 5 expressions, daemon and PHP on the same host | at most 0.2 ms added to the request | S2 |
 | Dump client | Daemon down, after the first failed call | at most 0.1 ms per dump call | dump client milestone |
-| Extension | Request with about 100 PDO queries | at most 5% added request time, and no added memory per request after it ends | S5 |
-| IDE proxy | Relaying a PhpStorm session | at most 1 ms added per DBGp round trip | S6 |
-| MCP | Default tool result | at most 32 KB, with pagination for the rest | milestone 1 |
+| Extension | Request with about 100 PDO queries | at most 1 us per observed call with the daemon up and 0.5 us with it down, at most one write per request, worker RSS within 64 kB from request 1000 to 10 000, and `memory_get_usage` unchanged | S5 |
+| Extension | Installed but switched off | nothing added per call | S5 |
+| IDE proxy | Relaying a PhpStorm session | at most 0.5 ms added per DBGp round trip at p99 | S6 |
+| MCP | Default tool result | at most 32 KB, with pagination for the rest | S2, and milestone 1 |
 
 ### Measured and proposed
 
-What the spike reports measured for each row, and the number each one proposes. A proposal is not a budget until O-08 decides it. Machines, commands and versions are in each report.
+What the spike reports measured for each row, and the number each one proposed. The budgets above took these proposals on 2026-11-07. Machines, commands and versions are in each report.
 
 | Row | Measured | Proposed | Report |
 |---|---|---|---|

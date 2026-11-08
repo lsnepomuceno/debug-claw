@@ -11,7 +11,7 @@ A logpoint records a message built from expressions each time a line runs, and t
 ## Decision
 
 1. A logpoint is a line breakpoint. At each pause the daemon writes every `property_get` of the logpoint and the `run` in one write, then reads the answers in order.
-2. While eval is off, a logpoint accepts only expressions that match the path grammar of [ADR-0014](0014-reading-values.md). A message template such as `total={$order->total}` is split into literal text and path expressions. The check runs when the logpoint is set. An expression that needs eval is refused then, with the reason, under [O-05](../OPEN.md#o-05-eval-policy).
+2. While eval is off, a logpoint accepts only expressions that match the path grammar of [ADR-0014](0014-reading-values.md). A message template such as `total={$order->total}` is split into literal text and path expressions. The check runs when the logpoint is set. An expression that needs eval is refused then, with the reason, under [ADR-0018](0018-eval-policy.md).
 3. Each value is read with `max_children` 8 and `max_data` 256 (`-m 256` on each `property_get`), smaller than the session defaults of ADR-0014, because captures stay in a buffer of many entries.
 4. Hit conditions map to DBGp: "from hit K on" is `-h K -o >=`, "only hit K" is `-h K -o ==`, and "every K-th hit" is `-h K -o %`. Xdebug evaluates them and pauses only on matching hits.
 5. "At most K captures" has no DBGp operator. The daemon removes the breakpoint with `breakpoint_remove` at the K-th capture.

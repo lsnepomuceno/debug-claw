@@ -39,7 +39,7 @@ Every result follows the limits in [performance.md](performance.md): values are 
 | Condition | parameter | Edit popover | Xdebug | 1 |
 | Hit count (`hit_value`, `hit_condition`) | parameter | Edit popover | Xdebug | 1 |
 | Exception breakpoint, by class or for all | `breakpoint_set` type `exception` | Exceptions section of the breakpoints view | Xdebug | 1 |
-| Break on PHP warnings, notices and deprecations, by the names `Warning`, `Notice`, `Deprecated` or `*`. Errors silenced with `@` pause too ([O-12](../specs/OPEN.md#o-12-silenced-php-errors)) | `breakpoint_set` type `exception` | Same section | Xdebug (confirmed in S1) | 1 |
+| Break on PHP warnings, notices and deprecations, by the names `Warning`, `Notice`, `Deprecated` or `*`. Errors silenced with `@` are skipped by default, and an option pauses on them too | `breakpoint_set` type `exception` | Same section | Xdebug (confirmed in S1) | 1 |
 | Break on function call or return, internal functions included, with the return value at a `return` pause | `breakpoint_set` type `call`, `return` | "Break on function" field | Xdebug (confirmed in S1) | 2 |
 | One-shot breakpoint and run to line | `run_to` | "Run to cursor" | Xdebug | 1 |
 | Enable, disable, group and keep breakpoints per project | `breakpoint_update` | Breakpoints view | Daemon, storage in [O-04](../specs/OPEN.md#o-04-storage) | 1 |
@@ -60,8 +60,8 @@ Not planned: data watchpoints (break when a value changes), moving the next stat
 | Continue, step over, step into, step out | `continue`, `step` | Toolbar, PhpStorm keys | Xdebug | 1 |
 | Wait until a session pauses or a request ends, with a timeout ([S3](../specs/00-spikes/requirements.md#s3-blocking-mcp-tools)) | `wait` | | Daemon | 1 |
 | Stop the request, or detach and let it finish | `stop`, `detach` | Toolbar | Xdebug | 1 |
-| Pause a running request. Xdebug has no async `break` (S1); only its control socket, reachable from inside the PHP container, can pause ([O-11](../specs/OPEN.md#o-11-pausing-a-running-request)) | `break` | Pause button | Xdebug control socket | after O-11 |
-| Release a paused worker after a timeout when no one drives it ([O-21](../specs/OPEN.md#o-21-how-long-a-paused-request-may-wait)) | configuration | Countdown in the session header | Daemon | 1 |
+| Pause a running request. Xdebug has no async `break` (S1); only its control socket, reachable from inside the PHP container, can pause. Milestone 1 has no pause; a later milestone adds a helper run inside the PHP container through `docker exec` | `break` | Pause button | Xdebug control socket, through a helper in the container | later |
+| Release a paused worker with `detach` after 5 minutes when no one drives it ([ADR-0021](../specs/decisions/0021-paused-request-release.md)) | configuration | Countdown in the session header | Daemon | 1 |
 | Several sessions at once | `sessions` | Session list | Xdebug | 1 |
 | Step filters: stepping into skips `vendor/` and other listed paths | parameter | Toggle | Daemon over Xdebug | 3 |
 | Shared control: the app shows who sent the last command, and the person can take over or lock the agent out of a session | `session_status` | "Agent is driving" banner with "Take over" | Daemon | 3 |
@@ -72,15 +72,15 @@ Not planned: data watchpoints (break when a value changes), moving the next stat
 |---|---|---|---|---|
 | Stack frames, with vendor frames collapsed | `stack` | Frames pane | Xdebug | 1 |
 | Variables per frame: locals, superglobals and constants. A constant is read by name, built-in ones included, though the list shows only user constants | `variables` with a context | Variables pane, one tab per context | Xdebug (contexts 0, 1 and 2, confirmed in S1 and S2) | 1 |
-| `$this` and class statics, private and protected included, with visibility shown. Statics are read through `$this`. Class constants only through eval | `variables` | Same tree | Xdebug (confirmed in S1 and S2); class constants under O-05 | 1 |
+| `$this` and class statics, private and protected included, with visibility shown. Statics are read through `$this`. Class constants only through eval | `variables` | Same tree | Xdebug (confirmed in S1 and S2); class constants need the eval scope ([ADR-0018](../specs/decisions/0018-eval-policy.md)) | 1 |
 | Tree loaded on demand, one level at a time, with paging for large arrays ([ADR-0014](../specs/decisions/0014-reading-values.md)) | `property_get` with a path and a page | Lazy tree | Xdebug | 1 |
 | Full value of a long string, binary shown as hex | `property_value` | Value viewer | Xdebug | 1 |
 | PHP types rendered faithfully: object IDs, recursion, enums, closures with their file and line, resources, generators, uninitialized typed properties | in every value | In every tree | Xdebug | 1 |
-| Watches: expressions read at every pause. Path expressions need no eval, anything else falls under O-05 | `watch_add` | Watches tab | Xdebug | 1 |
+| Watches: expressions read at every pause. Path expressions need no eval, anything else needs the eval scope | `watch_add` | Watches tab | Xdebug | 1 |
 | Values that changed since the last step are marked | flag in `variables` | Highlight | Daemon | 1 (MCP), 3 (app) |
 | Source of the current file, with the current line | `source` | Source pane | Xdebug (`source` command) or local file | 1 |
 | Values shown inline next to the source lines, and on hover | | Source pane | Daemon over Xdebug | 3 |
-| Set a variable. Xdebug evaluates the new value as PHP, so this has the power of eval | `variable_set` | Edit in the tree | Xdebug, under [O-05](../specs/OPEN.md#o-05-eval-policy) | 1 |
+| Set a variable. Xdebug evaluates the new value as PHP, so this has the power of eval | `variable_set` | Edit in the tree | Xdebug, eval scope ([ADR-0018](../specs/decisions/0018-eval-policy.md)) | 1 |
 | Copy a value as a PHP path expression (`$order->items[3]->price`), JSON or `var_export`. Xdebug's `fullname` is the path, except its `->*Class*name` form for a parent's private property, which is not valid PHP | | Context menu | Daemon | 3 |
 | Search the variable tree by name or loaded value | | Filter box | Daemon | 3 |
 | Compare two pauses or two snapshots | `diff` | Diff view | Daemon | 2 |
@@ -89,7 +89,7 @@ Not planned: data watchpoints (break when a value changes), moving the next stat
 
 | Feature | MCP | App | Source | Milestone |
 |---|---|---|---|---|
-| Evaluate an expression in the paused frame | `eval` | Evaluate field | Xdebug, under O-05 | 1 |
+| Evaluate an expression in the paused frame | `eval` | Evaluate field | Xdebug, eval scope | 1 |
 | Console: multi-line PHP in the paused frame, with history, completion from names in scope, and `echo` output captured | `eval` | Console panel | Xdebug, output through `stdout -c 1` (confirmed in S1; `stderr -c 1` fails) | 3 |
 | Every evaluation is recorded in the request timeline with who ran it | in `request_timeline` | Timeline entry | Daemon | 1 |
 | Console with no paused request, using the project's autoloader | `console_run` | Console panel | Needs a PHP runtime, see O-09 | later |
@@ -139,12 +139,12 @@ These exist because the agent is a first-class user ([ADR-0002](../specs/decisio
 
 | Feature | MCP | App | Milestone |
 |---|---|---|---|
-| Notifications when a session pauses or a request ends. The daemon can send them, but neither client S3 tested shows them to the agent ([O-13](../specs/OPEN.md#o-13-pauses-the-agent-is-not-waiting-for)) | server notifications | | 1 |
+| Notifications when a session pauses or a request ends. The daemon can send them, but neither client S3 tested shows them to the agent, so the tool descriptions tell the agent to keep a wait running instead | server notifications | | 1 |
 | Sessions and request timelines as MCP resources | resources | | 2 |
 | Guided workflows such as "investigate a failing request" and "find where this value changes" | prompts | | 2 |
 | Shared focus: the request, frame or variable the person selected in the app, readable by the agent | `focus` | "Share with agent" action | 3 |
 | Notes on a request or a frame, written by either side | `note_add` | Notes on the request | later |
-| Permissions granted per scope (read, control execution, eval, set variables) | enforced on every tool | Settings | 1, scope in O-05 |
+| Permissions per project: read, control execution and eval, where setting a variable counts as eval ([ADR-0018](../specs/decisions/0018-eval-policy.md)) | enforced on every tool | Settings | 1 |
 | Activity log of every MCP call that changed state, in plain words ("Agent set a breakpoint at OrderService.php:42") | | Activity panel | 3 |
 
 ## Editor and desktop

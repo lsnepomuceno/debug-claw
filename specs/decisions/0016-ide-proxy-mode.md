@@ -29,6 +29,6 @@ Xdebug connects to one client per request ([ADR-0003](0003-framework-agnostic.md
 - The agent's view of an IDE-driven session is read only, and only during the IDE's pauses.
 - The proxy added 12 to 38 us at the median and up to 173 us at p99 per round trip. The slowest single round trip took 726 us.
 - PhpStorm makes a pause for itself: after `init` it sends `step_into`, so the script stops on its first line while PhpStorm reads `PHP_IDE_CONFIG` and sets its breakpoints. The agent's wait sees that pause too ([O-18](../OPEN.md#o-18-proxy-mode-details)).
-- PhpStorm sends `eval` itself, three times per session, to read Xdebug settings and `PHP_IDE_CONFIG`. Those pass through unchanged: the eval policy ([O-05](../OPEN.md#o-05-eval-policy)) covers the daemon and the agent, not the IDE.
+- PhpStorm sends `eval` itself, three times per session, to read Xdebug settings and `PHP_IDE_CONFIG`. Those pass through unchanged: the eval policy ([ADR-0018](0018-eval-policy.md)) covers the daemon and the agent, not the IDE.
 - PhpStorm ends a finished session with `detach`.
 - How the daemon finds the IDE, agent breakpoints while the IDE drives, stream packets for the agent, which session the agent reads when several run at once, and whether the agent's wait skips the IDE's own pauses stay open ([O-18](../OPEN.md#o-18-proxy-mode-details)).

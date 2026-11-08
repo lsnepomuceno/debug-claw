@@ -37,4 +37,4 @@ S4 met its budgets because of these rules, and every view follows them:
 - Rich views (syntax-highlighted source, large variable trees, flame graphs) are drawn with the toolkit instead of HTML and CSS, which costs more work.
 - The visual polish of LaraDumps takes longer to reach. Whether the S4 mockups look finished is for Lucas to judge ([O-16](../OPEN.md#o-16-desktop-app-mockups)). If he rejects the look, this choice is reopened.
 - S4 ran on Linux only. Frame times, idle behaviour and RSS on Windows and macOS are measured before the desktop app milestone.
-- With AccessKit on, the Linux adapter wakes the app about twice per second ([O-08](../OPEN.md#o-08-confirm-the-resource-budgets)).
+- With AccessKit on, the Linux adapter wakes the app about twice per second ([O-08](../OPEN.md#o-08-budgets-left-open)).

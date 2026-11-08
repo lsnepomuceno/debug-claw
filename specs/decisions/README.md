@@ -18,5 +18,10 @@
 | [0014](0014-reading-values.md) | Reading values over DBGp | accepted |
 | [0015](0015-logpoints.md) | Logpoints over DBGp | accepted |
 | [0016](0016-ide-proxy-mode.md) | IDE proxy mode | accepted |
+| [0017](0017-supported-versions.md) | Supported PHP and Xdebug versions | accepted |
+| [0018](0018-eval-policy.md) | Eval policy and permission scopes | accepted |
+| [0019](0019-daemon-startup.md) | Starting and finding the daemon | accepted |
+| [0020](0020-dbgp-listener-interfaces.md) | Network interfaces of the DBGp listener | accepted |
+| [0021](0021-paused-request-release.md) | Releasing a paused request | accepted |
 
 The format is described in [CONVENTIONS.md](../CONVENTIONS.md#decisions).

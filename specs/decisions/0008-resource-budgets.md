@@ -15,7 +15,7 @@ Memory use and CPU use are requirements. They have explicit budgets per componen
 - a milestone is not done while it misses a budget;
 - once code exists, the budgets become automated checks.
 
-The first numbers are drafts. The spikes measure the real costs and the spike reports confirm or revise them ([O-08](../OPEN.md#o-08-confirm-the-resource-budgets)).
+The first numbers were drafts. The spikes measured the real costs, and the budgets were set from their reports on 2026-11-07. What is still open is in [O-08](../OPEN.md#o-08-budgets-left-open).
 
 ## Alternatives rejected
 

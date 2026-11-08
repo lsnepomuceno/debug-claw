@@ -36,7 +36,7 @@ Exit criteria:
 - The report gives the daemon's CPU time and memory for 10 000 hits, and shows that memory does not grow with the number of hits once the capture buffer is full.
 - The report says whether DBGp hit conditions (`hit_value` with `>=`, `==` or `%`) can cap the number of captures without pausing on every iteration.
 - Two requests running at the same time each get their own captures, and neither waits for the other.
-- The report says which expressions can be read without `eval`, since eval is off by default ([O-05](../OPEN.md#o-05-eval-policy)).
+- The report says which expressions can be read without `eval`, since eval is off by default ([O-05, now ADR-0018](../decisions/0018-eval-policy.md)).
 - The report gives the response sizes for the fixture's deepest object with and without `max_depth`, `max_children` and `max_data`, and the values to use by default.
 
 ## S3 Blocking MCP tools
@@ -80,7 +80,7 @@ Can a PHP extension written in Rust observe calls in any application, at an acce
 Exit criteria:
 
 - An extension built with `ext-php-rs` registers a PHP Observer API handler and reports each `PDOStatement::execute` call with its SQL and duration to a local socket.
-- The same extension builds and runs on the oldest and the newest PHP version under consideration ([O-02](../OPEN.md#o-02-minimum-php-and-xdebug-versions)).
+- The same extension builds and runs on the oldest and the newest PHP version under consideration ([O-02, now ADR-0017](../decisions/0017-supported-versions.md)).
 - The report gives the overhead on a request that runs about 100 queries, with the extension loaded and with it not loaded, against the extension budget in [docs/performance.md](../../docs/performance.md#budgets).
 - After 10 000 requests on the same PHP-FPM worker, the worker's memory with the extension loaded matches its memory without it, within measurement noise.
 - With the daemon down, the extension's added time per request stays within the same budget.

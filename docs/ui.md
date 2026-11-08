@@ -80,7 +80,7 @@ Each card has the colored edge, the label, the request it belongs to, the origin
 - The toolbar uses the PhpStorm keys: Resume F9, Step over F8, Step into F7, Step out Shift+F8, Run to cursor Alt+F9, Stop Ctrl+F2, Evaluate Alt+F8.
 - The source pane shows the current line, breakpoints in the gutter (click to toggle, right-click to edit) and values next to the lines.
 - The variables pane has one tab per Xdebug context plus the watches. Values that changed since the last step are marked.
-- The console runs PHP in the paused frame, under the eval policy ([O-05](../specs/OPEN.md#o-05-eval-policy)). When eval is off, it says so and links to the setting.
+- The console runs PHP in the paused frame, under the eval policy ([ADR-0018](../specs/decisions/0018-eval-policy.md)). When eval is off, it says so and links to the setting.
 
 ### Requests
 

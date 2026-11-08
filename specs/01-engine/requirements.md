@@ -20,11 +20,11 @@ The rules these requirements rely on are in the ADRs, not here: the daemon and i
 
 ## Test bed and versions
 
-Acceptance runs in the Docker test bed ([ADR-0011](../decisions/0011-docker-development.md)) against Xdebug 3.5.3 on PHP 8.3 and 8.5, until [O-02](../OPEN.md#o-02-minimum-php-and-xdebug-versions) sets the supported versions. The MCP clients are the ones S3 used: the MCP Inspector CLI (protocol revision 2025-11-25) and Claude Code (2026-07-28), each with its default settings unless a criterion says otherwise.
+Acceptance runs in the Docker test bed ([ADR-0011](../decisions/0011-docker-development.md)) against both ends of the supported range ([ADR-0017](../decisions/0017-supported-versions.md)): PHP 7.4 with the last Xdebug 3.0 release, and PHP 8.5 with Xdebug 3.5.3. PHP 8.3 with Xdebug 3.5.3 stays in the test bed. A criterion that names no version holds on all three. The MCP clients are the ones S3 used: the MCP Inspector CLI (protocol revision 2025-11-25) and Claude Code (2026-07-28), each with its default settings unless a criterion says otherwise.
 
 ## Out of scope
 
-- Pausing a running request, until [O-11](../OPEN.md#o-11-pausing-a-running-request) is answered.
+- Pausing a running request. A later milestone adds a helper run inside the PHP container ([ADR-0003](../decisions/0003-framework-agnostic.md)).
 - Logpoints, snapshot points, exception capture and the request timeline (candidate milestone 2, [ADR-0015](../decisions/0015-logpoints.md)).
 - The desktop app and its local API.
 - Proxy mode for an IDE ([ADR-0016](../decisions/0016-ide-proxy-mode.md)).
@@ -36,25 +36,29 @@ Acceptance runs in the Docker test bed ([ADR-0011](../decisions/0011-docker-deve
 
 When Xdebug connects to the daemon on port 9003, the daemon shall open a session, with no project or configuration file set up beforehand.
 
-Serves: [features, connection and setup](../../docs/features.md#connection-and-setup), [ADR-0003](../decisions/0003-framework-agnostic.md). Depends on: [O-22](../OPEN.md#o-22-network-interfaces-of-the-dbgp-listener) (which interfaces).
+Serves: [features, connection and setup](../../docs/features.md#connection-and-setup), [ADR-0003](../decisions/0003-framework-agnostic.md), [ADR-0020](../decisions/0020-dbgp-listener-interfaces.md).
 
 Acceptance criteria:
 
-- On a fresh install with no configuration, a request with the Xdebug trigger from the PHP 8.3 and the PHP 8.5 containers each opens a session that `status` lists.
-- A PHP container on Linux configured as the setup help says (R-07) reaches the daemon.
+- On a fresh install with no configuration, a request with the Xdebug trigger from each PHP container of the test bed opens a session that `status` lists.
+- A PHP container on Linux configured as the setup help says (R-07) reaches a daemon running on the host, through `host.docker.internal`.
+- With the default settings, `status` lists the loopback address and, on Linux, the Docker bridge address as the listener's addresses, and a connection to the DBGp port on any other address of the host is refused.
+- With the setting for every interface on, a connection on another address of the host opens a session.
 
 ### R-02 MCP over Streamable HTTP
 
 The daemon shall serve MCP over Streamable HTTP to clients on the same machine, in protocol revisions 2025-11-25 (with sessions) and 2026-07-28 (without sessions).
 
-Serves: [ADR-0004](../decisions/0004-daemon-and-clients.md). Depends on: [O-19](../OPEN.md#o-19-starting-and-finding-the-daemon) (port and discovery), [O-22](../OPEN.md#o-22-network-interfaces-of-the-dbgp-listener).
+Serves: [ADR-0004](../decisions/0004-daemon-and-clients.md), [ADR-0019](../decisions/0019-daemon-startup.md), [ADR-0020](../decisions/0020-dbgp-listener-interfaces.md).
 
 Acceptance criteria:
 
 - The Inspector CLI connects, lists the tools and calls `status`.
 - Claude Code over HTTP connects, lists the tools and calls `status`.
 - When the daemon declares the `logging` capability, it answers `logging/setLevel`, and the Inspector CLI connects.
-- A connection to the MCP endpoint from another machine on the network is refused.
+- A connection to the MCP endpoint from another machine on the network is refused, with the DBGp listener on every interface too.
+- With no configuration, the daemon serves MCP on the default port. With the port setting changed, the daemon and the shim both use the new port.
+- With the MCP port taken by another program, the daemon exits with an error that names the port and the setting.
 
 ### R-03 Stdio shim
 
@@ -67,15 +71,17 @@ Acceptance criteria:
 - Claude Code over stdio, through the shim, lists the tools and completes a blocking call that lasts longer than 60 s.
 - While one call through the shim blocks, a cancellation sent for it reaches the daemon and ends that call, and a second call through the same shim gets its answer.
 
-### R-04 Shim without a daemon
+### R-04 Shim starts the daemon
 
-If the stdio shim cannot reach the daemon, then the shim shall answer the client with an error that says the daemon is not reachable and how to start it.
+When the stdio shim cannot reach the daemon, the shim shall start it and relay once it answers. If the daemon cannot be started, then the shim shall answer the client with an error that says why and how to start the daemon by hand.
 
-Serves: [ADR-0004](../decisions/0004-daemon-and-clients.md). Depends on: [O-19](../OPEN.md#o-19-starting-and-finding-the-daemon) (whether the shim starts the daemon instead).
+Serves: [ADR-0019](../decisions/0019-daemon-startup.md).
 
 Acceptance criteria:
 
-- With the daemon stopped, the first request through the shim gets an MCP error with that message, and the shim does not hang.
+- With the daemon stopped, the first request through the shim starts it and gets its answer.
+- After the shim exits, the daemon it started keeps running, and a paused session is still listed by the next client.
+- With the MCP port taken by another program, the first request through the shim gets an MCP error that names the port and the setting, and the shim does not hang.
 
 ### R-05 Daemon independent of its clients
 
@@ -108,6 +114,19 @@ Acceptance criteria:
 
 - On Linux the Docker settings include `extra_hosts: host.docker.internal:host-gateway`. On Windows and macOS they do not.
 - Before any session the answer says none has connected. After the first session it says one has.
+- The answer says to raise the web server's read timeout (for nginx, `fastcgi_read_timeout`) above the release timeout of R-20, and what happens otherwise ([ADR-0021](../decisions/0021-paused-request-release.md)).
+- The settings are the Xdebug 3 ones, and they work on the PHP 7.4 container of the test bed.
+
+### R-51 Unsupported Xdebug versions
+
+If a session reports an Xdebug version below 3.0 in its `init` packet, then the daemon shall end the session and report that the version is not supported and which version is.
+
+Serves: [ADR-0017](../decisions/0017-supported-versions.md).
+
+Acceptance criteria:
+
+- A recorded `init` packet with an Xdebug 2 version, replayed to the daemon, ends the session, and `status` shows the reason.
+- `design.md` lists every DBGp feature the engine uses that Xdebug 3.0 lacks, and the result each tool gives on 3.0 for it.
 
 ## Path mapping
 
@@ -129,12 +148,13 @@ Acceptance criteria:
 
 If two or more local folders match the entry script equally and their content does not tell them apart, then the daemon shall ask the MCP client which folder is the project, offer every candidate, and remember the answer.
 
-Serves: ADR-0013 rule 4. Depends on: [O-21](../OPEN.md#o-21-how-long-a-paused-request-may-wait) (how long the request waits for the answer).
+Serves: ADR-0013 rule 4, [ADR-0021](../decisions/0021-paused-request-release.md) rule 4.
 
 Acceptance criteria:
 
 - With two identical copies of the project, the question lists both folders.
 - After the answer, the next session of the same project does not ask again.
+- With no answer, the session is released after the release timeout of R-20.
 
 ### R-10 Stale local tree
 
@@ -251,12 +271,13 @@ Acceptance criteria:
 
 If a paused session receives no command for the release timeout, then the daemon shall release the request and record that it did.
 
-Serves: [features, execution control](../../docs/features.md#execution-control), [ADR-0003](../decisions/0003-framework-agnostic.md). Depends on: [O-21](../OPEN.md#o-21-how-long-a-paused-request-may-wait) (the timeout, how the request is released, what counts as a command).
+Serves: [features, execution control](../../docs/features.md#execution-control), [ADR-0003](../decisions/0003-framework-agnostic.md), [ADR-0021](../decisions/0021-paused-request-release.md).
 
 Acceptance criteria:
 
-- With the timeout set to a short value for the test, a paused session that gets no command is released, its request completes or stops as O-21 decides, and `status` shows why the session ended.
-- A session that keeps getting commands is not released.
+- With no setting, the release timeout is 5 minutes.
+- With the timeout set to a short value for the test, a paused session that gets no command is detached, its request completes with its normal response, and `status` and the session's end result show that it was released and why.
+- A session that keeps getting tool calls that target it (reads, steps, waits on it) is not released.
 
 ## Waiting
 
@@ -300,12 +321,13 @@ Acceptance criteria:
 
 The daemon shall make every pause and every session end available through a tool result, and shall not rely on server notifications to inform the agent.
 
-Serves: [features, agent workflow](../../docs/features.md#agent-workflow). Depends on: [O-13](../OPEN.md#o-13-pauses-the-agent-is-not-waiting-for) (how the agent learns of a pause it is not waiting for).
+Serves: [features, agent workflow](../../docs/features.md#agent-workflow), [ADR-0002](../decisions/0002-mcp-first.md).
 
 Acceptance criteria:
 
 - With the client ignoring all notifications, an agent completes the flow: send a request, wait, read the stack and a variable, continue, see the end.
 - A session that paused while no wait was running is reported by the next wait or `status` call.
+- The descriptions of the tools after which a pause is expected (sending a request, setting a breakpoint, continuing, stepping) tell the agent to call the wait tool next, and to call it again when it returns with nothing.
 
 ## Breakpoints
 
@@ -325,14 +347,15 @@ Acceptance criteria:
 
 When an MCP client sets an exception breakpoint by class name or for all exceptions, or on PHP warnings, notices or deprecations, the daemon shall pause sessions where one is raised, and report the name, the code and the message.
 
-Serves: [features, breakpoints](../../docs/features.md#breakpoints). Depends on: [O-12](../OPEN.md#o-12-silenced-php-errors) (errors silenced with `@`).
+Serves: [features, breakpoints](../../docs/features.md#breakpoints), [ADR-0018](../decisions/0018-eval-policy.md) rule 6.
 
 Acceptance criteria:
 
 - A caught `RuntimeException` pauses on a breakpoint for that class.
 - Breakpoints on `Warning`, `Notice` and `Deprecated` each pause on a fixture that raises one, with the PHP message.
 - A breakpoint for all of them pauses on each of the four.
-- Errors silenced with `@` behave as O-12 decides.
+- With eval off, an error silenced with `@` does not pause by default. With the breakpoint's option to include silenced errors, it pauses and the result marks it as silenced.
+- The check for silenced errors is not listed in the record of evaluations (R-43).
 
 ### R-27 Run to a line
 
@@ -477,7 +500,7 @@ Acceptance criteria:
 
 When a session pauses, the daemon shall read every watch expression of the session and include the values in the pause result.
 
-Serves: [features, inspection](../../docs/features.md#inspection). Depends on: [O-05](../OPEN.md#o-05-eval-policy) (watches outside the path grammar).
+Serves: [features, inspection](../../docs/features.md#inspection), [ADR-0018](../decisions/0018-eval-policy.md) rule 5.
 
 Acceptance criteria:
 
@@ -490,18 +513,20 @@ Acceptance criteria:
 
 While eval is off, the daemon shall refuse to evaluate expressions and to set variables, with an error that says eval is off and how it is turned on.
 
-Serves: [vision](../../docs/vision.md), [features, console and evaluation](../../docs/features.md#console-and-evaluation), [ADR-0014](../decisions/0014-reading-values.md) (setting a value evaluates PHP). Depends on: [O-05](../OPEN.md#o-05-eval-policy) (how eval is turned on).
+Serves: [vision](../../docs/vision.md), [features, console and evaluation](../../docs/features.md#console-and-evaluation), [ADR-0018](../decisions/0018-eval-policy.md).
 
 Acceptance criteria:
 
-- On a fresh install, eval and set variable are refused with that error.
+- On a fresh install, eval and set variable are refused with that error, which names the project and the daemon command that turns eval on for it.
+- No MCP tool changes a project's scopes.
+- After the user turns eval on for one project with that command, eval works in that project's sessions and is still refused in another project's.
 - Reads that match the path grammar still work.
 
 ### R-41 Evaluate in the paused frame
 
 Where eval is on, when an MCP client sends an expression to a paused session, the daemon shall evaluate it in the selected frame and return the value with the limits of ADR-0014.
 
-Serves: [features, console and evaluation](../../docs/features.md#console-and-evaluation). Depends on: [O-05](../OPEN.md#o-05-eval-policy).
+Serves: [features, console and evaluation](../../docs/features.md#console-and-evaluation), [ADR-0018](../decisions/0018-eval-policy.md).
 
 Acceptance criteria:
 
@@ -512,7 +537,7 @@ Acceptance criteria:
 
 Where eval is on, when an MCP client sets a variable in a paused frame, the daemon shall set it and return the new value.
 
-Serves: [features, inspection](../../docs/features.md#inspection). Depends on: [O-05](../OPEN.md#o-05-eval-policy).
+Serves: [features, inspection](../../docs/features.md#inspection), [ADR-0018](../decisions/0018-eval-policy.md).
 
 Acceptance criteria:
 
@@ -531,14 +556,15 @@ Acceptance criteria:
 
 ### R-44 Permission scopes
 
-The daemon shall assign every tool to one scope (read, control execution, eval, set variables) and refuse a call whose scope the client has not been granted, with an error that names the scope.
+The daemon shall assign every tool to one scope (read, control execution, eval) and refuse a call whose scope is not granted for the session's project, with an error that names the scope.
 
-Serves: [features, agent workflow](../../docs/features.md#agent-workflow). Depends on: [O-05](../OPEN.md#o-05-eval-policy) (how and where scopes are granted).
+Serves: [features, agent workflow](../../docs/features.md#agent-workflow), [ADR-0018](../decisions/0018-eval-policy.md).
 
 Acceptance criteria:
 
 - `design.md` lists the scope of every tool.
-- A client without the control execution scope gets that error on a step and can still read variables.
+- In a project with control execution turned off, a step gets that error and variables can still be read.
+- Setting a variable needs the eval scope.
 
 ## MCP results
 
@@ -546,7 +572,7 @@ Acceptance criteria:
 
 The daemon shall keep every tool result within the [MCP default tool result budget](../../docs/performance.md#budgets), mark where a result was cut, and say how to get the rest.
 
-Serves: [ADR-0014](../decisions/0014-reading-values.md), [performance rule 5](../../docs/performance.md#rules). Depends on: [O-08](../OPEN.md#o-08-confirm-the-resource-budgets).
+Serves: [ADR-0014](../decisions/0014-reading-values.md), [performance rule 5](../../docs/performance.md#rules).
 
 Acceptance criteria:
 
@@ -565,7 +591,7 @@ Acceptance criteria:
 
 ## Resource budgets
 
-Each requirement below points to a row of the [budget table](../../docs/performance.md#budgets). The drafts are in force until [O-08](../OPEN.md#o-08-confirm-the-resource-budgets) decides each row, and the measurement follows [How it is measured](../../docs/performance.md#how-it-is-measured).
+Each requirement below points to a row of the [budget table](../../docs/performance.md#budgets). The budgets were decided on 2026-11-07, and the measurement follows [How it is measured](../../docs/performance.md#how-it-is-measured).
 
 ### R-47 Idle daemon
 

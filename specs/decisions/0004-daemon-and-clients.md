@@ -34,7 +34,7 @@ Spike S3 tested a blocking `wait` with the MCP Inspector CLI and Claude Code. Th
 
 ## Consequences
 
-- The daemon has to start without the desktop app and has to be discoverable by both clients. How it starts and how clients find it is [O-19](../OPEN.md#o-19-starting-and-finding-the-daemon).
+- The daemon has to start without the desktop app and has to be discoverable by both clients. How it starts and how clients find it is [ADR-0019](0019-daemon-startup.md).
 - The S3 daemon was idle at 4.3 MB RSS, with no CPU and no context switches in 10 minutes. It had no DBGp listener, dump ingestion or storage, so milestone 1 measures the real daemon against the idle budget.
 - Each open MCP stream wakes the daemon every 15 s for the SSE keep-alive. A blocked wait adds no CPU.
 - The local API between the app and the daemon is a contract of its own, separate from MCP.
